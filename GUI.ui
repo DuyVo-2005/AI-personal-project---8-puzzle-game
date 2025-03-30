@@ -806,6 +806,12 @@ QPushButton:hover {
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPlainTextEdit{
 	background-color: transparent;
@@ -852,6 +858,12 @@ QPushButton:hover {
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPlainTextEdit{
 	background-color: transparent;
@@ -897,6 +909,12 @@ QPushButton:hover {
       <width>101</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QPlainTextEdit{

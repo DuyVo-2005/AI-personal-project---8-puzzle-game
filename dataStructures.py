@@ -10,8 +10,8 @@ class SearchNode:
             self.g_cost = parent.g_cost + self.calculate_g_cost(action)
         else:
             self.g_cost = 0
-        self.h_cost = 0
-        self.f_cost = self.g_cost + self.h_cost    
+        # self.h_cost = 0
+        # self.f_cost = self.g_cost + self.h_cost    
     def calculate_g_cost(self, action):
         if action == None:
             return 0

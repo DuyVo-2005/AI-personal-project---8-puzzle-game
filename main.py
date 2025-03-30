@@ -60,38 +60,13 @@ def DeepLimitedSearch(node: SearchNode, depth_limit):
     return None
        
 def IDS(root: SearchNode):
-    max_depth = 100000
+    max_depth = 1000000000000
     for depth in range(max_depth + 1):
         solution = DeepLimitedSearch(root, depth)#, solution, open_list, close_list)
         if solution != None:
             return solution
     return None
     
-# def UCS(root: SearchNode):
-#     global visited_nodes
-#     queue = deque()
-#     queue.append((root, [], root.path_cost))
-#     close_list = CloseList()
-    
-#     while queue:
-#         queue = deque(sorted(queue, key=lambda x: x[2]))  
-#         current_node, path, current_node_cost = queue.popleft()  # Lấy phần tử có path_cost nhỏ nhất
-        
-#         if is_goal(current_node.state):
-#             visited_nodes = close_list
-#             return path
-        
-#         if close_list.lookup(current_node.state):
-#             continue
-        
-#         close_list.insert(current_node.state)
-        
-#         for action, new_state in succ(current_node.state):
-#             if not close_list.lookup(new_state):
-#                 new_node = make_node(current_node, action, new_state)
-#                 queue.append((new_node, path + [new_state], new_node.path_cost))  # Thêm new_node.path_cost để duy trì sắp xếp
-#     visited_nodes = close_list
-#     return None
 
 def UCS(root: SearchNode):
     global visited_nodes
@@ -117,28 +92,6 @@ def UCS(root: SearchNode):
     visited_nodes = close_list
     return None
 
-# def UCS(root: SearchNode):
-#     global visited_nodes
-#     open_list = OpenList("UCS")
-#     open_list.insert(root)
-#     close_list = CloseList()
-    
-#     while not open_list.is_empty():
-#         current_node = open_list.pop()
-#         if close_list.lookup(current_node.state):
-#             continue
-#         close_list.insert(current_node.state)
-#         if is_goal(current_node.state):
-#             visited_nodes = close_list
-#             return extract_path(current_node)  
-#         for action, new_state in succ(current_node.state):
-#             if not close_list.lookup(new_state):
-#                 new_node = make_node(current_node, action, new_state)
-#                 open_list.insert(new_node)
-            
-#     visited_nodes = close_list
-#     return None
-
 def heuristic(state):
     global end_state_tuple
     #manhattan distance
@@ -150,16 +103,16 @@ def heuristic(state):
 def Greedy(root: SearchNode):
     global visited_nodes
     queue = deque()
-    queue.append((root, [], heuristic(root.state)))
+    queue.append((root, heuristic(root.state)))
     close_list = CloseList()
     
     while queue:
-        queue = deque(sorted(queue, key=lambda x: x[2])) 
-        current_node, path, current_heuristic = queue.popleft()
+        queue = deque(sorted(queue, key=lambda x: x[1])) 
+        current_node, current_heuristic = queue.popleft()
         
         if is_goal(current_node.state):
             visited_nodes = close_list
-            return path
+            return extract_path(current_node)
         
         if close_list.lookup(current_node.state):
             continue
@@ -169,7 +122,7 @@ def Greedy(root: SearchNode):
         for action, new_state in succ(current_node.state):
             if not close_list.lookup(new_state):
                 new_node = make_node(current_node, action, new_state)
-                queue.append((new_node, path + [new_state], heuristic(new_node.state)))
+                queue.append((new_node, heuristic(new_node.state)))
     visited_nodes = close_list
     return None
 
@@ -177,16 +130,16 @@ def A_start(root: SearchNode):
     # f(n) = g(n) + h(n) = node_cost + heristic
     global visited_nodes
     queue = deque()
-    queue.append((root, [], root.path_cost + heuristic(root.state)))
+    queue.append((root, root.g_cost + heuristic(root.state)))
     close_list = CloseList()
     
     while queue:
-        queue = deque(sorted(queue, key=lambda x: x[2]))  
-        current_node, path, current_cost = queue.popleft()  # Lấy phần tử có path_cost nhỏ nhất
+        queue = deque(sorted(queue, key=lambda x: x[1]))  
+        current_node, current_cost = queue.popleft()# Lấy phần tử có path_cost nhỏ nhất
         
         if is_goal(current_node.state):
             visited_nodes = close_list
-            return path
+            return extract_path(current_node)
         
         if close_list.lookup(current_node.state):
             continue
@@ -196,42 +149,43 @@ def A_start(root: SearchNode):
         for action, new_state in succ(current_node.state):
             if not close_list.lookup(new_state):
                 new_node = make_node(current_node, action, new_state)
-                queue.append((new_node, path + [new_state], new_node.path_cost + heuristic(new_node.state)))
+                queue.append((new_node, new_node.g_cost + heuristic(new_node.state)))
     visited_nodes = close_list
     return None
 
 # IDA* tăng ngưỡng xét từ vd 0, 2, 4, 6 (mỗi lần xét chỉ lấy giá trị bé hơn hoặc bằng ngưỡng)
-def IDA_star(root:SearchNode):
-    def search(node:SearchNode, path:list, g_cost:int, threshold):#Tìm kiếm theo DFS với giới hạn threshold
-        f_cost = g_cost + heuristic(node.state)
-        global visited_nodes
-        close_list = CloseList()
-        close_list.insert(node.state)
+def IDA_star(root: SearchNode):
+    def search(node: SearchNode, path: set, threshold):# Tìm kiếm theo DFS với giới hạn threshold
+        f_cost = node.g_cost + heuristic(node.state)
         if f_cost > threshold:
-            return f_cost, None #Trả về threshold mới là f_cost nếu vượt quá ngưỡng
+            return f_cost, None
         if is_goal(node.state):
-            visited_nodes = close_list
-            return None, path
+            return None, extract_path(node)
         min_threshold = float("inf")
+        path.add(node.state)
         for action, new_state in succ(node.state):
             if new_state in path:
                 continue  
             new_node = make_node(node, action, new_state)
-            new_path = path + [new_state]
-            new_g_cost = g_cost + new_node.path_cost
-            result, found_path = search(new_node, new_path, new_g_cost, threshold)
+            result, found_path = search(new_node, path.copy(), threshold)# Truyền bản sao của path
             if found_path:
                 return None, found_path
-            min_threshold = min(min_threshold, result)# Cập nhật threshold mới
+
+            min_threshold = min(min_threshold, result)
+
+        path.remove(node.state)# Xóa khỏi tập hợp khi quay lui
         return min_threshold, None# Trả về threshold mới nếu không tìm thấy lời giải
-    threshold = root.path_cost + heuristic(root.state)# Bắt đầu với threshold ban đầu là f-cost của node root
+
+    threshold = root.g_cost + heuristic(root.state)
     while True:
-        result, path = search(root, [root.state], root.path_cost, threshold)#Biến result lưu threshold mới
+        close_list = CloseList()
+        new_threshold, path = search(root, close_list.set, threshold)
         if path:
             return path
-        if result == float("inf"):
+        if new_threshold == float("inf"):# Không tìm thấy lời giải
             return None
-        threshold = result#Cập nhật ngưỡng threshold mới
+        threshold = new_threshold
+
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
