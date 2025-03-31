@@ -92,12 +92,13 @@ def UCS(root: SearchNode):
     visited_nodes = close_list
     return None
 
-def heuristic(state):
+def heuristic(state: tuple):
     global end_state_tuple
-    #manhattan distance
     h = 0
-    for i in range(9):
-        h += abs(state.index(i) - end_state_tuple.index(i))
+    for i in range(1, 9):
+        x1, y1 = divmod(state.index(i), 3)
+        x2, y2 = divmod(end_state_tuple.index(i), 3)
+        h += abs(x1 - x2) + abs(y1 - y2)
     return h
 
 def Greedy(root: SearchNode):
@@ -185,6 +186,34 @@ def IDA_star(root: SearchNode):
         if new_threshold == float("inf"):# Không tìm thấy lời giải
             return None
         threshold = new_threshold
+ 
+def simple_hill_climbing(root: SearchNode):
+    current_node = root
+    while True:
+        if is_goal(current_node.state):
+            return extract_path(current_node)
+        neighbors = succ(current_node.state)
+        if not neighbors:
+            return None
+        for action, state in neighbors:
+            if heuristic(state) < heuristic(current_node.state):
+                current_node = make_node(current_node, action, state)
+                break
+        else:
+            return None
+
+def steepest_ascent_hill_climbing(root: SearchNode):
+    current_node = root
+    while True:
+        if is_goal(current_node.state):
+            return extract_path(current_node)
+        neighbors = succ(current_node.state)#Trả về (action, state)
+        if not neighbors:
+            return None
+        best_neighbor = min(neighbors, key=lambda x: heuristic(x[1]))#Chọn hàng xóm tốt nhất theo heuristic nhỏ nhất
+        if heuristic(best_neighbor[1]) >= heuristic(current_node.state):#Không tìm thấy trạng thái tốt hơn, dừng lại
+            return None
+        current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
 
 
 def is_goal(state:tuple) -> bool:
@@ -192,6 +221,7 @@ def is_goal(state:tuple) -> bool:
     return state == end_state_tuple
 
 def succ(state: tuple) -> list:
+    "return children with (action, state)"
     children = []
     zero_index = state.index(0)
     row, col = zero_index//3, zero_index%3
@@ -249,7 +279,7 @@ class MyApp(QMainWindow):
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.btnRandomInput.clicked.connect(self.random_input)
         self.btnLoadValue.clicked.connect(self.load_value)
-        self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*"])
+        self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing", "Steepest ascent hill climbing"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -304,17 +334,21 @@ class MyApp(QMainWindow):
         
         solution = None
         if algorithm_type == "BFS" or algorithm_type == "DFS":
-                solution = uninformed_search(root, algorithm_type)
+            solution = uninformed_search(root, algorithm_type)
         elif algorithm_type == "UCS":
-                solution = UCS(root)
+            solution = UCS(root)
         elif algorithm_type == "IDS":
-                solution = IDS(root)
+            solution = IDS(root)
         elif algorithm_type == "A*":
-                solution = A_start(root)
+            solution = A_start(root)
         elif algorithm_type == "IDA*":
-                solution = IDA_star(root)
+            solution = IDA_star(root)
         elif algorithm_type == "Greedy":
-                solution = Greedy(root)
+            solution = Greedy(root)
+        elif algorithm_type == "Simple hill climbing":
+            solution = simple_hill_climbing(root)
+        elif algorithm_type == "Steepest ascent hill climbing":
+            solution = steepest_ascent_hill_climbing(root)
 
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")

@@ -2,6 +2,9 @@ from collections import deque
 import heapq #insert, pop -> O(log n)
 
 class SearchNode:
+    """
+    parent: SearchNode
+    """
     def __init__(self, parent=None, action=None, state=(0,0,0,0,0,0,0,0,0)):
         self.parent = parent
         self.action = action
