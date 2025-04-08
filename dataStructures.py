@@ -21,7 +21,7 @@ class SearchNode:
         return 1
         
     def __lt__(self, other):
-        return self.f_cost < other.f_cost
+        return self.g_cost < other.g_cost
 
 def make_node(parent, action, state):
     return SearchNode(parent, action, state)

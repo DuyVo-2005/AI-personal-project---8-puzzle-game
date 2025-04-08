@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from tkinter import messagebox
 import time
 import random
+import math
 
 from const import *
 from dataStructures import *
@@ -215,6 +216,110 @@ def steepest_ascent_hill_climbing(root: SearchNode):
             return None
         current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
 
+# được quay lui nếu còn con của node hiện tại
+def stochastic_hill_climbing(root: SearchNode):#leo đồi ngẫu nhiên
+    current_node = root
+    while True:
+        if is_goal(current_node.state):
+            return extract_path(current_node)
+        neighbors = succ(current_node.state)#Trả về (action, state)
+        if not neighbors:
+            return None
+        random.shuffle(neighbors)  # Trộn ngẫu nhiên danh sách hàng xóm
+        for action, new_state in neighbors:
+            if heuristic(new_state) < heuristic(current_node.state):
+                current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
+                break
+        else:
+            return None
+
+#F
+def stimulated_annealing(root: SearchNode):
+    max_iterations = 100000
+    current_node = root
+    iteration = 0
+    T = random.uniform(pow(10, 4), pow(10, 6))
+    while iteration < max_iterations or T > 1e-3:# T > 1e-3: T quá bé
+        iteration += 1
+        if is_goal(current_node.state):
+            return extract_path(current_node)
+        neighbors = succ(current_node.state)#Trả về (action, state)
+        if not neighbors:
+            return None
+        random.shuffle(neighbors)  # Trộn ngẫu nhiên danh sách hàng xóm
+        for action, new_state in neighbors:
+            if heuristic(new_state) < heuristic(current_node.state):
+                current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
+                break
+        else:
+            state_and_cost_list = []
+            for action, new_state in neighbors:
+                #p = pow(math.e, -(heuristic(current_node.state) - heuristic(new_state))/T)#Xác suất
+                if T < 1e-3:
+                    p = 1e-10  # Xác suất rất nhỏ nhưng không gây lỗi
+                else:
+                    delta_E = heuristic(current_node.state) - heuristic(new_state)
+                    #math.exp(709) số lớn nhất Python có thể xử lý
+                    #math.exp(-709) là số rất nhỏ gần 0, không gây lỗi.
+                    p = math.exp(min(709, max(-709, delta_E / T)))
+                state_and_cost_list.append((action, new_state, p))
+            min_p_node = min(state_and_cost_list, key=lambda x: x[2])
+            current_node = make_node(current_node, min_p_node[0], min_p_node[1])
+            anpha = random.uniform(0, 1)
+            T = anpha * T
+
+# def Beam_search(root: SearchNode):
+#     k=2
+#     beam = [root] 
+#     current_node = root
+#     current_node2 = None
+#     while beam:
+#         for node in beam:
+#             if is_goal(current_node.state):
+#                 return extract_path(current_node)
+#         neighbors = succ(current_node.state)#Trả về (action, state)
+#         if not neighbors:
+#             return None
+#         best_neighbor1 = min(neighbors, key=lambda x: heuristic(x[1]))
+#         neighbors.remove(best_neighbor1)
+#         best_neighbor2 = min(neighbors, key=lambda x: heuristic(x[1]))
+#         if heuristic(best_neighbor1[1]) >= heuristic(current_node.state):
+#             return None
+#         current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
+
+
+def Beam_search(root: SearchNode):
+    beam_width = 2
+    open_list = OpenList("USC")# priority queue of ucs
+    open_list.insert(root)
+    close_list = CloseList()
+    while not open_list.is_empty():
+        current_node, current_node2 = open_list.pop(), None
+        close_list.insert(current_node)
+        if is_goal(current_node.state):
+            return extract_path(current_node)
+        neighbors, neighbors2 = succ(current_node.state), None
+        
+        if len(open_list.deque) >= 2:
+            current_node2 = open_list.pop()
+            close_list.insert(current_node2)
+            if is_goal(current_node2.state):
+                return extract_path(current_node2)
+            neighbors2 = succ(current_node2)
+        
+        if not neighbors and not neighbors2:
+            return None
+        for action, state in neighbors:
+            if not close_list.lookup(state):
+                close_list.insert(state)
+                new_node = make_node()
+                #if heuristic()
+        # best_neighbor1 = min(neighbors, key=lambda x: heuristic(x[1]))
+        # neighbors.remove(best_neighbor1)
+        # best_neighbor2 = min(neighbors, key=lambda x: heuristic(x[1]))
+        # if heuristic(best_neighbor1[1]) >= heuristic(current_node.state):
+        #     return None
+        # current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -279,7 +384,8 @@ class MyApp(QMainWindow):
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.btnRandomInput.clicked.connect(self.random_input)
         self.btnLoadValue.clicked.connect(self.load_value)
-        self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing", "Steepest ascent hill climbing"])
+        self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
+                                    "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -349,7 +455,11 @@ class MyApp(QMainWindow):
             solution = simple_hill_climbing(root)
         elif algorithm_type == "Steepest ascent hill climbing":
             solution = steepest_ascent_hill_climbing(root)
-
+        elif algorithm_type == "Stochastic hill climbing":
+            solution = stochastic_hill_climbing(root)
+        elif algorithm_type =="Stimulated annealing":
+            solution = stimulated_annealing(root)
+            
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
