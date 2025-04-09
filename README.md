@@ -6,7 +6,13 @@
 ##### Thuật toán DFS
 ![Error](gif/DFS.gif)
 
+##### Thuật toán IDS
+![Error](gif/IDS.gif)
+
 ### Tìm kiếm có thông tin
+##### Thuật toán Greedy
+![Error](gif/Greedy.gif)
+
 ##### Thuật toán A*
 ![Error](gif/Astart.gif)
 
