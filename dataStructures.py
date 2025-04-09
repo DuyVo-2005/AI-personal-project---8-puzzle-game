@@ -13,7 +13,7 @@ class SearchNode:
             self.g_cost = parent.g_cost + self.calculate_g_cost(action)
         else:
             self.g_cost = 0
-        # self.h_cost = 0
+        self.h_cost = 0
         # self.f_cost = self.g_cost + self.h_cost    
     def calculate_g_cost(self, action):
         if action == None:
@@ -38,19 +38,21 @@ class OpenList: #queue
     def __init__(self, type: str) -> None:
         self.deque = deque()
         self.type = type
-        if type == "UCS":
+        if type == "UCS" or type == "Beam search" or type == "Genetic algorithm":
             self.deque = []
             heapq.heapify(self.deque)# chuyển thành heap
     def insert(self, node:SearchNode):
         if self.type == "UCS":
             heapq.heappush(self.deque, (node.g_cost, node))
+        elif self.type == "Beam search" or self.type == "Genetic algorithm":
+            heapq.heappush(self.deque, (node.h_cost, node))
         else:
             self.deque.append(node)
     def pop(self):
         "Return SearchNode if type is BFS, DFS else tuple (cost, node)"
         if self.type == "BFS":
             return self.deque.popleft()
-        elif self.type == "UCS":                
+        elif self.type == "UCS" or self.type == "Beam search" or self.type == "Genetic algorithm":                
             return heapq.heappop(self.deque)    
         elif self.type == "DFS":
             return self.deque.pop()

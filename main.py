@@ -14,6 +14,15 @@ root = None
 path = None
 visited_nodes = None
 
+def heuristic(state: tuple) -> int:
+    global end_state_tuple
+    h = 0
+    for i in range(1, 9):
+        x1, y1 = divmod(state.index(i), 3)
+        x2, y2 = divmod(end_state_tuple.index(i), 3)
+        h += abs(x1 - x2) + abs(y1 - y2)
+    return h
+
 def uninformed_search(root: SearchNode, type: str):
     global visited_nodes
     open_list = OpenList(type)
@@ -92,15 +101,6 @@ def UCS(root: SearchNode):
                 open_list.insert(new_node) 
     visited_nodes = close_list
     return None
-
-def heuristic(state: tuple):
-    global end_state_tuple
-    h = 0
-    for i in range(1, 9):
-        x1, y1 = divmod(state.index(i), 3)
-        x2, y2 = divmod(end_state_tuple.index(i), 3)
-        h += abs(x1 - x2) + abs(y1 - y2)
-    return h
 
 def Greedy(root: SearchNode):
     global visited_nodes
@@ -270,8 +270,10 @@ def stimulated_annealing(root: SearchNode):
             
 # Tìm k (vd 2 hoặc ít hơn) node tốt nhất xét tiếp
 def Beam_search(root: SearchNode):
+    global end_state_tuple, visited_nodes
     #beam_width = 2
-    open_list = OpenList("UCS")# priority queue of ucs
+    open_list = OpenList("Beam search")# priority queue of ucs
+    root.h_cost = heuristic(root.state)
     open_list.insert(root)
     close_list = CloseList()
     
@@ -279,6 +281,7 @@ def Beam_search(root: SearchNode):
         current_node, current_node2 = open_list.pop()[1], None
         close_list.insert(current_node.state)
         if is_goal(current_node.state):
+            visited_nodes = close_list
             return extract_path(current_node)
         neighbors, neighbors2 = succ(current_node.state), None
         
@@ -286,26 +289,105 @@ def Beam_search(root: SearchNode):
             current_node2 = open_list.pop()[1]
             close_list.insert(current_node2.state)
             if is_goal(current_node2.state):
+                visited_nodes = close_list
                 return extract_path(current_node2)
             neighbors2 = succ(current_node2.state)
         
         if not neighbors and not neighbors2:
             return None
         
-        # open_list.deque = []
-        # heapq.heapify(open_list.deque)# làm rỗng priority queue của open list
+        open_list.deque.clear()#làm rỗng priority queue của open list
         
         for action, state in neighbors:
             if not close_list.lookup(state):
                 close_list.insert(state)
                 new_node = make_node(current_node, action, state)
+                new_node.h_cost = heuristic(new_node.state)
                 open_list.insert(new_node)
         if neighbors2 is not None:
             for action, state in neighbors2:
                 if not close_list.lookup(state):
                     close_list.insert(state)
                     new_node = make_node(current_node, action, state)
+                    new_node.h_cost = heuristic(new_node.state)
                     open_list.insert(new_node)
+
+# def has_two_same_values(state: tuple):
+#     frequency = [0,0,0,0,0,0,0,0,0,0]
+#     for element in state:
+#         frequency[element] += 1
+#     for element in frequency:
+#         if element > 1:
+#             return True
+#     return False
+
+import random
+
+def order_crossover(parent1: tuple, parent2: tuple):
+    """Hàm lai ghép không trùng lặp giá trị"""
+    size = len(parent1)
+    parent1 = list(parent1)
+    parent2 = list(parent2)
+    start, end = sorted(random.sample(range(size), 2))
+    
+    child = [None] * size
+    
+    child[start:end + 1] = parent1[start:end + 1]
+    
+    p2_index = 0
+    for i in range(size):
+        if child[i] is None:
+            while parent2[p2_index] in child:
+                p2_index += 1
+            child[i] = parent2[p2_index]
+    
+    return tuple(child)
+
+def mutate(individual:tuple, mutation_rate:int=0.1)->tuple:
+    # Với xác suất mutation_rate trở lên thực hiện đột biến
+    individual = list(individual)
+    if random.random() >= mutation_rate:
+        i, j = random.sample(range(len(individual)), 2)
+        individual[i], individual[j] = individual[j], individual[i]
+    return tuple(individual)
+
+def genetic_algorithm(root: SearchNode):
+    
+    if is_goal(root.state):
+        return extract_path(root)
+    
+    open_list = OpenList("Genetic algorithm")
+    close_list = CloseList()
+    close_list.insert(root.state)
+    populations_state = succ(root.state)
+    for action, state in populations_state:
+        if not close_list.lookup(state):
+            new_node = make_node(root, action, state)
+            new_node.h_cost = heuristic(new_node.state)
+            if is_goal(new_node.state):
+                return extract_path(new_node)
+            open_list.insert(new_node)
+        
+    while len(open_list.deque) >= 2:#phải có ít nhất 2 node lai ghép
+        father_node, mother_node = open_list.pop()[1], open_list.pop()[1]
+        child_state_1 = mutate(order_crossover(father_node.state, mother_node.state), 0.5)
+        close_list.insert(child_state_1)
+        child_node1 = make_node(father_node, None, child_state_1)
+        if is_goal(child_node1.state):
+            return extract_path(child_node1)
+        
+        child_state_2 = mutate(order_crossover(mother_node.state, father_node.state), 0.5)
+        close_list.insert(child_state_2)
+        child_node2 = make_node(mother_node, None, child_state_2)
+        if is_goal(child_node2.state):
+            return extract_path(child_node2)
+        
+        child_node1.h_cost = heuristic(child_node1.state)
+        child_node2.h_cost = heuristic(child_node2.state)
+        if not close_list.lookup(child_node1.state):
+            open_list.insert(child_node1)
+        if not close_list.lookup(child_node2.state):
+            open_list.insert(child_node2)
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -346,19 +428,21 @@ def show_path_in_file(solution):
                 f.write("\nNo solution")
         else:
                 for state in solution:
-                        for i in range(0, 9, 3):
-                                f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
-                        f.write("\n")
-                        f.write("-" * 10)
+                        # for i in range(0, 9, 3):
+                        #         f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
+                        # f.write("\n")
+                        # f.write("-" * 10)
+                        f.write(f"\n{state}")
         f.write("\nClose list: ")
         if visited_nodes == None:
                 f.write("\nNone")
         else:
                 for state in visited_nodes.set:
-                        for i in range(0, 9, 3):
-                                f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
-                        f.write("\n")
-                        f.write("-" * 10)
+                        # for i in range(0, 9, 3):
+                        #         f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
+                        # f.write("\n")
+                        # f.write("-" * 10)
+                        f.write(f"\n{state}")
         messagebox.showinfo("Infomation", "Write to file successfully")
         
                         
@@ -372,7 +456,7 @@ class MyApp(QMainWindow):
         self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
                                     "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
-                                    "Beam search"])
+                                    "Beam search", "Genetic algorithm"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -407,6 +491,7 @@ class MyApp(QMainWindow):
         self.cell7_2.setPlainText(str(end_state_tuple[6]))
         self.cell8_2.setPlainText(str(end_state_tuple[7]))
         self.cell9_2.setPlainText(str(end_state_tuple[8]))
+        self.load_value()
         
     def solve_click(self):
         global root, path
@@ -448,7 +533,8 @@ class MyApp(QMainWindow):
             solution = stimulated_annealing(root)
         elif algorithm_type == "Beam search":
             solution = Beam_search(root)
-        
+        elif algorithm_type == "Genetic algorithm":
+            solution = genetic_algorithm(root)
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
