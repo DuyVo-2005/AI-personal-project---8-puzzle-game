@@ -1,5 +1,11 @@
 # AI-personal-project---8-puzzle-game
 ### Tìm kiếm không có thông tin
+##### Thuật toán BFS
+![Error](gif/BFS.gif)
+
+##### Thuật toán DFS
+![Error](gif/DFS.gif)
+
 ### Tìm kiếm có thông tin
 ##### Thuật toán A*
 ![Error](gif/Astart.gif)
