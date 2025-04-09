@@ -3,7 +3,7 @@
 ![Error](gif/Astart.gif)
 
 ## Thuật toán Iterative deepening a*
-![Error](gif/IDA*.gif)
+![Error](gif/IDAstart.gif)
 
 ## Thuật toán Simple hill climbing
 ![Error](gif/SHC.gif)
