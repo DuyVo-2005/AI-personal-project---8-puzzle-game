@@ -266,60 +266,46 @@ def stimulated_annealing(root: SearchNode):
             min_p_node = min(state_and_cost_list, key=lambda x: x[2])
             current_node = make_node(current_node, min_p_node[0], min_p_node[1])
             anpha = random.uniform(0, 1)
-            T = anpha * T
-
-# def Beam_search(root: SearchNode):
-#     k=2
-#     beam = [root] 
-#     current_node = root
-#     current_node2 = None
-#     while beam:
-#         for node in beam:
-#             if is_goal(current_node.state):
-#                 return extract_path(current_node)
-#         neighbors = succ(current_node.state)#Trả về (action, state)
-#         if not neighbors:
-#             return None
-#         best_neighbor1 = min(neighbors, key=lambda x: heuristic(x[1]))
-#         neighbors.remove(best_neighbor1)
-#         best_neighbor2 = min(neighbors, key=lambda x: heuristic(x[1]))
-#         if heuristic(best_neighbor1[1]) >= heuristic(current_node.state):
-#             return None
-#         current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
-
-
+            T = anpha * T #Giảm nhiệt độ
+            
+# Tìm k (vd 2 hoặc ít hơn) node tốt nhất xét tiếp
 def Beam_search(root: SearchNode):
-    beam_width = 2
-    open_list = OpenList("USC")# priority queue of ucs
+    #beam_width = 2
+    open_list = OpenList("UCS")# priority queue of ucs
     open_list.insert(root)
     close_list = CloseList()
+    
     while not open_list.is_empty():
-        current_node, current_node2 = open_list.pop(), None
-        close_list.insert(current_node)
+        current_node, current_node2 = open_list.pop()[1], None
+        close_list.insert(current_node.state)
         if is_goal(current_node.state):
             return extract_path(current_node)
         neighbors, neighbors2 = succ(current_node.state), None
         
         if len(open_list.deque) >= 2:
-            current_node2 = open_list.pop()
-            close_list.insert(current_node2)
+            current_node2 = open_list.pop()[1]
+            close_list.insert(current_node2.state)
             if is_goal(current_node2.state):
                 return extract_path(current_node2)
-            neighbors2 = succ(current_node2)
+            neighbors2 = succ(current_node2.state)
         
         if not neighbors and not neighbors2:
             return None
+        
+        # open_list.deque = []
+        # heapq.heapify(open_list.deque)# làm rỗng priority queue của open list
+        
         for action, state in neighbors:
             if not close_list.lookup(state):
                 close_list.insert(state)
-                new_node = make_node()
-                #if heuristic()
-        # best_neighbor1 = min(neighbors, key=lambda x: heuristic(x[1]))
-        # neighbors.remove(best_neighbor1)
-        # best_neighbor2 = min(neighbors, key=lambda x: heuristic(x[1]))
-        # if heuristic(best_neighbor1[1]) >= heuristic(current_node.state):
-        #     return None
-        # current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
+                new_node = make_node(current_node, action, state)
+                open_list.insert(new_node)
+        if neighbors2 is not None:
+            for action, state in neighbors2:
+                if not close_list.lookup(state):
+                    close_list.insert(state)
+                    new_node = make_node(current_node, action, state)
+                    open_list.insert(new_node)
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -385,7 +371,8 @@ class MyApp(QMainWindow):
         self.btnRandomInput.clicked.connect(self.random_input)
         self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
-                                    "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing"])
+                                    "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
+                                    "Beam search"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -459,7 +446,9 @@ class MyApp(QMainWindow):
             solution = stochastic_hill_climbing(root)
         elif algorithm_type =="Stimulated annealing":
             solution = stimulated_annealing(root)
-            
+        elif algorithm_type == "Beam search":
+            solution = Beam_search(root)
+        
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
