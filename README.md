@@ -1,6 +1,6 @@
 # AI-personal-project---8-puzzle-game
 ## Thuật toán A*
-![Error](gif/AStart.gif)
+![Error](gif/Astart.gif)
 
 ## Thuật toán Iterative deepening a*
 ![Error](gif/IDA*.gif)
