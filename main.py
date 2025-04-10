@@ -233,20 +233,20 @@ def stochastic_hill_climbing(root: SearchNode):#leo đồi ngẫu nhiên
         else:
             return None
 
-#F
+
 def stimulated_annealing(root: SearchNode):
     max_iterations = 100000
     current_node = root
     iteration = 0
     T = random.uniform(pow(10, 4), pow(10, 6))
-    while iteration < max_iterations or T > 1e-3:# T > 1e-3: T quá bé
+    while iteration < max_iterations and T > 1e-3:# T > 1e-3: T quá bé
         iteration += 1
         if is_goal(current_node.state):
             return extract_path(current_node)
         neighbors = succ(current_node.state)#Trả về (action, state)
         if not neighbors:
             return None
-        random.shuffle(neighbors)  # Trộn ngẫu nhiên danh sách hàng xóm
+        random.shuffle(neighbors)#Trộn ngẫu nhiên danh sách hàng xóm
         for action, new_state in neighbors:
             if heuristic(new_state) < heuristic(current_node.state):
                 current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
@@ -254,16 +254,19 @@ def stimulated_annealing(root: SearchNode):
         else:
             state_and_cost_list = []
             for action, new_state in neighbors:
-                #p = pow(math.e, -(heuristic(current_node.state) - heuristic(new_state))/T)#Xác suất
                 if T < 1e-3:
-                    p = 1e-10  # Xác suất rất nhỏ nhưng không gây lỗi
+                    p = 1e-10
                 else:
-                    delta_E = heuristic(current_node.state) - heuristic(new_state)
+                    #p = pow(math.e, -(heuristic(current_node.state) - heuristic(new_state))/T)#Xác suất
+                    
+                    delta_E = heuristic(new_state) - heuristic(current_node.state)
                     #math.exp(709) số lớn nhất Python có thể xử lý
                     #math.exp(-709) là số rất nhỏ gần 0, không gây lỗi.
-                    p = math.exp(min(709, max(-709, delta_E / T)))
+                    # p = math.exp(min(709, max(-709, delta_E / T)))
+                    p = math.exp(max(-709, -delta_E / T))
+                    
                 state_and_cost_list.append((action, new_state, p))
-            min_p_node = min(state_and_cost_list, key=lambda x: x[2])
+            min_p_node = min(state_and_cost_list, key=lambda x: x[1])
             current_node = make_node(current_node, min_p_node[0], min_p_node[1])
             anpha = random.uniform(0, 1)
             T = anpha * T #Giảm nhiệt độ
@@ -322,7 +325,73 @@ def Beam_search(root: SearchNode):
 #     return False
 
 import random
+# v1
+# def order_crossover(parent1: tuple, parent2: tuple):
+#     """Hàm lai ghép không trùng lặp giá trị"""
+#     size = len(parent1)
+#     parent1 = list(parent1)
+#     parent2 = list(parent2)
+#     start, end = sorted(random.sample(range(size), 2))
+    
+#     child = [None] * size
+    
+#     child[start:end + 1] = parent1[start:end + 1]
+    
+#     p2_index = 0
+#     for i in range(size):
+#         if child[i] is None:
+#             while parent2[p2_index] in child:
+#                 p2_index += 1
+#             child[i] = parent2[p2_index]
+    
+#     return tuple(child)
 
+# def mutate(individual:tuple, mutation_rate:int=0.1)->tuple:
+#     # Với xác suất mutation_rate trở lên thực hiện đột biến
+#     individual = list(individual)
+#     if random.random() >= mutation_rate:
+#         i, j = random.sample(range(len(individual)), 2)
+#         individual[i], individual[j] = individual[j], individual[i]
+#     return tuple(individual)
+
+# def genetic_algorithm(root: SearchNode):
+#     """không cần truy xuất đường đi"""
+#     if is_goal(root.state):
+#         return extract_path(root)
+    
+#     open_list = OpenList("Genetic algorithm")
+#     close_list = CloseList()
+#     close_list.insert(root.state)
+#     populations_state = succ(root.state)
+#     for action, state in populations_state:
+#         if not close_list.lookup(state):
+#             new_node = make_node(root, action, state)
+#             new_node.h_cost = heuristic(new_node.state)
+#             if is_goal(new_node.state):
+#                 return extract_path(new_node)
+#             open_list.insert(new_node)
+        
+#     while len(open_list.deque) >= 2:#phải có ít nhất 2 node lai ghép
+#         father_node, mother_node = open_list.pop()[1], open_list.pop()[1]
+#         child_state_1 = mutate(order_crossover(father_node.state, mother_node.state), 0.5)
+#         close_list.insert(child_state_1)
+#         child_node1 = make_node(father_node, None, child_state_1)
+#         if is_goal(child_node1.state):
+#             return extract_path(child_node1)
+        
+#         child_state_2 = mutate(order_crossover(mother_node.state, father_node.state), 0.5)
+#         close_list.insert(child_state_2)
+#         child_node2 = make_node(mother_node, None, child_state_2)
+#         if is_goal(child_node2.state):
+#             return extract_path(child_node2)
+        
+#         child_node1.h_cost = heuristic(child_node1.state)
+#         child_node2.h_cost = heuristic(child_node2.state)
+#         if not close_list.lookup(child_node1.state):
+#             open_list.insert(child_node1)
+#         if not close_list.lookup(child_node2.state):
+#             open_list.insert(child_node2)
+   
 def order_crossover(parent1: tuple, parent2: tuple):
     """Hàm lai ghép không trùng lặp giá trị"""
     size = len(parent1)
@@ -331,8 +400,10 @@ def order_crossover(parent1: tuple, parent2: tuple):
     start, end = sorted(random.sample(range(size), 2))
     
     child = [None] * size
+    child2 = [None] * size
     
     child[start:end + 1] = parent1[start:end + 1]
+    child2[start:end + 1] = parent2[start:end + 1]
     
     p2_index = 0
     for i in range(size):
@@ -341,20 +412,25 @@ def order_crossover(parent1: tuple, parent2: tuple):
                 p2_index += 1
             child[i] = parent2[p2_index]
     
-    return tuple(child)
+    p1_index = 0
+    for i in range(size):
+        if child2[i] is None:
+            while parent1[p1_index] in child2:
+                p1_index += 1
+            child2[i] = parent1[p1_index]
+    
+    return tuple(child), tuple(child2)
 
-def mutate(individual:tuple, mutation_rate:int=0.1)->tuple:
-    # Với xác suất mutation_rate trở lên thực hiện đột biến
+def mutate(individual:tuple)->tuple:
     individual = list(individual)
-    if random.random() >= mutation_rate:
-        i, j = random.sample(range(len(individual)), 2)
-        individual[i], individual[j] = individual[j], individual[i]
+    i, j = random.sample(range(len(individual)), 2)
+    individual[i], individual[j] = individual[j], individual[i]
     return tuple(individual)
 
 def genetic_algorithm(root: SearchNode):
-    
+    """không cần truy xuất đường đi"""
     if is_goal(root.state):
-        return extract_path(root)
+        return "Found goal state"
     
     open_list = OpenList("Genetic algorithm")
     close_list = CloseList()
@@ -365,22 +441,21 @@ def genetic_algorithm(root: SearchNode):
             new_node = make_node(root, action, state)
             new_node.h_cost = heuristic(new_node.state)
             if is_goal(new_node.state):
-                return extract_path(new_node)
+                return "Found goal state"
             open_list.insert(new_node)
         
     while len(open_list.deque) >= 2:#phải có ít nhất 2 node lai ghép
         father_node, mother_node = open_list.pop()[1], open_list.pop()[1]
-        child_state_1 = mutate(order_crossover(father_node.state, mother_node.state), 0.5)
+        child_state_1, child_state_2 = mutate(order_crossover(father_node.state, mother_node.state))
         close_list.insert(child_state_1)
         child_node1 = make_node(father_node, None, child_state_1)
         if is_goal(child_node1.state):
-            return extract_path(child_node1)
+            return "Found goal state"
         
-        child_state_2 = mutate(order_crossover(mother_node.state, father_node.state), 0.5)
         close_list.insert(child_state_2)
         child_node2 = make_node(mother_node, None, child_state_2)
         if is_goal(child_node2.state):
-            return extract_path(child_node2)
+            return "Found goal state"
         
         child_node1.h_cost = heuristic(child_node1.state)
         child_node2.h_cost = heuristic(child_node2.state)
@@ -388,6 +463,34 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node1)
         if not close_list.lookup(child_node2.state):
             open_list.insert(child_node2)
+    return None  
+            
+# 8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
+
+def AND_search(state, end_state, path):
+    pass
+def OR_search(state, path):
+    if is_goal(state):
+        return []#empty plan
+    if state in path:
+        return None
+    plan = []
+    for action, current_state in succ(state):
+        plan = AND_search()
+
+
+def AND_OR_graph_search(root: SearchNode):
+    """
+    Returns: conditional_plan or failure
+    """
+    global end_state_tuple
+    return OR_search(start_state_tuple, [])
+
+#def sensorless_search(root: SearchNode):
+#    initial_action, initial_state = succ(root.state)
+#    actions = set()
+#    for ac
+
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -541,6 +644,9 @@ class MyApp(QMainWindow):
                 self.txtStep.setPlainText("0")
                 path = None
         else:
+            if algorithm_type == "Genetic algorithm":
+                messagebox.showinfo("Information", "Found goal state")
+            else:
                 self.play_solution(solution)
                 path = solution
                 self.txtTotalStep.setPlainText(str(len(solution)))
