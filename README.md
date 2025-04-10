@@ -2,7 +2,7 @@
 
 ## Mục lục
 
-- [1. Giới thiệu bài toán](## 1. Giới thiệu bài toán)
+- [1. Giới thiệu bài toán](##1.gioi-thieu-bài-toán)
   - [Mục 1.1](#muc-11)
   - [Mục 1.2](#muc-12)
 - [Mục 2](#muc-2)
