@@ -9,8 +9,8 @@ Yêu cầu đặt ra của bài toán là di chuyển số 0 (ô trống) theo 1
 
 Tùy thuộc vào thuật toán sử dụng, ta có thể tìm ra lời giải là đường đi từ trạng thái ban đầu đầu đến trạng thái mục tiêu trải qua số bước, thời gian giải, không gian trạng thái mở rộng có thể khác nhau, thậm chí có một số trường hợp một toán có thể không tìm ra được lời giải.
 
-
-### Tìm kiếm không có thông tin
+## 2. Một số thuật toán sử dụng
+### 2.1 Tìm kiếm không có thông tin
 ##### Thuật toán BFS
 ![Error](gif/BFS.gif)
 
