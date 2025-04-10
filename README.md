@@ -17,7 +17,7 @@
     - [Thuật toán Simple hill climbing](#thuật-toán-simple-hill-climbing)
     - [Thuật toán Steppest ascent hill climbing](#thuật-toán-steppest-ascent-hill-climbing)
     - [Thuật toán Stochastic hill climbing](#thuật-toán-stochastic-hill-climbing)
-    - [Thuật toán Beam Search](#thuật-toán-stochastic-beam-search)
+    - [Thuật toán Beam Search](#thuật-toán-beam-search)
 
 ## 1. Giới thiệu bài toán
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống).
