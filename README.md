@@ -28,7 +28,7 @@ Tùy thuộc vào thuật toán sử dụng, ta có thể tìm ra lời giải l
 
 ## 2. Một số thuật toán sử dụng
 Xét trạng thái đầu vào và trạng thái mục tiêu như hình sau:
-![image](a)
+![image](assets/start-and-end-state.png)
 
 ### 2.1. Tìm kiếm không có thông tin
 ##### Thuật toán BFS
