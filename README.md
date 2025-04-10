@@ -9,6 +9,7 @@
     - [Thuật toán DFS](#thuật-toán-dfs)
     - [Thuật toán IDS](#thuật-toán-ids)
   - [2.2. Tìm kiếm có thông tin](#22-tìm-kiếm-có-thông-tin)
+    - [Thuật toán USC - Uniform Cost Search](#thuật-toán-USC---Uniform-Cost-Search)
     - [Thuật toán Greedy](#thuật-toán-greedy)
     - [Thuật toán A](#thuật-toán-a)
     - [Thuật toán Iterative deepening a](#thuật-toán-iterative-deepening-a)
@@ -42,6 +43,9 @@ Xét trạng thái đầu vào và trạng thái mục tiêu như hình sau:
 ![Error](gif/IDS.gif)
 
 ### 2.2. Tìm kiếm có thông tin
+##### Thuật toán USC - Uniform Cost Search
+![Error](gif/UCS.gif)
+
 ##### Thuật toán Greedy
 ![Error](gif/Greedy.gif)
 
@@ -59,3 +63,10 @@ Xét trạng thái đầu vào và trạng thái mục tiêu như hình sau:
 ![Error](gif/SAHC.gif)
 
 ##### Thuật toán Stochastic hill climbing
+![Error](gif/StochasticHillClimbing.gif)
+
+##### Thuật toán Stimulated Annealing
+![Error](gif/StimulatedAnnealing.gif)
+
+##### Thuật toán Stimulated Annealing
+![Error](gif/StimulatedAnnealing.gif)
