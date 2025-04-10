@@ -2,11 +2,20 @@
 
 ## Mục lục
 
-- [1. Giới thiệu bài toán](#1-gioi-thieu-bai-toan)
-  - [Mục 1.1](#muc-11)
-  
-- [2. Một số thuật toán sử dụng](##2.-Một-số-thuật-toán-sử-dụng)
-  - [Thuật toán Steppest ascent hill climbing](#####thuat-toan-steppest-ascent-hill-climbing])
+- [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
+- [2. Một số thuật toán sử dụng](#2-một-số-thuật-toán-sử-dụng)
+  - [2.1. Tìm kiếm không có thông tin](#21-tìm-kiếm-không-có-thông-tin)
+    - [Thuật toán BFS](#thuật-toán-bfs)
+    - [Thuật toán DFS](#thuật-toán-dfs)
+    - [Thuật toán IDS](#thuật-toán-ids)
+  - [2.2. Tìm kiếm có thông tin](#22-tìm-kiếm-có-thông-tin)
+    - [Thuật toán Greedy](#thuật-toán-greedy)
+    - [Thuật toán A](#thuật-toán-a)
+    - [Thuật toán Iterative deepening a](#thuật-toán-iterative-deepening-a)
+  - [2.3. Thuật toán leo đồi](#23-thuật-toán-leo-đồi)
+    - [Thuật toán Simple hill climbing](#thuật-toán-simple-hill-climbing)
+    - [Thuật toán Steppest ascent hill climbing](#thuật-toán-steppest-ascent-hill-climbing)
+    - [Thuật toán Stochastic hill climbing](#thuật-toán-stochastic-hill-climbing)
 
 ## 1. Giới thiệu bài toán
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống).
