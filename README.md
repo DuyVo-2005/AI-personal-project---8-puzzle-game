@@ -6,7 +6,7 @@
   - [Mục 1.1](#muc-11)
   
 - [2. Một số thuật toán sử dụng](##2.-Một-số-thuật-toán-sử-dụng)
-  - [Thuật toán Steppest ascent hill climbing](#####-thuat-toan-steppest-ascent-hill-climbing])
+  - [Thuật toán Steppest ascent hill climbing](#####thuat-toan-steppest-ascent-hill-climbing])
 
 ## 1. Giới thiệu bài toán
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống).
