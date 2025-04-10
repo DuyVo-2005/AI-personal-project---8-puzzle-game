@@ -71,3 +71,6 @@ Xét trạng thái đầu vào và trạng thái mục tiêu như hình sau:
 
 ##### Thuật toán Beam Search
 ![Error](gif/BeamSearch.gif)
+
+##### Thuật toán Genetic Algorithm
+![Error](gif/GeneticAlgorithm.gif)
