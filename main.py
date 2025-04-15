@@ -315,89 +315,15 @@ def Beam_search(root: SearchNode):
                     new_node.h_cost = heuristic(new_node.state)
                     open_list.insert(new_node)
 
-# def has_two_same_values(state: tuple):
-#     frequency = [0,0,0,0,0,0,0,0,0,0]
-#     for element in state:
-#         frequency[element] += 1
-#     for element in frequency:
-#         if element > 1:
-#             return True
-#     return False
-
 import random
-# v1
-# def order_crossover(parent1: tuple, parent2: tuple):
-#     """Hàm lai ghép không trùng lặp giá trị"""
-#     size = len(parent1)
-#     parent1 = list(parent1)
-#     parent2 = list(parent2)
-#     start, end = sorted(random.sample(range(size), 2))
-    
-#     child = [None] * size
-    
-#     child[start:end + 1] = parent1[start:end + 1]
-    
-#     p2_index = 0
-#     for i in range(size):
-#         if child[i] is None:
-#             while parent2[p2_index] in child:
-#                 p2_index += 1
-#             child[i] = parent2[p2_index]
-    
-#     return tuple(child)
 
-# def mutate(individual:tuple, mutation_rate:int=0.1)->tuple:
-#     # Với xác suất mutation_rate trở lên thực hiện đột biến
-#     individual = list(individual)
-#     if random.random() >= mutation_rate:
-#         i, j = random.sample(range(len(individual)), 2)
-#         individual[i], individual[j] = individual[j], individual[i]
-#     return tuple(individual)
-
-# def genetic_algorithm(root: SearchNode):
-#     """không cần truy xuất đường đi"""
-#     if is_goal(root.state):
-#         return extract_path(root)
-    
-#     open_list = OpenList("Genetic algorithm")
-#     close_list = CloseList()
-#     close_list.insert(root.state)
-#     populations_state = succ(root.state)
-#     for action, state in populations_state:
-#         if not close_list.lookup(state):
-#             new_node = make_node(root, action, state)
-#             new_node.h_cost = heuristic(new_node.state)
-#             if is_goal(new_node.state):
-#                 return extract_path(new_node)
-#             open_list.insert(new_node)
-        
-#     while len(open_list.deque) >= 2:#phải có ít nhất 2 node lai ghép
-#         father_node, mother_node = open_list.pop()[1], open_list.pop()[1]
-#         child_state_1 = mutate(order_crossover(father_node.state, mother_node.state), 0.5)
-#         close_list.insert(child_state_1)
-#         child_node1 = make_node(father_node, None, child_state_1)
-#         if is_goal(child_node1.state):
-#             return extract_path(child_node1)
-        
-#         child_state_2 = mutate(order_crossover(mother_node.state, father_node.state), 0.5)
-#         close_list.insert(child_state_2)
-#         child_node2 = make_node(mother_node, None, child_state_2)
-#         if is_goal(child_node2.state):
-#             return extract_path(child_node2)
-        
-#         child_node1.h_cost = heuristic(child_node1.state)
-#         child_node2.h_cost = heuristic(child_node2.state)
-#         if not close_list.lookup(child_node1.state):
-#             open_list.insert(child_node1)
-#         if not close_list.lookup(child_node2.state):
-#             open_list.insert(child_node2)
-   
 def order_crossover(parent1: tuple, parent2: tuple):
     """Hàm lai ghép không trùng lặp giá trị"""
     size = len(parent1)
     parent1 = list(parent1)
     parent2 = list(parent2)
-    start, end = sorted(random.sample(range(size), 2))
+    #start, end = sorted(random.sample(range(size), 2))
+    start, end = [0, 3]
     
     child = [None] * size
     child2 = [None] * size
@@ -465,26 +391,87 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node2)
     return None  
             
-# 8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
+#8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
+def AND_search(states: list, path: list):
+    plans = []
+    for state in states:
+        plan_i = OR_search(state, path)
+        if plan_i == "Failure":
+            return "Failure"
+        plans.append(plan_i)
+    return plans
 
-def AND_search(state, end_state, path):
-    pass
-def OR_search(state, path):
+def Results(state: tuple, action: str):
+    possible_results = []
+    
+    #Kết quả mong muốn (đúng hành động)
+    S1 = ApplyAction(state, action)
+    if S1 != "Failure":
+        possible_results.append(S1)
+    
+    #Các kết quả sai lệch do lỗi (ví dụ trượt nhầm hướng)
+    for error_action in ErrorActions(action):
+        S2 = ApplyAction(state, error_action)
+        if S2 != "Failure" and S2 != S1:
+            possible_results.append(S2)
+    return possible_results
+
+def OR_search(state: tuple, path: list):
     if is_goal(state):
-        return []#empty plan
+        return "Success"#[]#empty plan
     if state in path:
-        return None
-    plan = []
+        return "Failure"
     for action, current_state in succ(state):
-        plan = AND_search()
+        results = Results(state, action)
+        path.append(state)
+        plan = AND_search(results, path)
+        if plan != "Failure":
+            return Plan(action, plan)
+    path.pop()#thêm dòng này để backtrack
+    return "Failure"
+
+def ApplyAction(state: tuple, action):
+    state = list(state)
+    new_state = state.copy()
+    idx = new_state.index(0)#vị trí ô trống
+    row, col = idx // 3, idx % 3
+
+    if action == "UP" and row > 0:
+        swap_idx = idx - 3
+    elif action == "DOWN" and row < 2:
+        swap_idx = idx + 3
+    elif action == "LEFT" and col > 0:
+        swap_idx = idx - 1
+    elif action == "RIGHT" and col < 2:
+        swap_idx = idx + 1
+    else:
+        return "Failure"#hành động không hợp lệ
+
+    #Thực hiện hoán đổi vị trí
+    new_state[idx], new_state[swap_idx] = new_state[swap_idx], new_state[idx]
+    return tuple(new_state)
+
+def ErrorActions(action: str):
+    errors = {
+        "UP":    ["LEFT", "RIGHT", "DOWN"],
+        "DOWN":  ["LEFT", "RIGHT", "UP"],
+        "LEFT":  ["UP", "DOWN", "RIGHT"],
+        "RIGHT": ["UP", "DOWN", "LEFT"]
+    }
+    return errors.get(action, [])
 
 
-def AND_OR_graph_search(root: SearchNode):
+class Plan:
+    def __init__(self, action, subplans):
+        self.action = action
+        self.subplans = subplans#danh sách kế hoạch con ứng với các trạng thái kết quả
+
+def AND_OR_tree_search(root: SearchNode):
     """
     Returns: conditional_plan or failure
     """
-    global end_state_tuple
-    return OR_search(start_state_tuple, [])
+    return OR_search(root.state, [])
+
 
 #def sensorless_search(root: SearchNode):
 #    initial_action, initial_state = succ(root.state)
@@ -559,7 +546,7 @@ class MyApp(QMainWindow):
         self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
                                     "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
-                                    "Beam search", "Genetic algorithm"])
+                                    "Beam search", "Genetic algorithm", "And Or tree search"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -638,7 +625,9 @@ class MyApp(QMainWindow):
             solution = Beam_search(root)
         elif algorithm_type == "Genetic algorithm":
             solution = genetic_algorithm(root)
-        if solution is None:
+        elif algorithm_type == "And Or tree search":
+            solution = AND_OR_tree_search(root)
+        if solution is None or "Failure":
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
                 self.txtStep.setPlainText("0")
@@ -646,6 +635,8 @@ class MyApp(QMainWindow):
         else:
             if algorithm_type == "Genetic algorithm":
                 messagebox.showinfo("Information", "Found goal state")
+            elif algorithm_type == "And Or tree search":
+                messagebox.showinfo("Information", f"Conditional plan: {solution}")
             else:
                 self.play_solution(solution)
                 path = solution
