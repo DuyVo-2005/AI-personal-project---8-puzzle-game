@@ -97,21 +97,21 @@ def succ(state: tuple) -> list:
 #     #visited_nodes = close_list
 #     return None
 
-# def uninformed_search(belief_set: list, type: str):
-#     #global visited_nodes
-#     open_list = belief_set.copy()
-#     #close_list = CloseList()
+def uninformed_search(belief_set: list, type: str):
+     #global visited_nodes
+     open_list.insert(belief_set)
+     close_list = CloseList()
     
-#     while len(open_list) != 0:
-#         n = open_list.pop()
-#         if close_list.lookup(n.state):
-#             continue
+     while len(open_list) != 0:
+         n = open_list.pop()
+         if close_list.lookup(n.state):
+             continue
             
-#         close_list.insert(n.state)
+         close_list.insert(n.state)
         
-#         if is_goal(n.state):
-#             #visited_nodes = close_list
-#             return extract_path(n)
+         if is_goal(n.state):
+             visited_nodes = close_list
+             return extract_path(n)
         
 #         for action, new_state in succ(n.state):
 #             if not close_list.lookup(new_state):#
@@ -120,10 +120,10 @@ def succ(state: tuple) -> list:
 #     #visited_nodes = close_list
 #     return None
 
-goal_set = []
-while goal_set != g:
-    goal_set = apply_action(b)
-print(b)
+# goal_set = []
+# while goal_set != g:
+#    goal_set = apply_action(b)
+# print(b)
 
 # for state in goal_set:
 #        solution = uninformed_search(make_node(None, None, state), "BFS")
