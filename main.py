@@ -391,98 +391,6 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node2)
     return None  
             
-#8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
-def AND_search(states: list, path: list):
-    plans = []
-    for state in states:
-        plan_i = OR_search(state, path)
-        if plan_i == "Failure":
-            return "Failure"
-        plans.append(plan_i)
-    return plans
-
-def Results(state: tuple, action: str):
-    possible_results = []
-    
-    #Kết quả mong muốn (đúng hành động)
-    S1 = ApplyAction(state, action)
-    if S1 != "Failure":
-        possible_results.append(S1)
-    
-    #Các kết quả sai lệch do lỗi (ví dụ trượt nhầm hướng)
-    for error_action in ErrorActions(action):
-        S2 = ApplyAction(state, error_action)
-        if S2 != "Failure" and S2 != S1:
-            possible_results.append(S2)
-    return possible_results
-
-def OR_search(state: tuple, path: list):
-    if is_goal(state):
-        return "Success"#[]#empty plan
-    if state in path:
-        return "Failure"
-    for action, current_state in succ(state):
-        results = Results(state, action)
-        path.append(state)
-        plan = AND_search(results, path)
-        if plan != "Failure":
-            return Plan(action, plan)
-    path.pop()#thêm dòng này để backtrack
-    return "Failure"
-
-def ApplyAction(state: tuple, action):
-    state = list(state)
-    new_state = state.copy()
-    idx = new_state.index(0)#vị trí ô trống
-    row, col = idx // 3, idx % 3
-
-    if action == "UP" and row > 0:
-        swap_idx = idx - 3
-    elif action == "DOWN" and row < 2:
-        swap_idx = idx + 3
-    elif action == "LEFT" and col > 0:
-        swap_idx = idx - 1
-    elif action == "RIGHT" and col < 2:
-        swap_idx = idx + 1
-    else:
-        return "Failure"#hành động không hợp lệ
-
-    #Thực hiện hoán đổi vị trí
-    new_state[idx], new_state[swap_idx] = new_state[swap_idx], new_state[idx]
-    return tuple(new_state)
-
-def ErrorActions(action: str):
-    errors = {
-        "UP":    ["LEFT", "RIGHT", "DOWN"],
-        "DOWN":  ["LEFT", "RIGHT", "UP"],
-        "LEFT":  ["UP", "DOWN", "RIGHT"],
-        "RIGHT": ["UP", "DOWN", "LEFT"]
-    }
-    return errors.get(action, [])
-
-
-class Plan:
-    def __init__(self, action, subplans):
-        self.action = action
-        self.subplans = subplans#danh sách kế hoạch con ứng với các trạng thái kết quả
-
-def AND_OR_tree_search(root: SearchNode):
-    """
-    Returns: conditional_plan or failure
-    """
-    return OR_search(root.state, [])
-
-
-#def sensorless_search(root: SearchNode):
-#    initial_action, initial_state = succ(root.state)
-#    actions = set()
-#    for ac
-
-
-def is_goal(state:tuple) -> bool:
-    global end_state_tuple
-    return state == end_state_tuple
-
 def succ(state: tuple) -> list:
     "return children with (action, state)"
     children = []
@@ -504,6 +412,143 @@ def succ(state: tuple) -> list:
             new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
             children.append((action, tuple(new_state)))
     return children
+           
+#8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
+MAX_DEPTH = 100
+
+def AND_search(states: list, path: list, depth: int):
+    if depth > MAX_DEPTH:
+        return None
+    plans = []
+    for state in states:
+        if state in path:# Tránh lặp vô hạn
+            return None
+        plan_i = OR_search(state, path, depth + 1)# + [state])#Truyền path mở rộng
+        if plan_i == None:
+            return None
+        plans.append(plan_i)
+    return plans
+
+def Results(state: tuple, action: str):
+    possible_results = [] 
+    S1 = ApplyAction(state, action)
+    if S1 != None:
+        possible_results.append(S1)
+    possible_results += generate_error_action(state)
+    return possible_results
+
+def generate_unique_puzzle_states(n):
+    seen = set()
+    result = []
+
+    while len(result) < n:
+        nums = list(range(9))
+        random.shuffle(nums)
+        state = tuple(nums)
+        if state not in seen:
+            seen.add(state)
+            result.append(state)
+
+    return result
+
+#belief_set = generate_unique_puzzle_states(1000)
+goal_set = generate_unique_puzzle_states(30)
+
+def goal_test(state):
+    return state in goal_set
+
+def OR_search(state: tuple, path: list, depth: int):
+    if depth > MAX_DEPTH:
+        return None
+    if goal_test(state):
+        return []#empty plan = "Success"
+    if state in path:
+        return None
+    for action, current_state in succ(state):
+        plan = AND_search(Results(state, action), [state] + path, depth + 1)
+        if plan != None:
+            #return Plan(action, plan)
+            return [action] + plan
+    return None
+
+def ApplyAction(state: tuple, action: str):
+    """->tuple or None'"""
+    """Apply action to state and return new state"""
+    state = list(state)
+    new_state = state.copy()
+    idx = new_state.index(0)#vị trí ô trống
+    row, col = idx // 3, idx % 3
+
+    if action == "UP" and row > 0:
+        swap_idx = idx - 3
+    elif action == "DOWN" and row < 2:
+        swap_idx = idx + 3
+    elif action == "LEFT" and col > 0:
+        swap_idx = idx - 1
+    elif action == "RIGHT" and col < 2:
+        swap_idx = idx + 1
+    else:
+        return None#hành động không hợp lệ
+
+    #Thực hiện hoán đổi vị trí
+    new_state[idx], new_state[swap_idx] = new_state[swap_idx], new_state[idx]
+    return tuple(new_state)
+
+def generate_error_action(state: tuple)->list:
+    # error_action = []
+    # error_action.append(state)
+    # error_action.append(state[::-1])
+    # return error_action
+    #swap 2 ô
+    state = list(state)
+    indices = [i for i in range(len(state))]
+
+    i, j = random.sample(indices, 2)
+    state[i], state[j] = state[j], state[i]
+    return [tuple(state)]
+
+def AND_OR_graph_search(root: SearchNode):
+    """
+    Returns: conditional_plan or None
+    """
+    return OR_search(root.state, [], 0)
+
+start_state = (1, 2, 3, 4, 5, 6, 7, 8, 0)
+root = SearchNode(None, None, start_state)
+plan = AND_OR_graph_search(root)
+
+if plan is not None:
+    print("Kế hoạch hành động tìm được:")
+    for step, action in enumerate(plan, 1):
+        print(f"Bước {step}: {action}")
+else:
+    print("Không tìm được kế hoạch.")
+
+class Plan:
+    def __init__(self, action, subplans):
+        self.action = action
+        self.subplans = subplans#danh sách kế hoạch con ứng với các trạng thái kết quả
+    def __str__(self):
+        return f"If: {self.action} -> {self.subplans}"
+    
+def pretty_print(plan, indent=0):
+    if plan == 'failure':
+        print('  ' * indent + 'failure')
+    elif isinstance(plan, list) and len(plan) == 2 and isinstance(plan[1], list):
+        print('  ' * indent + f"Do: {plan[0]}")
+        for i, subplan in enumerate(plan[1]):
+            print('  ' * (indent + 1) + f"Option {i + 1}:")
+            pretty_print(subplan, indent + 2)
+    elif isinstance(plan, list):
+        for step in plan:
+            pretty_print(step, indent)
+    else:
+        print('  ' * indent + str(plan))
+
+
+def is_goal(state:tuple) -> bool:
+    global end_state_tuple
+    return state == end_state_tuple
 
 def print_state(state):
     for i in range(0, 9, 3):
@@ -533,9 +578,7 @@ def show_path_in_file(solution):
                         # f.write("\n")
                         # f.write("-" * 10)
                         f.write(f"\n{state}")
-        messagebox.showinfo("Infomation", "Write to file successfully")
-        
-                        
+        messagebox.showinfo("Infomation", "Write to file successfully")                              
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -546,7 +589,7 @@ class MyApp(QMainWindow):
         self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
                                     "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
-                                    "Beam search", "Genetic algorithm", "And Or tree search"])
+                                    "Beam search", "Genetic algorithm", "And Or graph search"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -625,9 +668,9 @@ class MyApp(QMainWindow):
             solution = Beam_search(root)
         elif algorithm_type == "Genetic algorithm":
             solution = genetic_algorithm(root)
-        elif algorithm_type == "And Or tree search":
-            solution = AND_OR_tree_search(root)
-        if solution is None or "Failure":
+        elif algorithm_type == "And Or graph search":
+            solution = AND_OR_graph_search(root)
+        if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
                 self.txtStep.setPlainText("0")
@@ -635,8 +678,8 @@ class MyApp(QMainWindow):
         else:
             if algorithm_type == "Genetic algorithm":
                 messagebox.showinfo("Information", "Found goal state")
-            elif algorithm_type == "And Or tree search":
-                messagebox.showinfo("Information", f"Conditional plan: {solution}")
+            elif algorithm_type == "And Or graph search":
+                messagebox.showinfo("Information", f"Conditional plan: \n{pretty_print(solution)}")
             else:
                 self.play_solution(solution)
                 path = solution

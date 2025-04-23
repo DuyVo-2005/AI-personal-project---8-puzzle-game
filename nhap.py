@@ -1,27 +1,25 @@
-import random
+def is_valid(idx):
+       return idx >= 0 and idx < 9
 
-def order_crossover(parent1, parent2):
-    size = len(parent1)
-    start, end = sorted(random.sample(range(size), 2))
-    
-    child = [None] * size
-    
-    child[start:end + 1] = parent1[start:end + 1]
-    
-    p2_index = 0
-    for i in range(size):
-        if child[i] is None:
-            while parent2[p2_index] in child:
-                p2_index += 1
-            child[i] = parent2[p2_index]
-    
-    return child
+def is_near_goal(state):
+    return state[:3] == end_state_tuple[:3]
+   
+end_state_tuple = (1,2,3,4,5,6,7,8,0)
+b = [(8,7,6,5,4,3,2,1,0),(1,2,3,5,7,4,6,8,0)]
 
-parent1 = [1, 2, 3, 4, 5, 6, 7, 8, 0]
-parent2 = [1, 3, 4, 8, 0, 2, 7, 6, 5]
+def apply_action(b):
+       MOVES = {"U": -3, "D": 3, "L": -1, "R": 1}
+       new_b = []
+       for action in MOVES.keys():
+              for state in b:
+                    zero_idx = state.index(0)
+                    swap_idx = zero_idx + MOVES[action]                  
+                    if is_valid(swap_idx):
+                        new_state = list(state)
+                        new_state[zero_idx], new_state[swap_idx] = new_state[swap_idx], new_state[zero_idx]
+                        new_state = tuple(new_state)
+                        if (is_near_goal(new_state)):
+                                new_b.append(new_state)
+       return new_b
 
-offspring = order_crossover(parent1, parent2)
-print("Parent 1:", parent1)
-print("Parent 2:", parent2)
-print("Offspring:", offspring)
-
+print(apply_action(b))
