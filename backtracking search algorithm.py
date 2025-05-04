@@ -1,6 +1,4 @@
-
-
-def backtrack_fill(board:list, pos: int, used, goal, path: list):
+def backtracking_search(board:list, pos: int, used, goal, path: list):
     """_summary_
 
     Args:
@@ -28,10 +26,10 @@ def backtrack_fill(board:list, pos: int, used, goal, path: list):
             board[pos] = num
             used[num] = True
             path.append(board[:])#bản sao
-            backtrack_fill(board, pos + 1, used, goal, path)
+            backtracking_search(board, pos + 1, used, goal, path)
             path.pop()
             used[num] = False
-            board[pos] = -1# backtrack
+            board[pos] = -1#quay lui
 
 def print_board(board):
     for i in range(0, 9, 3):
@@ -39,11 +37,12 @@ def print_board(board):
     print()
     print("--------------------")
     print()
+        #print(board)
 
 initial_board = [-1] * 9
-used = [False] * 9
+used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
 # goal_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 goal_state = [6, 7, 8, 0, 1, 2, 3, 4, 5]
 path = []
 
-backtrack_fill(initial_board, 0, used, goal_state, path)
+backtracking_search(initial_board, 0, used, goal_state, path)

@@ -19,34 +19,10 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="lblStartState">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>60</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	color: #FF652F;
-}</string>
-    </property>
-    <property name="text">
-     <string>Start state matrix:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblEndState">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>170</x>
       <y>60</y>
       <width>161</width>
       <height>31</height>
@@ -68,52 +44,19 @@
      <string>End state matrix:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSolve">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>200</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton {
-    background-color: #007BFF;
-    color: white;
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #0056b3;
-}
-
-</string>
-    </property>
-    <property name="text">
-     <string>Solve</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblTitle">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>30</x>
       <y>20</y>
-      <width>531</width>
-      <height>31</height>
+      <width>791</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>18</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -124,13 +67,13 @@ QPushButton:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Solve 8 puzzle game with AI algorithm</string>
+     <string>Solve 8 puzzle game with AI algorithm - Backtracking</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="cell1">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>160</x>
       <y>100</y>
       <width>51</width>
       <height>51</height>
@@ -152,7 +95,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell2">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>220</x>
       <y>100</y>
       <width>51</width>
       <height>51</height>
@@ -174,7 +117,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell3">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>280</x>
       <y>100</y>
       <width>51</width>
       <height>51</height>
@@ -196,7 +139,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell4">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>160</x>
       <y>160</y>
       <width>51</width>
       <height>41</height>
@@ -218,7 +161,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell5">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>220</x>
       <y>160</y>
       <width>51</width>
       <height>41</height>
@@ -240,7 +183,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell6">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>280</x>
       <y>160</y>
       <width>51</width>
       <height>41</height>
@@ -262,7 +205,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell7">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>160</x>
       <y>210</y>
       <width>51</width>
       <height>50</height>
@@ -284,7 +227,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell8">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>220</x>
       <y>210</y>
       <width>51</width>
       <height>50</height>
@@ -306,208 +249,10 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell9">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>280</x>
       <y>210</y>
       <width>51</width>
       <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell4_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell7_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell8_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell9_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell5_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell6_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell1_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell3_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell2_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -1052,35 +797,11 @@ QPushButton#writeToFile:hover {
      <string>Random input</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblStartState_2">
-    <property name="geometry">
-     <rect>
-      <x>600</x>
-      <y>130</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	color: #FF652F;
-}</string>
-    </property>
-    <property name="text">
-     <string>Chose algorithm:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblStartState_3">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>60</y>
+      <x>470</x>
+      <y>120</y>
       <width>261</width>
       <height>31</height>
      </rect>
@@ -1103,21 +824,37 @@ QPushButton#writeToFile:hover {
    <widget class="QPlainTextEdit" name="txtSolveSpeedPerStep">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>90</y>
+      <x>480</x>
+      <y>160</y>
       <width>231</width>
       <height>26</height>
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="cbbAlgorithm">
+   <widget class="QPushButton" name="btnSolve">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>160</y>
-      <width>231</width>
-      <height>26</height>
+      <x>540</x>
+      <y>210</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*QPushButton{
+	background-color: #EEE2DC;
+	border-radius: 10px;
+}*/
+QPushButton#writeToFile {
+    background-color: #28A745;
+}
+
+QPushButton#writeToFile:hover {
+    background-color: #218838;
+}</string>
+    </property>
+    <property name="text">
+     <string>Solve</string>
     </property>
    </widget>
   </widget>
