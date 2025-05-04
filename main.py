@@ -391,28 +391,6 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node2)
     return None  
             
-def succ(state: tuple) -> list:
-    "return children with (action, state)"
-    children = []
-    zero_index = state.index(0)
-    row, col = zero_index//3, zero_index%3
-
-    moves = {
-        'UP': (-1, 0),
-        'DOWN': (1, 0),
-        'LEFT': (0, -1),
-        'RIGHT': (0, 1)
-    }
-
-    for action, (dr, dc) in moves.items():
-        new_row, new_col = row + dr, col + dc
-        if 0 <= new_row < 3 and 0 <= new_col < 3:
-            new_index = new_row * 3 + new_col
-            new_state = list(state)           
-            new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
-            children.append((action, tuple(new_state)))
-    return children
-           
 #8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
 MAX_DEPTH = 100
 
@@ -513,42 +491,32 @@ def AND_OR_graph_search(root: SearchNode):
     """
     return OR_search(root.state, [], 0)
 
-start_state = (1, 2, 3, 4, 5, 6, 7, 8, 0)
-root = SearchNode(None, None, start_state)
-plan = AND_OR_graph_search(root)
-
-if plan is not None:
-    print("Kế hoạch hành động tìm được:")
-    for step, action in enumerate(plan, 1):
-        print(f"Bước {step}: {action}")
-else:
-    print("Không tìm được kế hoạch.")
-
-class Plan:
-    def __init__(self, action, subplans):
-        self.action = action
-        self.subplans = subplans#danh sách kế hoạch con ứng với các trạng thái kết quả
-    def __str__(self):
-        return f"If: {self.action} -> {self.subplans}"
-    
-def pretty_print(plan, indent=0):
-    if plan == 'failure':
-        print('  ' * indent + 'failure')
-    elif isinstance(plan, list) and len(plan) == 2 and isinstance(plan[1], list):
-        print('  ' * indent + f"Do: {plan[0]}")
-        for i, subplan in enumerate(plan[1]):
-            print('  ' * (indent + 1) + f"Option {i + 1}:")
-            pretty_print(subplan, indent + 2)
-    elif isinstance(plan, list):
-        for step in plan:
-            pretty_print(step, indent)
-    else:
-        print('  ' * indent + str(plan))
-
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
     return state == end_state_tuple
+
+def succ(state: tuple) -> list:
+    "return children with (action, state)"
+    children = []
+    zero_index = state.index(0)
+    row, col = zero_index//3, zero_index%3
+
+    moves = {
+        'UP': (-1, 0),
+        'DOWN': (1, 0),
+        'LEFT': (0, -1),
+        'RIGHT': (0, 1)
+    }
+
+    for action, (dr, dc) in moves.items():
+        new_row, new_col = row + dr, col + dc
+        if 0 <= new_row < 3 and 0 <= new_col < 3:
+            new_index = new_row * 3 + new_col
+            new_state = list(state)           
+            new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
+            children.append((action, tuple(new_state)))
+    return children
 
 def print_state(state):
     for i in range(0, 9, 3):
@@ -578,7 +546,9 @@ def show_path_in_file(solution):
                         # f.write("\n")
                         # f.write("-" * 10)
                         f.write(f"\n{state}")
-        messagebox.showinfo("Infomation", "Write to file successfully")                              
+        messagebox.showinfo("Infomation", "Write to file successfully")
+        
+                        
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -679,7 +649,7 @@ class MyApp(QMainWindow):
             if algorithm_type == "Genetic algorithm":
                 messagebox.showinfo("Information", "Found goal state")
             elif algorithm_type == "And Or graph search":
-                messagebox.showinfo("Information", f"Conditional plan: \n{pretty_print(solution)}")
+                messagebox.showinfo("Information", f"Conditional plan: {solution}")
             else:
                 self.play_solution(solution)
                 path = solution
