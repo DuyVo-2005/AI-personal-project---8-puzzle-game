@@ -171,7 +171,7 @@ class MyApp(QMainWindow):
                     #print_board(board)
                     for board in path:
                         print_board(board)
-                    return path.copy()
+                    return path
                 return []
             if pos > 9:
                 return []
@@ -220,8 +220,11 @@ class MyApp(QMainWindow):
             e = self.solution[self.step]
             self.step += 1
             self.txtStep.setPlainText(str(self.step))
-            self.cell1_3.setPlainText(str(e[0]))
+            if e[0] != 0:
+                self.cell1_3.setPlainText(str(e[0]))
+            
             self.cell2_3.setPlainText(str(e[1]))
+            
             self.cell3_3.setPlainText(str(e[2]))
             self.cell4_3.setPlainText(str(e[3]))
             self.cell5_3.setPlainText(str(e[4]))

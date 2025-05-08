@@ -1,3 +1,5 @@
+# Tìm kiếm có ràng buộc
+
 import math
 import random
 

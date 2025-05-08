@@ -1,3 +1,6 @@
+# tìm kiếm không có thông tin: BFS, DFS, UCS, IDS
+# tìm kiếm có thông tin: Greedy, A*, IDA*
+# tìm kiếm cục bộ: Steepest Ascent Hill climbing, Simple Hill climbing, Stochastic Hill Climbing ,Simulated annealing, Beam Search, Genetic algorithm
 from PyQt6 import uic, QtCore
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from tkinter import messagebox

@@ -1,3 +1,10 @@
+# tìm kiếm trong môi trường phức tạp:
+# search with partial observation
+# search with no observation
+# AND OR search
+
+
+
 from dataStructures import *
 import random
 
