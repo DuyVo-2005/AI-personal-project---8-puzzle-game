@@ -1,10 +1,10 @@
-# Đồ án cá nhân môn Nhập môn Trí tuệ nhân tạo
+# ĐỒ ÁN CÁ NHÂN MÔN NHẬP MÔN TRÍ TUỆ NHÂN TẠO
 Giảng viên hướng dẫn: TS.Phan Thị Huyền Trang
 
 Sinh viên thực hiện: Võ Lê Khánh Duy
 
 Mã số sinh viên: 2311096
-## Mục lục
+## MỤC LỤC
 
 - [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
 - [2. Mục tiêu](#2-mục-tiêu)
@@ -15,16 +15,27 @@ Mã số sinh viên: 2311096
       - [Thuật toán BFS](#thuật-toán-bfs)
       - [Thuật toán DFS](#thuật-toán-dfs)
       - [Thuật toán IDS](#thuật-toán-ids)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
     - [3.2. Tìm kiếm có thông tin](#22-tìm-kiếm-có-thông-tin)
+      - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán USC - Uniform Cost Search](#thuật-toán-USC---Uniform-Cost-Search)
       - [Thuật toán Greedy](#thuật-toán-greedy)
       - [Thuật toán A](#thuật-toán-a)
       - [Thuật toán Iterative deepening a](#thuật-toán-iterative-deepening-a)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
     - [3.3. Thuật toán leo đồi](#23-thuật-toán-leo-đồi)
+      - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán Simple hill climbing](#thuật-toán-simple-hill-climbing)
       - [Thuật toán Steppest ascent hill climbing](#thuật-toán-steppest-ascent-hill-climbing)
       - [Thuật toán Stochastic hill climbing](#thuật-toán-stochastic-hill-climbing)
       - [Thuật toán Beam Search](#thuật-toán-beam-search)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
+- [4. Tài liệu tham khảo](#4-Tài-liệu-tham-khảo)
+
+## NỘI DUNG CHÍNH
 
 ## 1. Giới thiệu bài toán
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống).
