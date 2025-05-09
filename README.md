@@ -5,7 +5,7 @@ Sinh viên thực hiện: Võ Lê Khánh Duy
 
 Mã số sinh viên: 2311096
 
-Mã lớp học: ARIN330585
+Mã lớp học: ARIN330585_04
 
 Học kỳ II năm học 2024-2025
 
