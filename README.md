@@ -1,13 +1,17 @@
-# AI-personal-project---8-puzzle-game
+# Đồ án cá nhân môn Nhập môn Trí tuệ nhân tạo
+Giảng viên hướng dẫn: TS.Phan Thị Huyền Trang
 
+Sinh viên thực hiện: Võ Lê Khánh Duy
+
+Mã số sinh viên: 2311096
 ## Mục lục
 
 - [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
-- [2. Mục tiêu]
-- [3.1. Nội dung]
+- [2. Mục tiêu](#2-mục-tiêu)
+- [3.1. Nội dung](#31-nội-dung)
   - [3. Một số thuật toán sử dụng](#2-một-số-thuật-toán-sử-dụng)
     - [3.1. Tìm kiếm không có thông tin](#21-tìm-kiếm-không-có-thông-tin)
-      - [Các thành phần chính của bài toán tìm kiếm]
+      - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán BFS](#thuật-toán-bfs)
       - [Thuật toán DFS](#thuật-toán-dfs)
       - [Thuật toán IDS](#thuật-toán-ids)
