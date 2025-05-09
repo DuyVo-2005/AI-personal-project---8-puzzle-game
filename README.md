@@ -4,6 +4,11 @@ Giảng viên hướng dẫn: TS.Phan Thị Huyền Trang
 Sinh viên thực hiện: Võ Lê Khánh Duy
 
 Mã số sinh viên: 2311096
+
+Mã lớp học: ARIN330585
+
+Học kỳ II năm học 2024-2025
+
 ## MỤC LỤC
 
 - [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
