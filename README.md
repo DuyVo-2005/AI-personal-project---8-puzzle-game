@@ -156,7 +156,9 @@ Thuật toán leo đồi dốc nhất đánh giá tất cả các trạng thái 
 Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái lân cận và quyết định chuyển sang trạng thái đó nếu nó tốt hơn trạng thái hiện tại.
 
 ## 4. Tài liệu tham khảo
-[1]. Elastic Platform Team, "Understanding AI search algorithms", elastic ,https://www.elastic.co/blog/understanding-ai-search-algorithms, ngày 21 tháng 3 năm 2024 (truy cập ngày 9 tháng 5 năm 2025)
-[2]. Russell 2020 Artificial intelligence a modern approach
-[3]. https://kdata.vn/tin-tuc/cac-thuat-toan-tim-kiem-chia-khoa-mo-cua-tri-tue-nhan-tao
+[1]. Elastic Platform Team, "Understanding AI search algorithms", elastic, https://www.elastic.co/blog/understanding-ai-search-algorithms, ngày 21 tháng 3 năm 2024 (truy cập ngày 9 tháng 5 năm 2025)
+
+[2]. Stuart Russell and Peter Norvig, "Russell 2020 Artificial intelligence a modern approach", xuất bản lần 4
+
+[3]. "Các thuật toán tìm kiếm: chìa khóa mở cửa trí tuệ nhân tạo", KDATA, https://kdata.vn/tin-tuc/cac-thuat-toan-tim-kiem-chia-khoa-mo-cua-tri-tue-nhan-tao, (truy cập ngày 6 tháng 5 năm 2025)
 
