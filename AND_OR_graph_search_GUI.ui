@@ -46,7 +46,7 @@
    <widget class="QPushButton" name="btnSolve">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>640</x>
       <y>140</y>
       <width>111</width>
       <height>41</height>
@@ -79,7 +79,7 @@ QPushButton:hover {
    <widget class="QLabel" name="lblTitle">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>100</x>
       <y>20</y>
       <width>691</width>
       <height>31</height>
@@ -304,7 +304,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>400</y>
+      <y>340</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -329,7 +329,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>510</y>
+      <y>450</y>
       <width>51</width>
       <height>50</height>
      </rect>
@@ -354,7 +354,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>510</y>
+      <y>450</y>
       <width>51</width>
       <height>50</height>
      </rect>
@@ -379,7 +379,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>510</y>
+      <y>450</y>
       <width>51</width>
       <height>50</height>
      </rect>
@@ -404,7 +404,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>460</y>
+      <y>400</y>
       <width>51</width>
       <height>41</height>
      </rect>
@@ -429,7 +429,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>460</y>
+      <y>400</y>
       <width>51</width>
       <height>41</height>
      </rect>
@@ -454,7 +454,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>400</y>
+      <y>340</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -479,7 +479,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>400</y>
+      <y>340</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -504,7 +504,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>460</y>
+      <y>400</y>
       <width>51</width>
       <height>41</height>
      </rect>
@@ -529,7 +529,7 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>360</y>
+      <y>300</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -552,9 +552,9 @@ QPushButton:hover {
    <widget class="QLabel" name="lblStep">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>180</y>
-      <width>161</width>
+      <x>30</x>
+      <y>520</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
@@ -577,8 +577,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtStep">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>240</y>
+      <x>80</x>
+      <y>520</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -586,7 +586,7 @@ QPushButton:hover {
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -606,8 +606,8 @@ QPushButton:hover {
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>210</y>
-      <width>161</width>
+      <y>200</y>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -629,8 +629,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtTotalStep">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>210</y>
+      <x>580</x>
+      <y>200</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -638,7 +638,7 @@ QPushButton:hover {
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -659,7 +659,7 @@ QPushButton:hover {
      <rect>
       <x>480</x>
       <y>240</y>
-      <width>161</width>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -681,8 +681,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtSolveTime">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>180</y>
+      <x>580</x>
+      <y>240</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -690,7 +690,7 @@ QPushButton:hover {
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -732,37 +732,11 @@ QPushButton#writeToFile:hover {
      <string>Write to file</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnLoadValue">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>140</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton#writeToFile {
-    background-color: #28A745;
-}
-
-QPushButton#writeToFile:hover {
-    background-color: #218838;
-}</string>
-    </property>
-    <property name="text">
-     <string>Load value</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblNote">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>280</y>
       <width>781</width>
       <height>21</height>
      </rect>
@@ -780,7 +754,7 @@ QPushButton#writeToFile:hover {
    <widget class="QPushButton" name="btnRandomInput">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>520</x>
       <y>140</y>
       <width>111</width>
       <height>41</height>
