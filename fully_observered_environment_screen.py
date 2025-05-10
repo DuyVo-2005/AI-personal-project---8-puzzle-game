@@ -392,108 +392,7 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node1)
         if not close_list.lookup(child_node2.state):
             open_list.insert(child_node2)
-    return None  
-            
-#8 puzzle là môi trường xác định có thể áp dụng nhưng không có phần else
-MAX_DEPTH = 100
-
-def AND_search(states: list, path: list, depth: int):
-    if depth > MAX_DEPTH:
-        return None
-    plans = []
-    for state in states:
-        if state in path:# Tránh lặp vô hạn
-            return None
-        plan_i = OR_search(state, path, depth + 1)# + [state])#Truyền path mở rộng
-        if plan_i == None:
-            return None
-        plans.append(plan_i)
-    return plans
-
-def Results(state: tuple, action: str):
-    possible_results = [] 
-    S1 = ApplyAction(state, action)
-    if S1 != None:
-        possible_results.append(S1)
-    possible_results += generate_error_action(state)
-    return possible_results
-
-def generate_unique_puzzle_states(n):
-    seen = set()
-    result = []
-
-    while len(result) < n:
-        nums = list(range(9))
-        random.shuffle(nums)
-        state = tuple(nums)
-        if state not in seen:
-            seen.add(state)
-            result.append(state)
-
-    return result
-
-#belief_set = generate_unique_puzzle_states(1000)
-goal_set = generate_unique_puzzle_states(30)
-
-def goal_test(state):
-    return state in goal_set
-
-def OR_search(state: tuple, path: list, depth: int):
-    if depth > MAX_DEPTH:
-        return None
-    if goal_test(state):
-        return []#empty plan = "Success"
-    if state in path:
-        return None
-    for action, current_state in succ(state):
-        plan = AND_search(Results(state, action), [state] + path, depth + 1)
-        if plan != None:
-            #return Plan(action, plan)
-            return [action] + plan
-    return None
-
-def ApplyAction(state: tuple, action: str):
-    """->tuple or None'"""
-    """Apply action to state and return new state"""
-    state = list(state)
-    new_state = state.copy()
-    idx = new_state.index(0)#vị trí ô trống
-    row, col = idx // 3, idx % 3
-
-    if action == "UP" and row > 0:
-        swap_idx = idx - 3
-    elif action == "DOWN" and row < 2:
-        swap_idx = idx + 3
-    elif action == "LEFT" and col > 0:
-        swap_idx = idx - 1
-    elif action == "RIGHT" and col < 2:
-        swap_idx = idx + 1
-    else:
-        return None#hành động không hợp lệ
-
-    #Thực hiện hoán đổi vị trí
-    new_state[idx], new_state[swap_idx] = new_state[swap_idx], new_state[idx]
-    return tuple(new_state)
-
-def generate_error_action(state: tuple)->list:
-    # error_action = []
-    # error_action.append(state)
-    # error_action.append(state[::-1])
-    # return error_action
-    #swap 2 ô
-    state = list(state)
-    indices = [i for i in range(len(state))]
-
-    i, j = random.sample(indices, 2)
-    state[i], state[j] = state[j], state[i]
-    return [tuple(state)]
-
-def AND_OR_graph_search(root: SearchNode):
-    """
-    Returns: conditional_plan or None
-    """
-    return OR_search(root.state, [], 0)
-
+    return None 
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -562,7 +461,7 @@ class MyApp(QMainWindow):
         self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
                                     "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
-                                    "Beam search", "Genetic algorithm", "And Or graph search"])
+                                    "Beam search", "Genetic algorithm"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
@@ -641,8 +540,6 @@ class MyApp(QMainWindow):
             solution = Beam_search(root)
         elif algorithm_type == "Genetic algorithm":
             solution = genetic_algorithm(root)
-        elif algorithm_type == "And Or graph search":
-            solution = AND_OR_graph_search(root)
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
