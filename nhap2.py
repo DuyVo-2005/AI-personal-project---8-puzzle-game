@@ -1,4 +1,7 @@
 import random
+import sys
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QTextEdit, QGridLayout, QVBoxLayout
+from PyQt6.QtCore import Qt
 
 GOAL_STATE = (1, 2, 3, 4, 5, 6, 7, 8, 0)
 MAX_DEPTH = 30
@@ -77,11 +80,103 @@ def AND_SEARCH(states, problem, path, depth, memo):
             return 'failure'
         plans.append(plan)
     return plans
+def print_plan_tree(plan, indent=0):
+    print(len(plan))
+    if plan == 'failure':
+        print(' ' * indent + 'failure')
+    elif plan == []:
+        print(' ' * indent + 'GOAL')
+    elif isinstance(plan, list):
+        action = plan[0]
+        subplan = plan[1]
+        print(' ' * indent + f'→ {action}')
+        if isinstance(subplan, list):
+            for sp in subplan:
+                print_plan_tree(sp, indent + 4)
+        else:
+            print_plan_tree(subplan, indent + 4)
+    else:
+        print(' ' * indent + str(plan))
 
 initial_state = (1, 2, 3, 4, 5, 6, 0, 7, 8)
-
 problem = {'initial': initial_state}
 plan = AND_OR_SEARCH(problem)
-
 print("Conditional Plan:")
-print(plan)
+print_plan_tree(plan)
+
+class PuzzleGUI(QWidget):
+    def __init__(self, plan):
+        super().__init__()
+        self.plan = plan
+        self.state = [1, 2, 3, 4, 5, 6, 0, 7, 8]  # initial state (editable)
+        self.step = 0
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle('8 Puzzle AND-OR Graph Search')
+        layout = QVBoxLayout()
+
+        # Puzzle grid
+        self.grid_layout = QGridLayout()
+        self.buttons = []
+
+        for i in range(9):
+            btn = QPushButton(str(self.state[i]) if self.state[i] != 0 else '')
+            btn.setFixedSize(60, 60)
+            self.grid_layout.addWidget(btn, i // 3, i % 3)
+            self.buttons.append(btn)
+
+        layout.addLayout(self.grid_layout)
+
+        # Tree plan output
+        self.plan_text = QTextEdit()
+        self.plan_text.setReadOnly(True)
+        layout.addWidget(self.plan_text)
+
+        # Next step button
+        self.next_btn = QPushButton("Next Step")
+        self.next_btn.clicked.connect(self.next_step)
+        layout.addWidget(self.next_btn)
+
+        self.setLayout(layout)
+
+        # Show initial tree
+        self.plan_text.setText(self.format_plan_tree(self.plan))
+
+    def format_plan_tree(self, plan, indent=0):
+        if plan == 'failure':
+            return ' ' * indent + 'failure\n'
+        elif plan == []:
+            return ' ' * indent + 'GOAL\n'
+        elif isinstance(plan, list):
+            action = plan[0]
+            subplan = plan[1]
+            result = ' ' * indent + f'→ {action}\n'
+            if isinstance(subplan, list):
+                for sp in subplan:
+                    result += self.format_plan_tree(sp, indent + 4)
+            else:
+                result += self.format_plan_tree(subplan, indent + 4)
+            return result
+        else:
+            return ' ' * indent + str(plan) + '\n'
+
+    def next_step(self):
+        if isinstance(self.plan, list):
+            action = self.plan[0]
+            self.state = list(move(tuple(self.state), action))
+            self.update_grid()
+            self.plan = self.plan[1][0] if isinstance(self.plan[1], list) else self.plan[1]
+
+    def update_grid(self):
+        for i in range(9):
+            val = self.state[i]
+            self.buttons[i].setText(str(val) if val != 0 else '')
+
+# problem = {'initial': (1, 2, 3, 4, 5, 6, 0, 7, 8)}
+# plan = AND_OR_SEARCH(problem)
+
+# app = QApplication(sys.argv)
+# window = PuzzleGUI(plan)
+# window.show()
+# sys.exit(app.exec())

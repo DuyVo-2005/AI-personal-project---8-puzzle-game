@@ -34,9 +34,20 @@ class StartFrame(tk.Frame):
         tk.Button(self, text="Fully observered environment", font=("Times New Roman", 13), command=lambda: show_fully_observered_environment_screen(), width= 30).pack(pady=5)
         tk.Button(self, text="Sensorless problem", font=("Times New Roman", 13), command=lambda: show_sensorless_problem_screen(), width= 30).pack(pady=5)
         tk.Button(self, text="Constrain satisfaction problem", font=("Times New Roman", 13), command=lambda: show_constrain_satisfaction_problem(), width= 30).pack(pady=5)
-        
+
+class ComplexEnviromentFrame(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self["bg"] = "#99FFCC"
+        tk.Label(self, text="Chose algorithm: ", font=("Times New Roman", 15, "bold"), width=30, fg="#008080", bg="#99FFCC").pack(pady=10)
+        tk.Button(self, text="AND OR graph search", font=("Times New Roman", 13), command=lambda: show_fully_observered_environment_screen(), width= 30).pack(pady=5)
+        tk.Button(self, text="Search with no observation, search with partial observation", font=("Times New Roman", 13), command=lambda: show_sensorless_problem_screen(), width= 30).pack(pady=5)      
+                
 def show_fully_observered_environment_screen():
     subprocess.run(["python", DUONG_DAN_THU_MUC_HIEN_HANH + "/fully_observered_environment_screen.py"])
+    
+def show_AND_OR_graph_search_screen():
+    subprocess.run(["python", DUONG_DAN_THU_MUC_HIEN_HANH + "/AND_OR_graph_search_screen.py"])
     
 def show_sensorless_problem_screen():
     subprocess.run(["python", DUONG_DAN_THU_MUC_HIEN_HANH + "/sensorless_problem_screen.py"])

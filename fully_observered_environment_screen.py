@@ -507,7 +507,7 @@ class MyApp(QMainWindow):
                 return
         try:
             if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
-                self.speed_per_step = end_state_tuple = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
+                self.speed_per_step = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
             else:
                 messagebox.showerror("Error", "Speed per step must above or equal 0.001s")
                 return
@@ -564,23 +564,27 @@ class MyApp(QMainWindow):
         self.timer.timeout.connect(self.update_step)
         self.solution = solution
         self.timer.start(self.speed_per_step)
-
+    def update_cell(self, cell, value):
+        if value == 0:
+            cell.setPlainText(" ")
+        else:
+            cell.setPlainText(str(value))
     def update_step(self):
         if self.step < len(self.solution):
-                e = self.solution[self.step]
-                self.step += 1
-                self.txtStep.setPlainText(str(self.step))
-                self.cell1_3.setPlainText(str(e[0]))
-                self.cell2_3.setPlainText(str(e[1]))
-                self.cell3_3.setPlainText(str(e[2]))
-                self.cell4_3.setPlainText(str(e[3]))
-                self.cell5_3.setPlainText(str(e[4]))
-                self.cell6_3.setPlainText(str(e[5]))
-                self.cell7_3.setPlainText(str(e[6]))
-                self.cell8_3.setPlainText(str(e[7]))
-                self.cell9_3.setPlainText(str(e[8]))
+            e = self.solution[self.step]
+            self.step += 1
+            self.txtStep.setPlainText(str(self.step))
+            self.update_cell(self.cell1_3, e[0])
+            self.update_cell(self.cell2_3, e[1])
+            self.update_cell(self.cell3_3, e[2])
+            self.update_cell(self.cell4_3, e[3])
+            self.update_cell(self.cell5_3, e[4])
+            self.update_cell(self.cell6_3, e[5])
+            self.update_cell(self.cell7_3, e[6])
+            self.update_cell(self.cell8_3, e[7])
+            self.update_cell(self.cell9_3, e[8])
         else:
-                self.timer.stop()
+            self.timer.stop()
                 
     def load_value(self):
         global start_state_tuple, end_state_tuple, root
