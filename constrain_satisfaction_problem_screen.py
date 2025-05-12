@@ -7,7 +7,7 @@ import random
 from const import *
 
 end_state_tuple = None
-visited_nodes = None
+visited_nodes = []
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
@@ -54,10 +54,10 @@ def show_path_in_file(solution):
                     # f.write("-" * 10)
                     f.write(f"\n{state}")
         f.write("\nClose list: ")
-        if visited_nodes == None:
+        if visited_nodes == []:
             f.write("\nNone")
         else:
-            for state in visited_nodes.set:
+            for state in visited_nodes:
                     # for i in range(0, 9, 3):
                     #         f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
                     # f.write("\n")
@@ -102,13 +102,11 @@ class MyApp(QMainWindow):
         super().__init__()
         app = uic.loadUi(CURRENT_DIRECTORY_PATH + "/constrainSatisfactionProblemGUI.ui", self)
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
-        self.btnRandomInput.clicked.connect(self.random_input)
-        self.btnLoadValue.clicked.connect(self.load_value)     
+        self.btnRandomInput.clicked.connect(self.random_input)  
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
         self.btnWriteToFile.clicked.connect(lambda: show_path_in_file(path))
-        self.btnQuit.clicked.connect(self.close)
         
     def random_input(self):
         global end_state_tuple
@@ -123,12 +121,28 @@ class MyApp(QMainWindow):
         self.cell7.setPlainText(str(end_state_tuple[6]))
         self.cell8.setPlainText(str(end_state_tuple[7]))
         self.cell9.setPlainText(str(end_state_tuple[8]))
+    
+    def update_cell(self, cell, value):
+        if value == -1:
+            cell.setPlainText(" ")
+        else:
+            cell.setPlainText(str(value))
         
     def solve_click(self):
         global end_state_tuple, path
+        try:
+            end_state_tuple = tuple([
+            int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
+            int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
+            int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
+            )
+        except ValueError:
+            messagebox.showerror("Error", "Invalid input values!")
+            return
+        
         start_time = time.time()
         if end_state_tuple is None:
-                messagebox.showerror("Error", "Please load values first!")
+                messagebox.showerror("Error", "Please enter values first!")
                 return
         try:
             if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
@@ -139,36 +153,28 @@ class MyApp(QMainWindow):
         except ValueError:
             messagebox.showerror("Error", "Invalid speed per step")
             return
-        
-        # initial_board = [9] * 9
-        # used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
-        # # goal_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]
-        # solve_path = []
-        # backtracking_search(initial_board, 0, used, end_state_tuple, solve_path)
+
         initial_board = [-1] * 9
         used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
-        # goal_state = [1, 2, 3, 4, 5, 6, 7, 8, 0]
-        # goal_state = [6, 7, 8, 0, 1, 2, 3, 4, 5]
 
-        def backtracking_search(board:list, pos: int, used, goal, path: list):
-            """_summary_
-
+        def backtracking_search(board:list, pos: int, used, goal, path: list) -> list:
+            """
             Args:
-                board (list): _description_
-                pos (int): _description_
+                board (list)
+                pos (int)
                 element pos idx
                 0 1 2
                 3 4 5
                 6 7 8
-                used (_type_): _description_
-                goal (int): 
-                
-                path (list): _description_
+                used (_type_)
+                goal (int)
+            Return
+                path (list)
             """
+            global visited_nodes
             if pos == 9:
                 if board == goal:
                     print("Found goal state:")
-                    #print_board(board)
                     for board in path:
                         print_board(board)
                     return path
@@ -180,6 +186,7 @@ class MyApp(QMainWindow):
                 if not used[num]:
                     board[pos] = num
                     used[num] = True
+                    visited_nodes.append(board.copy())
                     path.append(board[:])#bản sao
                     result = backtracking_search(board, pos + 1, used, goal, path)
                     if result:
@@ -220,34 +227,18 @@ class MyApp(QMainWindow):
             e = self.solution[self.step]
             self.step += 1
             self.txtStep.setPlainText(str(self.step))
-            if e[0] != 0:
-                self.cell1_3.setPlainText(str(e[0]))
-            
-            self.cell2_3.setPlainText(str(e[1]))
-            
-            self.cell3_3.setPlainText(str(e[2]))
-            self.cell4_3.setPlainText(str(e[3]))
-            self.cell5_3.setPlainText(str(e[4]))
-            self.cell6_3.setPlainText(str(e[5]))
-            self.cell7_3.setPlainText(str(e[6]))
-            self.cell8_3.setPlainText(str(e[7]))
-            self.cell9_3.setPlainText(str(e[8]))
+            self.update_cell(self.cell1_3, e[0])
+            self.update_cell(self.cell2_3, e[1])
+            self.update_cell(self.cell3_3, e[2])
+            self.update_cell(self.cell4_3, e[3])
+            self.update_cell(self.cell5_3, e[4])
+            self.update_cell(self.cell6_3, e[5])
+            self.update_cell(self.cell7_3, e[6])
+            self.update_cell(self.cell8_3, e[7])
+            self.update_cell(self.cell9_3, e[8])
         else:
             self.timer.stop()
                 
-    def load_value(self):
-        global end_state_tuple
-        try:
-            end_state_tuple = tuple([
-            int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
-            int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
-            int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
-            )
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input values!")
-        else:
-            messagebox.showinfo("Notification", "Values loaded successfully!")      
-
 app = QApplication([])
 window = MyApp()
 window.show()

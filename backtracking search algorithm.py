@@ -16,7 +16,6 @@ def backtracking_search(board:list, pos: int, used, goal, path: list):
     if pos == 9:
         if board == goal:
             print("Found goal state:")
-            #print_board(board)
             for board in path:
                 print_board(board)
         return

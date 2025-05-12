@@ -36,7 +36,6 @@ def generate_random_state():
 #             return "Solved"
 #         visited.add(new_state)
         
-#có r
 def print_state(state):
     for i in range(0, 9, 3):
         print(state[i], state[i+1], state[i+2])
