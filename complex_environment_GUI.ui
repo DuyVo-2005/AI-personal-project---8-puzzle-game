@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>832</width>
-    <height>601</height>
+    <width>1300</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,8 +22,8 @@
    <widget class="QLabel" name="lblStartState">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
+      <x>20</x>
+      <y>30</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -46,8 +46,8 @@
    <widget class="QLabel" name="lblEndState">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>60</y>
+      <x>420</x>
+      <y>30</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -71,8 +71,8 @@
    <widget class="QPushButton" name="btnSolve">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>200</y>
+      <x>1010</x>
+      <y>130</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -104,9 +104,9 @@ QPushButton:hover {
    <widget class="QLabel" name="lblTitle">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>20</y>
-      <width>531</width>
+      <x>180</x>
+      <y>0</y>
+      <width>991</width>
       <height>31</height>
      </rect>
     </property>
@@ -124,104 +124,16 @@ QPushButton:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Solve 8 puzzle game with AI algorithm</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell1">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell2">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
+     <string>Solve 8 puzzle game with AI algorithm - Search in complex environment</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="cell3">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell5">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
+      <x>120</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="font">
@@ -240,54 +152,10 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell6">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell7">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell8">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
+      <x>120</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="font">
@@ -306,10 +174,10 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="cell9">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
+      <x>120</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
      </rect>
     </property>
     <property name="font">
@@ -323,437 +191,14 @@ QPushButton:hover {
 	background-color: #CFEBFC;
 	color: black
 }</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell4_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell7_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell8_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell9_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>210</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell5_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell6_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>160</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell1_2">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell3_2">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell2_2">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell3_3">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>400</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell7_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>510</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell8_3">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>510</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell9_3">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>510</y>
-      <width>51</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell5_3">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>460</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell4_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>460</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell1_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>400</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell2_3">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>400</y>
-      <width>51</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="cell6_3">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>460</y>
-      <width>51</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPlainTextEdit{
-	background-color: #CFEBFC;
-	color: black
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lblResult">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>360</y>
-      <width>161</width>
+      <x>20</x>
+      <y>430</y>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
@@ -775,8 +220,8 @@ QPushButton:hover {
    <widget class="QLabel" name="lblStep">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>400</y>
+      <x>780</x>
+      <y>260</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -800,8 +245,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtStep">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>400</y>
+      <x>830</x>
+      <y>260</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -828,8 +273,8 @@ QPushButton:hover {
    <widget class="QLabel" name="lblTotalStep">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>450</y>
+      <x>780</x>
+      <y>310</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -852,8 +297,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtTotalStep">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>450</y>
+      <x>880</x>
+      <y>310</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -880,9 +325,9 @@ QPushButton:hover {
    <widget class="QLabel" name="lblSolveTime">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>400</y>
-      <width>161</width>
+      <x>1000</x>
+      <y>260</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -904,8 +349,8 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtSolveTime">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>400</y>
+      <x>1100</x>
+      <y>260</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -932,8 +377,8 @@ QPushButton:hover {
    <widget class="QPushButton" name="btnWriteToFile">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>530</y>
+      <x>1160</x>
+      <y>620</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -955,63 +400,11 @@ QPushButton#writeToFile:hover {
      <string>Write to file</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnQuit">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>530</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton#quitButton {
-    background-color: #DC3545;
-}
-
-QPushButton#quitButton:hover {
-    background-color: #A71D2A;
-}</string>
-    </property>
-    <property name="text">
-     <string>Quit</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnLoadValue">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>280</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton#writeToFile {
-    background-color: #28A745;
-}
-
-QPushButton#writeToFile:hover {
-    background-color: #218838;
-}</string>
-    </property>
-    <property name="text">
-     <string>Load value</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblNote">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>500</y>
+      <x>10</x>
+      <y>640</y>
       <width>551</width>
       <height>21</height>
      </rect>
@@ -1029,8 +422,8 @@ QPushButton#writeToFile:hover {
    <widget class="QPushButton" name="btnRandomInput">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>280</y>
+      <x>890</x>
+      <y>130</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -1055,9 +448,9 @@ QPushButton#writeToFile:hover {
    <widget class="QLabel" name="lblStartState_2">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>130</y>
-      <width>161</width>
+      <x>1040</x>
+      <y>60</y>
+      <width>201</width>
       <height>31</height>
      </rect>
     </property>
@@ -1073,15 +466,15 @@ QPushButton#writeToFile:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Chose algorithm:</string>
+     <string>Chose algorithm name:</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblStartState_3">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>770</x>
       <y>60</y>
-      <width>261</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
@@ -1097,15 +490,15 @@ QPushButton#writeToFile:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Enter solve speed per step (s):</string>
+     <string>Enter solve speed (s/step):</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="txtSolveSpeedPerStep">
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>770</x>
       <y>90</y>
-      <width>231</width>
+      <width>220</width>
       <height>26</height>
      </rect>
     </property>
@@ -1113,11 +506,3151 @@ QPushButton#writeToFile:hover {
    <widget class="QComboBox" name="cbbAlgorithm">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>160</y>
-      <width>231</width>
+      <x>1040</x>
+      <y>90</y>
+      <width>220</width>
       <height>26</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_5">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_5">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_6">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_3">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_6">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_5">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_6">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_7">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_7">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_7">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_8">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_8">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_8">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_9">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_9">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_10">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_10">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_9">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_11">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_11">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_12">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_11">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_12">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_12">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_13">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_14">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_15">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_13">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_16">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_17">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_13">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_14">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_15">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_18">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_14">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_15">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_16">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_16">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_17">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_17">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_18">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_19">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_18">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_19">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_19">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_20">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_20">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_20">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_21">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_21">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_22">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_21">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_22">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_23">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>70</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_22">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_23">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>340</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_24">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>240</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_24">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>170</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_23">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>120</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_24">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>290</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_25">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_25">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_25">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_26">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_26">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_27">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_28">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_27">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_29">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_28">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_30">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_26">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_29">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_27">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_30">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_28">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_29">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_30">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_31">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_32">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_31">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_31">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_32">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_33">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_33">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_34">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_32">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_34">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_33">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_34">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_35">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_35">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_35">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_36">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_36">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_36">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_37">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_38">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_37">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_37">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_38">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_38">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_39">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_39">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_39">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_40">
+    <property name="geometry">
+     <rect>
+      <x>1530</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_40">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_40">
+    <property name="geometry">
+     <rect>
+      <x>1630</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_41">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_41">
+    <property name="geometry">
+     <rect>
+      <x>1530</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_42">
+    <property name="geometry">
+     <rect>
+      <x>1530</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_41">
+    <property name="geometry">
+     <rect>
+      <x>1630</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblNote_2">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>770</y>
+      <width>551</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>*Note: Please use the number 0 to represent an empty cell in the input section.</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_42">
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_42">
+    <property name="geometry">
+     <rect>
+      <x>1630</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblNote_3">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>770</y>
+      <width>551</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>*Note: Please use the number 0 to represent an empty cell in the input section.</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_43">
+    <property name="geometry">
+     <rect>
+      <x>1790</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_43">
+    <property name="geometry">
+     <rect>
+      <x>1690</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_43">
+    <property name="geometry">
+     <rect>
+      <x>1790</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_44">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_44">
+    <property name="geometry">
+     <rect>
+      <x>1740</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_45">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_44">
+    <property name="geometry">
+     <rect>
+      <x>1740</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_46">
+    <property name="geometry">
+     <rect>
+      <x>1690</x>
+      <y>600</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_45">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_46">
+    <property name="geometry">
+     <rect>
+      <x>1690</x>
+      <y>700</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_47">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_45">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_46">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>520</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_47">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_47">
+    <property name="geometry">
+     <rect>
+      <x>1740</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell9_48">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>570</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell6_48">
+    <property name="geometry">
+     <rect>
+      <x>1790</x>
+      <y>650</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="cell3_48">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>470</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPlainTextEdit{
+	background-color: #CFEBFC;
+	color: black
+}</string>
     </property>
    </widget>
   </widget>
@@ -1126,7 +3659,7 @@ QPushButton#writeToFile:hover {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>832</width>
+     <width>1300</width>
      <height>21</height>
     </rect>
    </property>
