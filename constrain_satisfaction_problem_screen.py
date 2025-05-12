@@ -3,37 +3,17 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from tkinter import messagebox
 import time
 import random
+from collections import deque
 
 from const import *
 
 end_state_tuple = None
 visited_nodes = []
+path = None
 
 def is_goal(state:tuple) -> bool:
     global end_state_tuple
     return state == end_state_tuple
-
-def succ(state: tuple) -> list:
-    "return children with (action, state)"
-    children = []
-    zero_index = state.index(0)
-    row, col = zero_index//3, zero_index%3
-
-    moves = {
-        'UP': (-1, 0),
-        'DOWN': (1, 0),
-        'LEFT': (0, -1),
-        'RIGHT': (0, 1)
-    }
-
-    for action, (dr, dc) in moves.items():
-        new_row, new_col = row + dr, col + dc
-        if 0 <= new_row < 3 and 0 <= new_col < 3:
-            new_index = new_row * 3 + new_col
-            new_state = list(state)           
-            new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
-            children.append((action, tuple(new_state)))
-    return children
 
 def print_state(state):
     for i in range(0, 9, 3):
@@ -65,16 +45,6 @@ def show_path_in_file(solution):
                     f.write(f"\n{state}")
         messagebox.showinfo("Infomation", "Write to file successfully")
 
-# def generate_unique_can_solved_puzzle_states(n):   
-#     result = []
-#     while len(result) < n:
-#         nums = list(range(9))
-#         random.shuffle(nums)
-#         state = tuple(nums)
-#         if state not in result and not violate_constrain(state):          
-#             result.append(state)
-#     return result
-
 def is_violate_constrain(state):
     if not all(0 <= element <= 8 for element in state):#Kiểm tra các giá trị phải nằm trong [0..8]
         return True
@@ -83,19 +53,32 @@ def is_violate_constrain(state):
     return False
 
 def generate_random_state():
-    return tuple(random.randint(0, 9) for _ in range(9))
+    return tuple(random.randint(0, 9) for _ in range(9))      
 
-def test_search():#Tìm kiếm kiểm thử
-    visited = set()
-    goal_state = generate_random_state()
-    while is_violate_constrain(goal_state):
-        new_state = generate_random_state()
-        print_state(new_state)
-        #print("\n------------\n")
-        if not is_violate_constrain(new_state):
-            print("Solved")
-            return
-        visited.add(new_state)                   
+def different_constraint(x: int, y: int):
+    return x != y
+
+def ac3(domains, neighbors):
+    queue = deque([(Xi, Xj) for Xi in domains for Xj in neighbors[Xi]])# queue chứa các cạnh (cung), khởi tạo là tất cả các cạnh
+    while queue:
+        Xi, Xj = queue.popleft()
+        if revise(domains, Xi, Xj):
+            if not domains[Xi]:
+                return False#Domain rỗng -> không hợp lệ -> dừng (an consistency is found)
+            for Xk in neighbors[Xi]:
+                if Xk != Xj:
+                    queue.append((Xk, Xi))
+    return True
+
+def revise(domains: dict, Xi, Xj):
+    revised = False#biến ghi nhận có sửa đổi hay không
+    for x in domains[Xi][:]:
+        #Không có y nào trong Dj cho phép (x,y) thỏa mãn ràng buộc (khác nhau) giữa Di và Dj
+        if all(not different_constraint(x, y) for y in domains[Xj]):
+            domains[Xi].remove(x)
+            revised = True
+    return revised
+
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -104,6 +87,8 @@ class MyApp(QMainWindow):
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.btnRandomInput.clicked.connect(self.random_input)  
         self.btnSolve.clicked.connect(self.solve_click)
+        self.cbbAlgorithm.addItems(["Backtracking", "Test", "AC3"])
+        self.cbbAlgorithm.setCurrentText("Backtracking")
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
         self.btnWriteToFile.clicked.connect(lambda: show_path_in_file(path))
@@ -130,33 +115,50 @@ class MyApp(QMainWindow):
         
     def solve_click(self):
         global end_state_tuple, path
-        try:
-            end_state_tuple = tuple([
-            int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
-            int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
-            int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
-            )
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input values!")
-            return
+        algorithm_type = self.cbbAlgorithm.currentText()
         
-        start_time = time.time()
-        if end_state_tuple is None:
-                messagebox.showerror("Error", "Please enter values first!")
-                return
-        try:
-            if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
-                self.speed_per_step  = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
-            else:
-                messagebox.showerror("Error", "Speed per step must above or equal 0.001s")
-                return
-        except ValueError:
-            messagebox.showerror("Error", "Invalid speed per step")
-            return
+        variables = []#Danh sách các ô
+        for i in range(1, 10):
+            variables.append(f'X{i}')
 
-        initial_board = [-1] * 9
-        used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
+        #Khởi tạo miền giá trị ban đầu: mọi ô có thể là 0..8
+        domains = {}
+        min_pole = [
+            self.spinBox_minX1.value(),
+            self.spinBox_minX2.value(),
+            self.spinBox_minX3.value(),
+            self.spinBox_minX4.value(),
+            self.spinBox_minX5.value(),
+            self.spinBox_minX6.value(),
+            self.spinBox_minX7.value(),
+            self.spinBox_minX8.value(),
+            self.spinBox_minX9.value()
+        ]
+        max_pole = [
+            self.spinBox_maxX1.value(),
+            self.spinBox_maxX2.value(),
+            self.spinBox_maxX3.value(),
+            self.spinBox_maxX4.value(),
+            self.spinBox_maxX5.value(),
+            self.spinBox_maxX6.value(),
+            self.spinBox_maxX7.value(),
+            self.spinBox_maxX8.value(),
+            self.spinBox_maxX9.value()
+        ]
+        idx = 0
+        for var in variables:
+            domains[var] = list(range(min_pole[idx], max_pole[idx] + 1))
+            idx += 1
+        # domains['X0'] = [1]
+        # domains['X1'] = [2]
+        print(domains)
 
+        neighbors = { }
+        for var in variables:
+            neighbors[var] = [v for v in variables if v != var]
+
+        domains_copy = domains.copy()
+        #has_result = ac3(domains_copy, neighbors)
         def backtracking_search(board:list, pos: int, used, goal, path: list) -> list:
             """
             Args:
@@ -201,9 +203,52 @@ class MyApp(QMainWindow):
             print()
             print("--------------------")
             print()
+            
+        def test_search():#Tìm kiếm kiểm thử
+            visited = set()
+            path = []
+            goal_state = generate_random_state()
+            while is_violate_constrain(goal_state):
+                new_state = generate_random_state()
+                print_state(new_state)
+                #print("\n------------\n")
+                path.append(new_state)
+                if not is_violate_constrain(new_state):
+                    print("Solved")
+                    return path
+                visited.add(new_state)
+            
+        start_time = time.time()
+        if not algorithm_type == "Test" or not algorithm_type == "AC3":
+            if end_state_tuple is None:
+                messagebox.showerror("Error", "Please enter values first!")
+                return
+            try:
+                end_state_tuple = tuple([
+                int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
+                int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
+                int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
+                )
+            except ValueError:
+                messagebox.showerror("Error", "Invalid input values!")
+                return
+        try:
+            if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
+                self.speed_per_step  = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
+            else:
+                messagebox.showerror("Error", "Speed per step must above or equal 0.001s")
+                return
+        except ValueError:
+            messagebox.showerror("Error", "Invalid speed per step")
+            return
         path = []
-        path = backtracking_search(initial_board, 0, used, list(end_state_tuple), path)
-        print(path)
+        if algorithm_type == "Test":
+            path = test_search()
+        else:
+            initial_board = [-1] * 9
+            used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
+            path = backtracking_search(initial_board, 0, used, list(end_state_tuple), path)
+            print(path)
         if path == []:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
