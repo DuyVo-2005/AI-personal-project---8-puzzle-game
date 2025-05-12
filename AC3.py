@@ -1,53 +1,50 @@
 from collections import deque
-import copy
 
-def constraint_different(x, y):
+def different_constraint(x: int, y: int):
     return x != y
 
 def ac3(domains, neighbors):
-    queue = deque([(Xi, Xj) for Xi in domains for Xj in neighbors[Xi]])
-
+    queue = deque([(Xi, Xj) for Xi in domains for Xj in neighbors[Xi]])# queue chứa các cạnh (cung), khởi tạo là tất cả các cạnh
     while queue:
         Xi, Xj = queue.popleft()
         if revise(domains, Xi, Xj):
             if not domains[Xi]:
-                return False  # Domain trống => không hợp lệ
+                return False#Domain rỗng -> không hợp lệ -> dừng (an consistency is found)
             for Xk in neighbors[Xi]:
                 if Xk != Xj:
                     queue.append((Xk, Xi))
     return True
 
-def revise(domains, Xi, Xj):
-    revised = False
+def revise(domains: dict, Xi, Xj):
+    revised = False#biến ghi nhận có sửa đổi hay không
     for x in domains[Xi][:]:
-        if all(not constraint_different(x, y) for y in domains[Xj]):
+        #Không có y nào trong Dj cho phép (x,y) thỏa mãn ràng buộc (khác nhau) giữa Di và Dj
+        if all(not different_constraint(x, y) for y in domains[Xj]):
             domains[Xi].remove(x)
             revised = True
     return revised
 
-# Danh sách biến
-variables = [f'V{i}' for i in range(9)]
+variables = []#Danh sách các ô
+for i in range(9):
+    variables.append(f'X{i}')
 
-# Khởi tạo miền ban đầu: mọi ô có thể là 0..8
-domains = {var: list(range(9)) for var in variables}
-domains['V0'] = [1]
-domains['V1'] = [2]
-#domains['V2'] = [0,1,2,3,4,5,6,7,8]
-#domains['V3'] = [0,1,2,3,4,5,6,7,8]
-#domains['V4'] = [0,1,2,3,4,5,6,7,8]
-#domains['V5'] = [0,1,2,3,4,5,6,7,8]
-#domains['V6'] = [0,1,2,3,4,5,6,7,8]
-#domains['V7'] = [0,1,2,3,4,5,6,7,8]
-#domains['V8'] = [0,1,2,3,4,5,6,7,8]
+#Khởi tạo miền giá trị ban đầu: mọi ô có thể là 0..8
+domains = {}
+for var in variables:
+    domains[var] = list(range(9))
+domains['X0'] = [1]
+domains['X1'] = [2]
 
-# Thiết lập neighbors để kiểm tra all-different
-neighbors = {var: [v for v in variables if v != var] for var in variables}
+neighbors = { }
+for var in variables:
+    neighbors[var] = [v for v in variables if v != var]
 
-# Gọi AC-3
-domains_copy = copy.deepcopy(domains)
-result = ac3(domains_copy, neighbors)
+domains_copy = domains.copy()
+has_result = ac3(domains_copy, neighbors)
 
-# In kết quả
-print("Kết quả AC-3:", result)
-for var in sorted(domains_copy):
-    print(f"{var}: {domains_copy[var]}")
+if has_result:
+    print("Kết quả thuật toán AC3:")
+    for var in sorted(domains_copy):
+        print(f"{var}: {domains_copy[var]}")
+else:
+    print("Không tìm ra lời giải")
