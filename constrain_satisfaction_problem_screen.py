@@ -20,19 +20,19 @@ def print_state(state):
         print(state[i], state[i+1], state[i+2])
     print("-" * 10)                         
 
-def show_path_in_file(solution):
+def show_path_in_file(solution: dict):
     global visited_nodes
     with open(CURRENT_DIRECTORY_PATH + "/result.txt", "w", encoding="utf-8") as f:
         f.write("Solution: ")
         if solution == None:
             f.write("\nNo solution")
         else:
-            for state in solution:
+            for variable, value in solution.items():
                     # for i in range(0, 9, 3):
                     #         f.write(f"\n{state[i]}, {state[i+1]}, {state[i+2]}")
                     # f.write("\n")
                     # f.write("-" * 10)
-                    f.write(f"\n{state}")
+                    f.write(f"\n{variable}: {value}")
         f.write("\nClose list: ")
         if visited_nodes == []:
             f.write("\nNone")
@@ -53,7 +53,7 @@ def is_violate_constrain(state):
     return False
 
 def generate_random_state():
-    return tuple(random.randint(0, 9) for _ in range(9))      
+    return tuple(random.randint(0, 8) for _ in range(9))      
 
 def different_constraint(x: int, y: int):
     return x != y
@@ -85,27 +85,12 @@ class MyApp(QMainWindow):
         super().__init__()
         app = uic.loadUi(CURRENT_DIRECTORY_PATH + "/constrainSatisfactionProblemGUI.ui", self)
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
-        self.btnRandomInput.clicked.connect(self.random_input)  
         self.btnSolve.clicked.connect(self.solve_click)
         self.cbbAlgorithm.addItems(["Backtracking", "Test", "AC3"])
         self.cbbAlgorithm.setCurrentText("Backtracking")
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
         self.btnWriteToFile.clicked.connect(lambda: show_path_in_file(path))
-        
-    def random_input(self):
-        global end_state_tuple
-        numbers = random.sample(range(9), 9)
-        end_state_tuple = tuple(numbers)
-        self.cell1.setPlainText(str(end_state_tuple[0]))
-        self.cell2.setPlainText(str(end_state_tuple[1]))
-        self.cell3.setPlainText(str(end_state_tuple[2]))
-        self.cell4.setPlainText(str(end_state_tuple[3]))
-        self.cell5.setPlainText(str(end_state_tuple[4]))
-        self.cell6.setPlainText(str(end_state_tuple[5]))
-        self.cell7.setPlainText(str(end_state_tuple[6]))
-        self.cell8.setPlainText(str(end_state_tuple[7]))
-        self.cell9.setPlainText(str(end_state_tuple[8]))
     
     def update_cell(self, cell, value):
         if value == -1:
@@ -114,7 +99,8 @@ class MyApp(QMainWindow):
             cell.setPlainText(str(value))
         
     def solve_click(self):
-        global end_state_tuple, path
+        global path, visited_nodes
+        path, visited_nodes = [], []
         algorithm_type = self.cbbAlgorithm.currentText()
         
         variables = []#Danh sách các ô
@@ -149,8 +135,8 @@ class MyApp(QMainWindow):
         for var in variables:
             domains[var] = list(range(min_pole[idx], max_pole[idx] + 1))
             idx += 1
-        # domains['X0'] = [1]
-        # domains['X1'] = [2]
+        domains['X0'] = [1]
+        domains['X1'] = [2]
         print(domains)
 
         neighbors = { }
@@ -158,80 +144,60 @@ class MyApp(QMainWindow):
             neighbors[var] = [v for v in variables if v != var]
 
         domains_copy = domains.copy()
-        #has_result = ac3(domains_copy, neighbors)
-        def backtracking_search(board:list, pos: int, used, goal, path: list) -> list:
-            """
-            Args:
-                board (list)
-                pos (int)
-                element pos idx
-                0 1 2
-                3 4 5
-                6 7 8
-                used (_type_)
-                goal (int)
-            Return
-                path (list)
-            """
-            global visited_nodes
-            if pos == 9:
-                if board == goal:
-                    print("Found goal state:")
-                    for board in path:
-                        print_board(board)
-                    return path
-                return []
-            if pos > 9:
-                return []
-
-            for num in range(9):
-                if not used[num]:
-                    board[pos] = num
-                    used[num] = True
-                    visited_nodes.append(board.copy())
-                    path.append(board[:])#bản sao
-                    result = backtracking_search(board, pos + 1, used, goal, path)
+        
+        def select_unassigned_variable(variables, assignment):
+            for variable in variables:
+                if variable not in assignment:
+                    return variable
+            return False
+        def is_consistent(value:int, assignment: set) -> bool:
+            """check constraint: all var is different"""
+            for other_variable in assignment:
+                if assignment[other_variable] == value:
+                    return False
+            return True
+        def convert_assignment_to_state(assignment: dict) -> tuple:
+            state = [-1, -1, -1, -1, -1, -1, -1, -1, -1]#Trạng thái ban đầu
+            for variable, value in assignment.items():
+                index = int(variable.strip("X"))
+                state[index - 1] = value
+            return tuple(state)
+        def backtracking_search(assignment):
+            if len(assignment) == len(variables):
+                print("Tìm ra lời giải!")
+                return assignment
+            variable = select_unassigned_variable(variables, assignment)
+            for value in domains[variable]:
+                print(f"Thử {variable} = {value}")
+                if is_consistent(value, assignment):
+                    assignment[variable] = value
+                    print(f"Gán {variable} = {value} -> assignment hiện tại: {assignment}")
+                    visited_nodes.append(convert_assignment_to_state(assignment.copy()))
+                    result = backtracking_search(assignment)
                     if result:
                         return result
-                    path.pop()
-                    used[num] = False
-                    board[pos] = -1#quay lui
-
-        def print_board(board):
-            for i in range(0, 9, 3):
-                print(board[i:i+3])
-            print()
-            print("--------------------")
-            print()
+                    print(f" <- Backtracking khỏi {var} = {value}")
+                    del assignment[variable]# Hủy gán (quay lui)
+                    visited_nodes.append(convert_assignment_to_state(assignment.copy()))
+            return []
             
         def test_search():#Tìm kiếm kiểm thử
+            global visited_nodes
             visited = set()
             path = []
-            goal_state = generate_random_state()
-            while is_violate_constrain(goal_state):
+            new_state = (-1,-1,-1,-1,-1,-1,-1,-1,-1)
+            while is_violate_constrain(new_state):
                 new_state = generate_random_state()
                 print_state(new_state)
                 #print("\n------------\n")
                 path.append(new_state)
+                visited_nodes = path.copy()
                 if not is_violate_constrain(new_state):
                     print("Solved")
                     return path
                 visited.add(new_state)
             
-        start_time = time.time()
-        if not algorithm_type == "Test" or not algorithm_type == "AC3":
-            if end_state_tuple is None:
-                messagebox.showerror("Error", "Please enter values first!")
-                return
-            try:
-                end_state_tuple = tuple([
-                int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
-                int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
-                int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
-                )
-            except ValueError:
-                messagebox.showerror("Error", "Invalid input values!")
-                return
+        start_time = time.perf_counter()       
         try:
             if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
                 self.speed_per_step  = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
@@ -244,21 +210,19 @@ class MyApp(QMainWindow):
         path = []
         if algorithm_type == "Test":
             path = test_search()
-        else:
-            initial_board = [-1] * 9
-            used = [False] * 9#ràng buộc không trùng giá trị trong trạng thái
-            path = backtracking_search(initial_board, 0, used, list(end_state_tuple), path)
+        else:           
+            path = backtracking_search({})
             print(path)
         if path == []:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
             self.txtStep.setPlainText("0")
         else:         
-            self.play_solution(path)        
-            self.txtTotalStep.setPlainText(str(len(path)))
-        end_time = time.time()
+            self.play_solution(visited_nodes)        
+            self.txtTotalStep.setPlainText(str(len(visited_nodes)))
+        end_time = time.perf_counter()
         execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.5f}(s)") 
+        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)") 
                 
     def play_solution(self, solution):
         self.step = 0
