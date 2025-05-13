@@ -4,6 +4,7 @@ from tkinter import messagebox
 import time
 import random
 from collections import deque
+from copy import deepcopy
 
 from const import *
 
@@ -79,6 +80,13 @@ def revise(domains: dict, Xi, Xj):
             revised = True
     return revised
 
+def convert_domains_to_string(domains: dict):
+    result = ""
+    for variable, domain in domains.items():
+        result += f"{variable}: {domain}" + "\n"
+    return result
+
+domains = {}
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -99,7 +107,7 @@ class MyApp(QMainWindow):
             cell.setPlainText(str(value))
         
     def solve_click(self):
-        global path, visited_nodes
+        global path, visited_nodes, domains
         path, visited_nodes = [], []
         algorithm_type = self.cbbAlgorithm.currentText()
         
@@ -108,7 +116,6 @@ class MyApp(QMainWindow):
             variables.append(f'X{i}')
 
         #Khởi tạo miền giá trị ban đầu: mọi ô có thể là 0..8
-        domains = {}
         min_pole = [
             self.spinBox_minX1.value(),
             self.spinBox_minX2.value(),
@@ -135,15 +142,17 @@ class MyApp(QMainWindow):
         for var in variables:
             domains[var] = list(range(min_pole[idx], max_pole[idx] + 1))
             idx += 1
-        domains['X0'] = [1]
-        domains['X1'] = [2]
+        # domains['X0'] = [1]
+        # domains['X1'] = [2]
+        print("Domain ban đầu:")
         print(domains)
 
         neighbors = { }
         for var in variables:
             neighbors[var] = [v for v in variables if v != var]
 
-        domains_copy = domains.copy()
+        #domains_copy = domains.copy()
+        times = [0]#số lần thử gán
         
         def select_unassigned_variable(variables, assignment):
             for variable in variables:
@@ -162,23 +171,27 @@ class MyApp(QMainWindow):
                 index = int(variable.strip("X"))
                 state[index - 1] = value
             return tuple(state)
-        def backtracking_search(assignment):
+        def backtracking_search(assignment, times: list):
             if len(assignment) == len(variables):
                 print("Tìm ra lời giải!")
                 return assignment
             variable = select_unassigned_variable(variables, assignment)
             for value in domains[variable]:
+                times[0] += 1
+                print(f"Lần thử: {times[0]}")
                 print(f"Thử {variable} = {value}")
                 if is_consistent(value, assignment):
                     assignment[variable] = value
                     print(f"Gán {variable} = {value} -> assignment hiện tại: {assignment}")
                     visited_nodes.append(convert_assignment_to_state(assignment.copy()))
-                    result = backtracking_search(assignment)
+                    result = backtracking_search(assignment, times)
                     if result:
                         return result
-                    print(f" <- Backtracking khỏi {var} = {value}")
+                    print(f" <- Backtracking khỏi {variable} = {value}")
                     del assignment[variable]# Hủy gán (quay lui)
                     visited_nodes.append(convert_assignment_to_state(assignment.copy()))
+                else:
+                    print(f"Vi phạm ràng buộc! Không gán!")
             return []
             
         def test_search():#Tìm kiếm kiểm thử
@@ -210,9 +223,20 @@ class MyApp(QMainWindow):
         path = []
         if algorithm_type == "Test":
             path = test_search()
+            print(f"Số lần thử gán: {len(path)}")
+        elif algorithm_type == "AC3":
+            if ac3(domains, neighbors) == False:
+                messagebox.showerror("Error", "An consistency is found")
+            else:
+                print("Domain sau khi lọc:")
+                print(domains)
+                path = backtracking_search({}, times)
+                print(path)
+                print(f"Số lần thử gán: {times[0]}")
         else:           
-            path = backtracking_search({})
+            path = backtracking_search({}, times)
             print(path)
+            print(f"Số lần thử gán: {times}")
         if path == []:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
@@ -222,7 +246,8 @@ class MyApp(QMainWindow):
             self.txtTotalStep.setPlainText(str(len(visited_nodes)))
         end_time = time.perf_counter()
         execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)") 
+        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
+        self.output_domain.setPlainText(convert_domains_to_string(domains))
                 
     def play_solution(self, solution):
         self.step = 0

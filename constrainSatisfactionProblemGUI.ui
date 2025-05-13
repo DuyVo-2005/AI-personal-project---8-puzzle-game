@@ -1650,7 +1650,7 @@ QPushButton#writeToFile:hover {
      <string>X9</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="cell1_2">
+   <widget class="QPlainTextEdit" name="output_domain">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -1670,6 +1670,9 @@ QPushButton#writeToFile:hover {
 	background-color: #FFFFFF;
 	color: black
 }</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lblEndState_23">
