@@ -604,9 +604,9 @@ class MyApp(QMainWindow):
                 root = make_node(None, None, start_state_tuple)
 
         except ValueError:
-                messagebox.showerror("Error", "Invalid input values!")
+            messagebox.showerror("Error", "Invalid input values!")
         else:
-                messagebox.showinfo("Notification", "Values loaded successfully!")
+            messagebox.showinfo("Notification", "Values loaded successfully!")
 
 app = QApplication([])
 window = MyApp()
