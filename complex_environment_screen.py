@@ -318,6 +318,8 @@ class MyApp(QMainWindow):
         end_time = time.time()
         execution_time = end_time - start_time
         self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
+        print(f"Execution time: {execution_time}")
+        print(f"Algorithm type: {algorithm_type}")
         if solution is None:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")

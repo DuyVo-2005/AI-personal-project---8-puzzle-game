@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from tkinter import messagebox
 import time
 import random
-import math
+import numpy
 
 from const import *
 from dataStructures import *
@@ -161,7 +161,7 @@ def A_start(root: SearchNode):
 
 # IDA* tăng ngưỡng xét từ vd 0, 2, 4, 6 (mỗi lần xét chỉ lấy giá trị bé hơn hoặc bằng ngưỡng)
 def IDA_star(root: SearchNode):
-    def search(node: SearchNode, path: set, threshold):# Tìm kiếm theo DFS với giới hạn threshold
+    def search(node: SearchNode, path: set, threshold: int):# Tìm kiếm theo DFS với giới hạn threshold
         f_cost = node.g_cost + heuristic(node.state)
         if f_cost > threshold:
             return f_cost, None
@@ -173,27 +173,33 @@ def IDA_star(root: SearchNode):
             if new_state in path:
                 continue  
             new_node = make_node(node, action, new_state)
-            result, found_path = search(new_node, path.copy(), threshold)# Truyền bản sao của path
+            result, found_path = search(new_node, path, threshold)# Truyền bản sao của path
             if found_path:
                 return None, found_path
-
             min_threshold = min(min_threshold, result)
-
         path.remove(node.state)# Xóa khỏi tập hợp khi quay lui
         return min_threshold, None# Trả về threshold mới nếu không tìm thấy lời giải
 
+    global visited_nodes
+    visited_nodes = CloseList()
     threshold = root.g_cost + heuristic(root.state)
     while True:
         close_list = CloseList()
         new_threshold, path = search(root, close_list.set, threshold)
+        visited_nodes.set.update(close_list.set)#Thêm dòng này để tích lũy visited_nodes
         if path:
+            visited_nodes = close_list
             return path
         if new_threshold == float("inf"):# Không tìm thấy lời giải
+            visited_nodes = close_list
             return None
         threshold = new_threshold
  
 def simple_hill_climbing(root: SearchNode):
+    global visited_nodes
+    visited_nodes = CloseList()
     current_node = root
+    visited_nodes.insert(current_node.state)
     while True:
         if is_goal(current_node.state):
             return extract_path(current_node)
@@ -203,12 +209,16 @@ def simple_hill_climbing(root: SearchNode):
         for action, state in neighbors:
             if heuristic(state) < heuristic(current_node.state):
                 current_node = make_node(current_node, action, state)
+                visited_nodes.insert(current_node.state)
                 break
         else:
             return None
 
 def steepest_ascent_hill_climbing(root: SearchNode):
+    global visited_nodes
+    visited_nodes = CloseList()
     current_node = root
+    visited_nodes.insert(current_node.state)
     while True:
         if is_goal(current_node.state):
             return extract_path(current_node)
@@ -219,10 +229,14 @@ def steepest_ascent_hill_climbing(root: SearchNode):
         if heuristic(best_neighbor[1]) >= heuristic(current_node.state):#Không tìm thấy trạng thái tốt hơn, dừng lại
             return None
         current_node = make_node(current_node, best_neighbor[0], best_neighbor[1])#Tạo node mới để lưu đường đi
+        visited_nodes.insert(current_node.state)
 
 # được quay lui nếu còn con của node hiện tại
 def stochastic_hill_climbing(root: SearchNode):#leo đồi ngẫu nhiên
+    global visited_nodes
+    visited_nodes = CloseList()
     current_node = root
+    visited_nodes.insert(current_node.state)
     while True:
         if is_goal(current_node.state):
             return extract_path(current_node)
@@ -233,14 +247,17 @@ def stochastic_hill_climbing(root: SearchNode):#leo đồi ngẫu nhiên
         for action, new_state in neighbors:
             if heuristic(new_state) < heuristic(current_node.state):
                 current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
+                visited_nodes.insert(current_node.state)
                 break
         else:
             return None
 
-
 def stimulated_annealing(root: SearchNode):
+    global visited_nodes
+    visited_nodes = CloseList()
     max_iterations = 100000
     current_node = root
+    visited_nodes.insert(current_node.state)
     iteration = 0
     T = random.uniform(pow(10, 4), pow(10, 6))
     while iteration < max_iterations and T > 1e-3:# T > 1e-3: T quá bé
@@ -254,6 +271,7 @@ def stimulated_annealing(root: SearchNode):
         for action, new_state in neighbors:
             if heuristic(new_state) < heuristic(current_node.state):
                 current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
+                visited_nodes.insert(current_node.state)
                 break
         else:
             state_and_cost_list = []
@@ -263,15 +281,18 @@ def stimulated_annealing(root: SearchNode):
                 else:
                     #p = pow(math.e, -(heuristic(current_node.state) - heuristic(new_state))/T)#Xác suất
                     
-                    delta_E = heuristic(new_state) - heuristic(current_node.state)
-                    #math.exp(709) số lớn nhất Python có thể xử lý
-                    #math.exp(-709) là số rất nhỏ gần 0, không gây lỗi.
-                    # p = math.exp(min(709, max(-709, delta_E / T)))
-                    p = math.exp(max(-709, -delta_E / T))
+                    # delta_E = heuristic(new_state) - heuristic(current_node.state)
+                    # #math.exp(709) số lớn nhất Python có thể xử lý
+                    # #math.exp(-709) là số rất nhỏ gần 0, không gây lỗi.
+                    # # p = math.exp(min(709, max(-709, delta_E / T)))
+                    # p = math.exp(max(-709, -delta_E / T))
+                    p = numpy.exp(-(heuristic(current_node.state) - heuristic(new_state)) / T)
+                state_and_cost_list.append((action, new_state, p))           
                     
                 state_and_cost_list.append((action, new_state, p))
             min_p_node = min(state_and_cost_list, key=lambda x: x[1])
             current_node = make_node(current_node, min_p_node[0], min_p_node[1])
+            visited_nodes.insert(current_node.state)
             anpha = random.uniform(0, 1)
             T = anpha * T #Giảm nhiệt độ
             
@@ -359,6 +380,7 @@ def mutate(individual:tuple)->tuple:
 
 def genetic_algorithm(root: SearchNode):
     """không cần truy xuất đường đi"""
+    global visited_nodes
     if is_goal(root.state):
         return "Found goal state"
     
@@ -380,11 +402,13 @@ def genetic_algorithm(root: SearchNode):
         close_list.insert(child_state_1)
         child_node1 = make_node(father_node, None, child_state_1)
         if is_goal(child_node1.state):
+            visited_nodes = close_list
             return "Found goal state"
         
         close_list.insert(child_state_2)
         child_node2 = make_node(mother_node, None, child_state_2)
         if is_goal(child_node2.state):
+            visited_nodes = close_list
             return "Found goal state"
         
         child_node1.h_cost = heuristic(child_node1.state)
@@ -393,6 +417,7 @@ def genetic_algorithm(root: SearchNode):
             open_list.insert(child_node1)
         if not close_list.lookup(child_node2.state):
             open_list.insert(child_node2)
+    visited_nodes = close_list
     return None 
 
 def is_goal(state:tuple) -> bool:
@@ -496,7 +521,6 @@ class MyApp(QMainWindow):
     def solve_click(self):
         global start_state_tuple, end_state_tuple, root, path, visited_nodes
         algorithm_type = self.cbbAlgorithm.currentText()
-        start_time = time.time()
         try:
             start_state_tuple = tuple([
             int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
@@ -525,6 +549,7 @@ class MyApp(QMainWindow):
             return
         
         solution = None
+        start_time = time.perf_counter()
         if algorithm_type == "BFS" or algorithm_type == "DFS":
             solution = uninformed_search(root, algorithm_type)
         elif algorithm_type == "UCS":
@@ -554,11 +579,17 @@ class MyApp(QMainWindow):
             visited_nodes = CloseList()
             solution = reinforcement_learning_solve(root.state, end_state_tuple, Q_list)
             visited_nodes.set = Q_list
+        end_time = time.perf_counter()
+        execution_time = end_time - start_time
+        self.txtSolveTime.setPlainText(f"{execution_time:.8f}(s)")
+        print(f"Execution time: {execution_time}")
+        print(f"Algorithm type: {algorithm_type}")
+        print(f"Number of opened space: {len(visited_nodes.set)}")
         if solution is None:
-                messagebox.showinfo("Information", "No solutions found!")
-                self.txtTotalStep.setPlainText("0")
-                self.txtStep.setPlainText("0")
-                path = None
+            messagebox.showinfo("Information", "No solutions found!")
+            self.txtTotalStep.setPlainText("0")
+            self.txtStep.setPlainText("0")
+            path = None
         else:
             if algorithm_type == "Genetic algorithm":
                 messagebox.showinfo("Information", "Found goal state")
@@ -568,9 +599,6 @@ class MyApp(QMainWindow):
                 self.play_solution(solution)
                 path = solution
                 self.txtTotalStep.setPlainText(str(len(solution)))
-        end_time = time.time()
-        execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.5f}(s)") 
                 
     def play_solution(self, solution):
         self.step = 0
