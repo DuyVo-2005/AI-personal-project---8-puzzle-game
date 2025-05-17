@@ -116,49 +116,6 @@ def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, is_pa
         depth += 1
     return None
 
-# def generate_unique_puzzle_states(n):
-#     seen = set()
-#     result = []
-
-#     while len(result) < n:
-#         nums = list(range(9))
-#         random.shuffle(nums)
-#         state = tuple(nums)
-#         if state not in seen:
-#             seen.add(state)
-#             result.append(state)
-
-#     return result
-
-#belief_set = generate_unique_puzzle_states(1000)
-# goal_set = generate_unique_puzzle_states(30)
-
-# def goal_test(state):
-#     return state in goal_set
-
-# def succ(state: tuple) -> list:
-#     "return children with (action, state)"
-#     children = []
-#     zero_index = state.index(0)
-#     row, col = zero_index//3, zero_index%3
-
-#     moves = {
-#         'UP': (-1, 0),
-#         'DOWN': (1, 0),
-#         'LEFT': (0, -1),
-#         'RIGHT': (0, 1)
-#     }
-
-#     for action, (dr, dc) in moves.items():
-#         new_row, new_col = row + dr, col + dc
-#         if 0 <= new_row < 3 and 0 <= new_col < 3:
-#             new_index = new_row * 3 + new_col
-#             new_state = list(state)           
-#             new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
-#             children.append((action, tuple(new_state)))
-#     return children
-
-
 def search_in_complex_environment_solve(initial_belief_set: list, goal_set: list, is_partial_observation: bool = False):
     plan = search_in_complex_enviroment(initial_belief_set, goal_set, is_partial_observation)
     print("Plan to reach goal:", plan)

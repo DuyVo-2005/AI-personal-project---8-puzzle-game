@@ -932,7 +932,7 @@ QPushButton:hover {
    <widget class="QPushButton" name="btnWriteToFile">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>680</x>
       <y>530</y>
       <width>111</width>
       <height>41</height>
@@ -953,58 +953,6 @@ QPushButton#writeToFile:hover {
     </property>
     <property name="text">
      <string>Write to file</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnQuit">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>530</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton#quitButton {
-    background-color: #DC3545;
-}
-
-QPushButton#quitButton:hover {
-    background-color: #A71D2A;
-}</string>
-    </property>
-    <property name="text">
-     <string>Quit</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnLoadValue">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>280</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">/*QPushButton{
-	background-color: #EEE2DC;
-	border-radius: 10px;
-}*/
-QPushButton#writeToFile {
-    background-color: #28A745;
-}
-
-QPushButton#writeToFile:hover {
-    background-color: #218838;
-}</string>
-    </property>
-    <property name="text">
-     <string>Load value</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblNote">
@@ -1029,9 +977,9 @@ QPushButton#writeToFile:hover {
    <widget class="QPushButton" name="btnRandomInput">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>200</x>
       <y>280</y>
-      <width>111</width>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>

@@ -10,6 +10,7 @@ import math
 
 from const import *
 from dataStructures import *
+from reinforcement_learning import reinforcement_learning_solve
 
 start_state_tuple = tuple([0,0,0,0,0,0,0,0,0])
 end_state_tuple = tuple([0,0,0,0,0,0,0,0,0])
@@ -228,7 +229,7 @@ def stochastic_hill_climbing(root: SearchNode):#leo đồi ngẫu nhiên
         neighbors = succ(current_node.state)#Trả về (action, state)
         if not neighbors:
             return None
-        random.shuffle(neighbors)  # Trộn ngẫu nhiên danh sách hàng xóm
+        random.shuffle(neighbors)# Trộn ngẫu nhiên danh sách hàng xóm
         for action, new_state in neighbors:
             if heuristic(new_state) < heuristic(current_node.state):
                 current_node = make_node(current_node, action, new_state)#Tạo node mới để lưu đường đi
@@ -458,22 +459,18 @@ class MyApp(QMainWindow):
         app = uic.loadUi(CURRENT_DIRECTORY_PATH + "/GUI.ui", self)
         self.setFixedSize(WINDOW_WIDTH, WINDOW_HEIGHT)
         self.btnRandomInput.clicked.connect(self.random_input)
-        self.btnLoadValue.clicked.connect(self.load_value)
         self.cbbAlgorithm.addItems(["BFS", "DFS", "UCS", "IDS", "Greedy", "A*", "IDA*", "Simple hill climbing",
                                     "Steepest ascent hill climbing", "Stochastic hill climbing", "Stimulated annealing",
-                                    "Beam search", "Genetic algorithm"])
+                                    "Beam search", "Genetic algorithm", "Reinforcement learning"])
         self.btnSolve.clicked.connect(self.solve_click)
         self.txtSolveSpeedPerStep.setPlainText("1")
         self.speed_per_step = 1000#ms
         self.btnWriteToFile.clicked.connect(lambda: show_path_in_file(path))
-        self.btnQuit.clicked.connect(self.close)
         
     def random_input(self):
         global start_state_tuple, end_state_tuple
         numbers = random.sample(range(9), 9)
         start_state_tuple = tuple(numbers)
-        # for i in range(9):
-        #     start_state_tuple[i] = numbers[i]
         self.cell1.setPlainText(str(start_state_tuple[0]))
         self.cell2.setPlainText(str(start_state_tuple[1]))
         self.cell3.setPlainText(str(start_state_tuple[2]))
@@ -483,10 +480,9 @@ class MyApp(QMainWindow):
         self.cell7.setPlainText(str(start_state_tuple[6]))
         self.cell8.setPlainText(str(start_state_tuple[7]))
         self.cell9.setPlainText(str(start_state_tuple[8]))
+        
         numbers = random.sample(range(9), 9)
         end_state_tuple = tuple(numbers)
-        # for i in range(9):
-        #     end_state_tuple[i] = numbers[i]
         self.cell1_2.setPlainText(str(end_state_tuple[0]))
         self.cell2_2.setPlainText(str(end_state_tuple[1]))
         self.cell3_2.setPlainText(str(end_state_tuple[2]))
@@ -496,15 +492,28 @@ class MyApp(QMainWindow):
         self.cell7_2.setPlainText(str(end_state_tuple[6]))
         self.cell8_2.setPlainText(str(end_state_tuple[7]))
         self.cell9_2.setPlainText(str(end_state_tuple[8]))
-        self.load_value()
         
     def solve_click(self):
-        global root, path
+        global start_state_tuple, end_state_tuple, root, path, visited_nodes
         algorithm_type = self.cbbAlgorithm.currentText()
         start_time = time.time()
-        if root is None:
-                messagebox.showerror("Error", "Please load values first!")
-                return
+        try:
+            start_state_tuple = tuple([
+            int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
+            int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
+            int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
+            )
+
+            end_state_tuple = tuple([
+            int(self.cell1_2.toPlainText()), int(self.cell2_2.toPlainText()), int(self.cell3_2.toPlainText()),
+            int(self.cell4_2.toPlainText()), int(self.cell5_2.toPlainText()), int(self.cell6_2.toPlainText()),
+            int(self.cell7_2.toPlainText()), int(self.cell8_2.toPlainText()), int(self.cell9_2.toPlainText())
+            ])
+
+            root = make_node(None, None, start_state_tuple)
+        except ValueError:
+            messagebox.showerror("Error", "Invalid input values!")          
+            
         try:
             if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
                 self.speed_per_step = int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000)
@@ -540,6 +549,11 @@ class MyApp(QMainWindow):
             solution = Beam_search(root)
         elif algorithm_type == "Genetic algorithm":
             solution = genetic_algorithm(root)
+        elif algorithm_type == "Reinforcement learning":
+            Q_list = []
+            visited_nodes = CloseList()
+            solution = reinforcement_learning_solve(root.state, end_state_tuple, Q_list)
+            visited_nodes.set = Q_list
         if solution is None:
                 messagebox.showinfo("Information", "No solutions found!")
                 self.txtTotalStep.setPlainText("0")
@@ -584,29 +598,7 @@ class MyApp(QMainWindow):
             self.update_cell(self.cell8_3, e[7])
             self.update_cell(self.cell9_3, e[8])
         else:
-            self.timer.stop()
-                
-    def load_value(self):
-        global start_state_tuple, end_state_tuple, root
-        try:
-                start_state_tuple = tuple([
-                int(self.cell1.toPlainText()), int(self.cell2.toPlainText()), int(self.cell3.toPlainText()),
-                int(self.cell4.toPlainText()), int(self.cell5.toPlainText()), int(self.cell6.toPlainText()),
-                int(self.cell7.toPlainText()), int(self.cell8.toPlainText()), int(self.cell9.toPlainText())]
-                )
-
-                end_state_tuple = tuple([
-                int(self.cell1_2.toPlainText()), int(self.cell2_2.toPlainText()), int(self.cell3_2.toPlainText()),
-                int(self.cell4_2.toPlainText()), int(self.cell5_2.toPlainText()), int(self.cell6_2.toPlainText()),
-                int(self.cell7_2.toPlainText()), int(self.cell8_2.toPlainText()), int(self.cell9_2.toPlainText())
-                ])
-
-                root = make_node(None, None, start_state_tuple)
-
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input values!")
-        else:
-            messagebox.showinfo("Notification", "Values loaded successfully!")
+            self.timer.stop()              
 
 app = QApplication([])
 window = MyApp()
