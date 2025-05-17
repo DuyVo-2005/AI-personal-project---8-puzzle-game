@@ -82,6 +82,8 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
+![image](https://github.com/user-attachments/assets/f73d9bc2-7170-43c7-83f4-158b3bafe83d)
+
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 BFS - Breadth-First Search (Tìm kiếm theo chiều rộng): Khám phá các trạng thái theo mức độ, có thể được dùng khi các hành động có cùng chi phí, đảm bảo tìm được giải pháp ngắn nhất nếu tồn tại giải pháp. Thuật toán này dùng hàng đợi để lưu trữ các trạng thái đang được xét theo nguyên tắc FIFO (vào trước ra trước). Thuật toán kết thúc khi tìm ra lời giải hoặc khi hàng đợi rỗng. [2, tr.175]
 
@@ -110,6 +112,7 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
+![image](https://github.com/user-attachments/assets/4ea4639d-b248-4cb1-962c-7691d220ed0f)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Greedy Search (Tìm kiếm tham lam - tìm kiếm Greedy): Mở rộng trạng thái tới trạng thái có giá trị hàm heuristic tốt nhất (trong đó, hàm heuristic là hàm đánh giá chi phí từ trạng thái đang xét đến trạng đích).
@@ -155,7 +158,9 @@ Thuật toán leo đồi dốc nhất đánh giá tất cả các trạng thái 
 
 Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái lân cận và quyết định chuyển sang trạng thái đó nếu nó tốt hơn trạng thái hiện tại.
 
-## 4. Tài liệu tham khảo
+## 4. Kết luận
+
+## 5. Tài liệu tham khảo
 [1]. Elastic Platform Team, "Understanding AI search algorithms", elastic, https://www.elastic.co/blog/understanding-ai-search-algorithms, ngày 21 tháng 3 năm 2024 (truy cập ngày 9 tháng 5 năm 2025)
 
 [2]. Stuart Russell and Peter Norvig, "Russell 2020 Artificial intelligence a modern approach", xuất bản lần 4
