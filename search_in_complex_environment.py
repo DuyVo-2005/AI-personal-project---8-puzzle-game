@@ -88,7 +88,8 @@ def is_near_goal(state:tuple, goal_set:list) -> bool:
 def print_state(state):
     for i in range(0, 9, 3):
         print(state[i], state[i+1], state[i+2])
-def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, is_partial_observation: bool = False):
+def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, is_partial_observation: bool = False) -> list:
+    """Return actions set from start state to goal state"""
     queue = deque()
     visited = set()
     queue.append((initial_belief_set, []))

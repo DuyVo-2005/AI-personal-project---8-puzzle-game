@@ -92,6 +92,7 @@ class MyApp(QMainWindow):
         self.btnWriteToFile.clicked.connect(lambda: show_path_in_file(path))
         self.belief_set = []
         self.goal_set = []
+        self.solution = []
 
     def random_input(self):
         global start_state_tuple, start_state_tuple2, start_state_tuple3, start_state_tuple4
@@ -199,13 +200,14 @@ class MyApp(QMainWindow):
         global start_state_tuple, start_state_tuple2, start_state_tuple3, start_state_tuple4
         global end_state_tuple, end_state_tuple2, end_state_tuple3, end_state_tuple4
         try:
-            if not all(is_empty_plain_text(plain_text) for plain_text in [self.cell1_start1, self.cell4_start1, self.cell7_start1,
+            if not all(is_empty_plain_text(plain_text) for plain_text in [
+                self.cell1_start1, self.cell4_start1, self.cell7_start1,
                 self.cell2_start1, self.cell5_start1, self.cell8_start1,
                 self.cell3_start1, self.cell6_start1, self.cell9_start1]):
                 start_state_tuple = tuple([
-                    int(self.cell1_start1.toPlainText()), int(self.cell4_start1.toPlainText()), int(self.cell7_start1.toPlainText()),
-                    int(self.cell2_start1.toPlainText()), int(self.cell5_start1.toPlainText()), int(self.cell8_start1.toPlainText()),
-                    int(self.cell3_start1.toPlainText()), int(self.cell6_start1.toPlainText()), int(self.cell9_start1.toPlainText())
+                    int(self.cell1_start1.toPlainText()), int(self.cell2_start1.toPlainText()), int(self.cell3_start1.toPlainText()),
+                    int(self.cell4_start1.toPlainText()), int(self.cell5_start1.toPlainText()), int(self.cell6_start1.toPlainText()),
+                    int(self.cell7_start1.toPlainText()), int(self.cell8_start1.toPlainText()), int(self.cell9_start1.toPlainText())
                 ])
                 self.belief_set.append(start_state_tuple)
             
@@ -214,9 +216,9 @@ class MyApp(QMainWindow):
                 self.cell2_start2, self.cell5_start2, self.cell8_start2,
                 self.cell3_start2, self.cell6_start2, self.cell9_start2]):
                 start_state_tuple2 = tuple([
-                    int(self.cell1_start2.toPlainText()), int(self.cell4_start2.toPlainText()), int(self.cell7_start1.toPlainText()),
-                    int(self.cell2_start2.toPlainText()), int(self.cell5_start2.toPlainText()), int(self.cell8_start1.toPlainText()),
-                    int(self.cell3_start2.toPlainText()), int(self.cell6_start2.toPlainText()), int(self.cell9_start1.toPlainText())
+                    int(self.cell1_start2.toPlainText()), int(self.cell2_start2.toPlainText()), int(self.cell3_start2.toPlainText()),
+                    int(self.cell4_start2.toPlainText()), int(self.cell5_start2.toPlainText()), int(self.cell6_start2.toPlainText()),
+                    int(self.cell7_start2.toPlainText()), int(self.cell8_start2.toPlainText()), int(self.cell9_start2.toPlainText())
                 ])
                 self.belief_set.append(start_state_tuple2)
             
@@ -225,9 +227,9 @@ class MyApp(QMainWindow):
                 self.cell2_start3, self.cell5_start3, self.cell8_start3,
                 self.cell3_start3, self.cell6_start3, self.cell9_start3]):
                 start_state_tuple3 = tuple([
-                    int(self.cell1_start3.toPlainText()), int(self.cell4_start3.toPlainText()), int(self.cell7_start3.toPlainText()),
-                    int(self.cell2_start3.toPlainText()), int(self.cell5_start3.toPlainText()), int(self.cell8_start3.toPlainText()),
-                    int(self.cell3_start3.toPlainText()), int(self.cell6_start3.toPlainText()), int(self.cell9_start3.toPlainText())
+                    int(self.cell1_start3.toPlainText()), int(self.cell2_start3.toPlainText()), int(self.cell3_start3.toPlainText()),
+                    int(self.cell4_start3.toPlainText()), int(self.cell5_start3.toPlainText()), int(self.cell6_start3.toPlainText()),
+                    int(self.cell7_start3.toPlainText()), int(self.cell8_start3.toPlainText()), int(self.cell9_start3.toPlainText())
                 ])
                 self.belief_set.append(start_state_tuple3)
             
@@ -236,53 +238,53 @@ class MyApp(QMainWindow):
                 self.cell2_start4, self.cell5_start4, self.cell8_start4,
                 self.cell3_start4, self.cell6_start4, self.cell9_start4]):
                 start_state_tuple4 = tuple([
-                    int(self.cell1_start4.toPlainText()), int(self.cell4_start4.toPlainText()), int(self.cell7_start4.toPlainText()),
-                    int(self.cell2_start4.toPlainText()), int(self.cell5_start4.toPlainText()), int(self.cell8_start4.toPlainText()),
-                    int(self.cell3_start4.toPlainText()), int(self.cell6_start4.toPlainText()), int(self.cell9_start4.toPlainText())
+                    int(self.cell1_start4.toPlainText()), int(self.cell2_start4.toPlainText()), int(self.cell3_start4.toPlainText()),
+                    int(self.cell4_start4.toPlainText()), int(self.cell5_start4.toPlainText()), int(self.cell6_start4.toPlainText()),
+                    int(self.cell7_start4.toPlainText()), int(self.cell8_start4.toPlainText()), int(self.cell9_start4.toPlainText())
                 ])
                 self.belief_set.append(start_state_tuple4)
                 
             if not all(is_empty_plain_text(plain_text) for plain_text in [
-                self.cell1_end1, self.cell4_end1, self.cell7_end1,
-                self.cell2_end1, self.cell5_end1, self.cell8_end1,
-                self.cell3_end1, self.cell6_end1, self.cell9_end1]):
+                self.cell1_end1, self.cell2_end1, self.cell3_end1,
+                self.cell4_end1, self.cell5_end1, self.cell6_end1,
+                self.cell7_end1, self.cell8_end1, self.cell9_end1]):
                 end_state_tuple = tuple([
-                    int(self.cell1_end1.toPlainText()), int(self.cell4_end1.toPlainText()), int(self.cell7_end1.toPlainText()),
-                    int(self.cell2_end1.toPlainText()), int(self.cell5_end1.toPlainText()), int(self.cell8_end1.toPlainText()),
-                    int(self.cell3_end1.toPlainText()), int(self.cell6_end1.toPlainText()), int(self.cell9_end1.toPlainText())
+                    int(self.cell1_end1.toPlainText()), int(self.cell2_end1.toPlainText()), int(self.cell3_end1.toPlainText()),
+                    int(self.cell4_end1.toPlainText()), int(self.cell5_end1.toPlainText()), int(self.cell6_end1.toPlainText()),
+                    int(self.cell7_end1.toPlainText()), int(self.cell8_end1.toPlainText()), int(self.cell9_end1.toPlainText())
                 ])
                 self.goal_set.append(end_state_tuple)
 
             if not all(is_empty_plain_text(plain_text) for plain_text in [
-                self.cell1_end2, self.cell4_end2, self.cell7_end2,
-                self.cell2_end2, self.cell5_end2, self.cell8_end2,
-                self.cell3_end2, self.cell6_end2, self.cell9_end2]):
+                self.cell1_end2, self.cell2_end2, self.cell3_end2,
+                self.cell4_end2, self.cell5_end2, self.cell6_end2,
+                self.cell7_end2, self.cell8_end2, self.cell9_end2]):
                 end_state_tuple2 = tuple([
-                    int(self.cell1_end2.toPlainText()), int(self.cell4_end2.toPlainText()), int(self.cell7_end2.toPlainText()),
-                    int(self.cell2_end2.toPlainText()), int(self.cell5_end2.toPlainText()), int(self.cell8_end2.toPlainText()),
-                    int(self.cell3_end2.toPlainText()), int(self.cell6_end2.toPlainText()), int(self.cell9_end2.toPlainText())
+                    int(self.cell1_end2.toPlainText()), int(self.cell2_end2.toPlainText()), int(self.cell3_end2.toPlainText()),
+                    int(self.cell4_end2.toPlainText()), int(self.cell5_end2.toPlainText()), int(self.cell6_end2.toPlainText()),
+                    int(self.cell7_end2.toPlainText()), int(self.cell8_end2.toPlainText()), int(self.cell9_end2.toPlainText())
                 ])
                 self.goal_set.append(end_state_tuple2)
                 
             if not all(is_empty_plain_text(plain_text) for plain_text in [
-                self.cell1_end3, self.cell4_end3, self.cell7_end3,
-                self.cell2_end3, self.cell5_end3, self.cell8_end3,
-                self.cell3_end3, self.cell6_end3, self.cell9_end3]):
+                self.cell1_end3, self.cell2_end3, self.cell3_end3,
+                self.cell4_end3, self.cell5_end3, self.cell6_end3,
+                self.cell7_end3, self.cell8_end3, self.cell9_end3]):
                 end_state_tuple2 = tuple([
-                    int(self.cell1_end3.toPlainText()), int(self.cell4_end3.toPlainText()), int(self.cell7_end3.toPlainText()),
-                    int(self.cell2_end3.toPlainText()), int(self.cell5_end3.toPlainText()), int(self.cell8_end3.toPlainText()),
-                    int(self.cell3_end3.toPlainText()), int(self.cell6_end3.toPlainText()), int(self.cell9_end3.toPlainText())
+                    int(self.cell1_end3.toPlainText()), int(self.cell2_end3.toPlainText()), int(self.cell3_end3.toPlainText()),
+                    int(self.cell4_end3.toPlainText()), int(self.cell5_end3.toPlainText()), int(self.cell6_end3.toPlainText()),
+                    int(self.cell7_end3.toPlainText()), int(self.cell8_end3.toPlainText()), int(self.cell9_end3.toPlainText())
                 ])
                 self.goal_set.append(end_state_tuple3)
                 
             if not all(is_empty_plain_text(plain_text) for plain_text in [
-                self.cell1_end4, self.cell4_end4, self.cell7_end4,
-                self.cell2_end4, self.cell5_end4, self.cell8_end4,
-                self.cell3_end4, self.cell6_end4, self.cell9_end4]):
+                self.cell1_end4, self.cell2_end4, self.cell3_end4,
+                self.cell4_end4, self.cell5_end4, self.cell6_end4,
+                self.cell7_end4, self.cell8_end4, self.cell9_end4]):
                 end_state_tuple2 = tuple([
-                    int(self.cell1_end4.toPlainText()), int(self.cell4_end4.toPlainText()), int(self.cell7_end4.toPlainText()),
-                    int(self.cell2_end4.toPlainText()), int(self.cell5_end4.toPlainText()), int(self.cell8_end4.toPlainText()),
-                    int(self.cell3_end4.toPlainText()), int(self.cell6_end4.toPlainText()), int(self.cell9_end4.toPlainText())
+                    int(self.cell1_end4.toPlainText()), int(self.cell2_end4.toPlainText()), int(self.cell3_end4.toPlainText()),
+                    int(self.cell4_end4.toPlainText()), int(self.cell5_end4.toPlainText()), int(self.cell6_end4.toPlainText()),
+                    int(self.cell7_end4.toPlainText()), int(self.cell8_end4.toPlainText()), int(self.cell9_end4.toPlainText())
                 ])
                 self.goal_set.append(end_state_tuple4)
         except ValueError:
@@ -313,7 +315,9 @@ class MyApp(QMainWindow):
             solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=False)
         else:
             solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=True)
-            
+        end_time = time.time()
+        execution_time = end_time - start_time
+        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
         if solution is None:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
@@ -321,31 +325,37 @@ class MyApp(QMainWindow):
             path = None
         else:
             path1, path2, path3, path4 = [], [], [], []
-            current_state1 = start_state_tuple
-            current_state2 = start_state_tuple2
-            current_state3 = start_state_tuple3
-            current_state4 = start_state_tuple4
+            current_state1, current_state2, current_state3, current_state4 = None, None, None, None
+            if start_state_tuple != tuple([0,0,0,0,0,0,0,0,0]):
+                current_state1 = start_state_tuple
+            if start_state_tuple2 != tuple([0,0,0,0,0,0,0,0,0]):
+                current_state2 = start_state_tuple2
+            if start_state_tuple3 != tuple([0,0,0,0,0,0,0,0,0]):
+                current_state3 = start_state_tuple3
+            if start_state_tuple4 != tuple([0,0,0,0,0,0,0,0,0]):
+                current_state4 = start_state_tuple4
             for action in solution:
-                current_state1 = apply_action_for_current_state(action, current_state1)
-                path1.append(current_state1)
-                current_state2 = apply_action_for_current_state(action, current_state2)
-                path2.append(current_state2)
-                current_state3 = apply_action_for_current_state(action, current_state3)
-                path1.append(current_state3)
-                current_state4 = apply_action_for_current_state(action, current_state4)
-                path2.append(current_state4)
-            path = [path1, path2, path3, path4]
-            self.play_solution(solution)
-            self.txtTotalStep.setPlainText(str(len(solution[0])))
-        end_time = time.time()
-        execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
-
-    def play_solution(self, solution):
+                if current_state1 != None:
+                    current_state1 = apply_action_for_current_state(action, current_state1)
+                    path1.append(current_state1)
+                if current_state2 != None:
+                    current_state2 = apply_action_for_current_state(action, current_state2)
+                    path2.append(current_state2)
+                if current_state3 != None:
+                    current_state3 = apply_action_for_current_state(action, current_state3)
+                    path3.append(current_state3)
+                if current_state4 != None:
+                    current_state4 = apply_action_for_current_state(action, current_state4)
+                    path4.append(current_state4)
+            for sub_path in [path1, path2, path3, path4]:
+                self.solution.append(sub_path)
+            self.play_solution()
+        
+    def play_solution(self):
         self.step = 0
         self.timer = QtCore.QTimer()
+        print(self.solution)
         self.timer.timeout.connect(self.update_step)
-        self.solution = solution
         self.timer.start(self.speed_per_step)
     def update_cell(self, cell, value):
         if value == 0:
@@ -353,55 +363,62 @@ class MyApp(QMainWindow):
         else:
             cell.setPlainText(str(value))
     def update_step(self):
-        if self.step < len(self.solution[0]):
-            e = self.solution[0][self.step]
+        first_none_empty_solution = None
+        for sub_solution in self.solution:
+            if sub_solution != []:
+                first_none_empty_solution = sub_solution
+                break
+        self.txtTotalStep.setPlainText(str(len(first_none_empty_solution)))
+        if self.step < len(first_none_empty_solution):
+            if self.solution[0] != []:
+                e = self.solution[0][self.step]
+                self.update_cell(self.cell1_result1, e[0])
+                self.update_cell(self.cell2_result1, e[1])
+                self.update_cell(self.cell3_result1, e[2])
+                self.update_cell(self.cell4_result1, e[3])
+                self.update_cell(self.cell5_result1, e[4])
+                self.update_cell(self.cell6_result1, e[5])
+                self.update_cell(self.cell7_result1, e[6])
+                self.update_cell(self.cell8_result1, e[7])
+                self.update_cell(self.cell9_result1, e[8])
+            
+            if self.solution[1] != []:
+                e = self.solution[1][self.step]
+                self.update_cell(self.cell1_result2, e[0])
+                self.update_cell(self.cell2_result2, e[1])
+                self.update_cell(self.cell3_result2, e[2])
+                self.update_cell(self.cell4_result2, e[3])
+                self.update_cell(self.cell5_result2, e[4])
+                self.update_cell(self.cell6_result2, e[5])
+                self.update_cell(self.cell7_result2, e[6])
+                self.update_cell(self.cell8_result2, e[7])
+                self.update_cell(self.cell9_result2, e[8])
+            
+            if self.solution[2] != []:
+                e = self.solution[2][self.step]
+                self.update_cell(self.cell1_result3, e[0])
+                self.update_cell(self.cell2_result3, e[1])
+                self.update_cell(self.cell3_result3, e[2])
+                self.update_cell(self.cell4_result3, e[3])
+                self.update_cell(self.cell5_result3, e[4])
+                self.update_cell(self.cell6_result3, e[5])
+                self.update_cell(self.cell7_result3, e[6])
+                self.update_cell(self.cell8_result3, e[7])
+                self.update_cell(self.cell9_result3, e[8])
+            
+            if self.solution[3] != []:
+                e = self.solution[3][self.step]              
+                self.update_cell(self.cell1_result4, e[0])
+                self.update_cell(self.cell2_result4, e[1])
+                self.update_cell(self.cell3_result4, e[2])
+                self.update_cell(self.cell4_result4, e[3])
+                self.update_cell(self.cell5_result4, e[4])
+                self.update_cell(self.cell6_result4, e[5])
+                self.update_cell(self.cell7_result4, e[6])
+                self.update_cell(self.cell8_result4, e[7])
+                self.update_cell(self.cell9_result4, e[8])
             self.step += 1
             self.txtStep.setPlainText(str(self.step))
-            self.update_cell(self.cell1_result1, e[0])
-            self.update_cell(self.cell2_result1, e[1])
-            self.update_cell(self.cell3_result1, e[2])
-            self.update_cell(self.cell4_result1, e[3])
-            self.update_cell(self.cell5_result1, e[4])
-            self.update_cell(self.cell6_result1, e[5])
-            self.update_cell(self.cell7_result1, e[6])
-            self.update_cell(self.cell8_result1, e[7])
-            self.update_cell(self.cell9_result1, e[8])
-            
-            e = self.solution[1][self.step]
-            self.txtStep.setPlainText(str(self.step))
-            self.update_cell(self.cell1_result2, e[0])
-            self.update_cell(self.cell2_result2, e[1])
-            self.update_cell(self.cell3_result2, e[2])
-            self.update_cell(self.cell4_result2, e[3])
-            self.update_cell(self.cell5_result2, e[4])
-            self.update_cell(self.cell6_result2, e[5])
-            self.update_cell(self.cell7_result2, e[6])
-            self.update_cell(self.cell8_result2, e[7])
-            self.update_cell(self.cell9_result2, e[8])
-            
-            e = self.solution[2][self.step]
-            self.txtStep.setPlainText(str(self.step))
-            self.update_cell(self.cell1_result3, e[0])
-            self.update_cell(self.cell2_result3, e[1])
-            self.update_cell(self.cell3_result3, e[2])
-            self.update_cell(self.cell4_result3, e[3])
-            self.update_cell(self.cell5_result3, e[4])
-            self.update_cell(self.cell6_result3, e[5])
-            self.update_cell(self.cell7_result3, e[6])
-            self.update_cell(self.cell8_result3, e[7])
-            self.update_cell(self.cell9_result3, e[8])
-            
-            e = self.solution[3][self.step]
-            self.txtStep.setPlainText(str(self.step))
-            self.update_cell(self.cell1_result4, e[0])
-            self.update_cell(self.cell2_result4, e[1])
-            self.update_cell(self.cell3_result4, e[2])
-            self.update_cell(self.cell4_result4, e[3])
-            self.update_cell(self.cell5_result4, e[4])
-            self.update_cell(self.cell6_result4, e[5])
-            self.update_cell(self.cell7_result4, e[6])
-            self.update_cell(self.cell8_result4, e[7])
-            self.update_cell(self.cell9_result4, e[8])
         else:
             self.timer.stop()
 
