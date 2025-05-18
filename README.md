@@ -203,10 +203,20 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 ##### Thuật toán tìm kiếm không có sự quan sát
 (search with no observation)
 
+![search-no-ob](https://github.com/user-attachments/assets/778922b7-6aaa-453c-92f3-523742ee72ab)
+
 ##### Thuật toán tìm kiếm có sự quan sát một phần
 (search with partial observation)
 
+![searc-partial-ob](https://github.com/user-attachments/assets/6a2e2c4f-1949-4bf7-92f7-601518133265)
+
+##### Hình ảnh so sánh hiệu suất của các thuật toán
+
+![image](https://github.com/user-attachments/assets/5df09cae-fed8-483c-9006-74b6166028ed)
+
+
 ## 4. Kết luận
+
 
 ## 5. Tài liệu tham khảo
 [1]. Elastic Platform Team, "Understanding AI search algorithms", elastic, https://www.elastic.co/blog/understanding-ai-search-algorithms, ngày 21 tháng 3 năm 2024 (truy cập ngày 9 tháng 5 năm 2025)
