@@ -45,7 +45,7 @@ Học kỳ II năm học 2024-2025
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
     - [3.5. Thuật toán tìm kiếm có ràng buộc](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
-      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán kiểm thử](#thuật-toán-kiểm-thử)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
@@ -81,6 +81,8 @@ Xét trạng thái đầu vào và trạng thái mục tiêu như hình sau:
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu vào bài toán cần giải quyết.
 
 Bài toán 8 puzzle có trạng thái mục tiêu cũng là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu ra của bài toán (là trạng thái muốn có sao khi thực hiện các hành động từ trạng ban đầu).
+
+Hành động:  Các hành động có thể thực hiện từ một trạng thái, bao gồm di chuyển ô trống theo bốn hướng: 'Up', 'Down', 'Left', 'Right'
 
 Tổng chi phí của đường đi từ trạng thái ban đầu đến trạng thái đang xét, thường ký hiệu là g(state) [2, tr. 168]
 
@@ -132,6 +134,8 @@ Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 ch�
 
 Bài toán 8 puzzle có trạng thái mục tiêu cũng là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu ra của bài toán (là trạng thái muốn có sao khi thực hiện các hành động từ trạng ban đầu).
 
+Hành động: Các hành động có thể thực hiện từ một trạng thái, bao gồm di chuyển ô trống theo bốn hướng: 'Up', 'Down', 'Left', 'Right'
+
 Giải pháp là một đường đi chứa các trạng thái với trạng thái đầu tiên là trạng thái ban đầu, các trạng thái biến đổi sau khi thực hiện hành động lên trạng thái ban đầu và trạng thái cuối cùng là trạng thái mục tiêu (trạng thái cần tìm).
 
 ##### Thuật toán Greedy
@@ -170,6 +174,8 @@ Về số trạng thái đã thăm, Greedy duyệt ít trạng thái hơn nên t
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu vào bài toán cần giải quyết.
 
 Bài toán 8 puzzle có trạng thái mục tiêu cũng là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu ra của bài toán (là trạng thái muốn có sao khi thực hiện các hành động từ trạng ban đầu).
+
+Hành động: Các hành động có thể thực hiện từ một trạng thái, bao gồm di chuyển ô trống theo bốn hướng: 'Up', 'Down', 'Left', 'Right'
 
 Giải pháp là một đường đi chứa các trạng thái với trạng thái đầu tiên là trạng thái ban đầu, các trạng thái biến đổi sau khi thực hiện hành động lên trạng thái ban đầu và trạng thái cuối cùng là trạng thái mục tiêu (trạng thái cần tìm).
 
@@ -210,11 +216,13 @@ Về thời gian thực thi, Simple hill climbing, Steepest ascent hill climbing
 
 Về số bước trong lời giải, ngoại trừ Beam Search, tất cả các thuật toán còn lại đều không tìm ra lời giải (số bước bằng 0) do chúng bị kẹt tại cực trị địa phương, không thoát ra khỏi cấu hình ban đầu do chiến lược tìm kiếm hạn chế. Beam Search tìm được lời giải với 100 bước, chứng tỏ thuật toán này khám phá không gian trạng thái hiệu quả hơn.
 
-### 3.3. Thuật toán tìm kiếm trong môi trường phức tạp
+### 3.4. Thuật toán tìm kiếm trong môi trường phức tạp
 ##### Các thành phần chính của bài toán tìm kiếm
 Trạng thái ban đầu là một tập các ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu vào bài toán cần giải quyết.
 
 Trạng thái mục tiêu cũng là một tập ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu ra của bài toán (là trạng thái muốn có sao khi thực hiện các hành động từ trạng ban đầu).
+
+Hành động: Các hành động có thể thực hiện từ một trạng thái, bao gồm di chuyển ô trống theo bốn hướng: 'Up', 'Down', 'Left', 'Right'
 
 Giải pháp phép biến đổi tập trạng thái ban đầu thành thành tập trạng thái mục tiêu bằng việc sử dụng một trong các thuật toán của các nhóm phần trên.
 ##### Thuật toán tìm kiếm AND - OR graph search
@@ -245,7 +253,7 @@ Về số bước trong lời giải, hai thuật toán cho kết quả chính x
 
 Về số trạng thái đã thăm, thuật toán tìm kiếm với quan sát một phần có số lượng trạng thái cần duyệt được giảm ít hơn rõ rệt. Điều này rất quan trọng trong các bài toán như 8 puzzle vốn có không gian trạng thái rất lớn. Việc sử dụng thông tin quan sát giúp giảm chi phí tìm kiếm, hướng thuật toán đến các trạng thái có khả năng là lời giải cao hơn.
 
-### 3.4. Thuật toán tìm kiếm có ràng buộc
+### 3.5. Thuật toán tìm kiếm có ràng buộc
 ##### Các thành phần chính của bài toán tìm kiếm
 Tập các biến: Mỗi ô vuông trong bảng 3x3 được xem là một biến. Gọi các biến lần lượt là X1 đến X9 tương ứng với 9 ô cần điền giá trị (giá trị 0 tượng trưng cho ô trống)
 
@@ -273,10 +281,22 @@ Ràng buộc:
 ![image](https://github.com/user-attachments/assets/000486ee-0465-4e1f-9659-af448019ca19)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
+Về thời gian thực thi, AC3 và Backtracking có thời gian thực thi rất thấp, cho thấy chúng sớm tìm ra lời giải. AC3 có thời gian thực thi nhanh nhất do tiến hành lọc miền giá trị bỏ các giá trị không có khả năng dẫn đến lời giải. Thuật toán Test có thời gian thực thi cao đáng kể so với AC3 và Backtracking do thuật toán test thử nghiệm gán ngẫu nhiên giá trị biến sau đó mới kiểm tra ràng buộc.
 
-### 3.5. Thuật toán tìm kiếm học tăng cường
+Về số bước thực hiện trong lời giải, AC3 có ít bước nhất. Tiếp theo là Backtracking. Thuật toán Test thực hiện số bước gấp cao nhất do có nhiều bước tạo ra trạng thái không thỏa lời giải.
+### 3.6. Thuật toán tìm kiếm học tăng cường
 ##### Các thành phần chính của bài toán tìm kiếm
+Trạng thái ban đầu là một tập các ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu vào bài toán cần giải quyết.
 
+Trạng thái mục tiêu cũng là một tập ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu ra của bài toán (là trạng thái muốn có sao khi thực hiện các hành động từ trạng ban đầu).
+
+Hành động: Các hành động có thể thực hiện từ một trạng thái, bao gồm di chuyển ô trống theo bốn hướng: 'Up', 'Down', 'Left', 'Right'
+
+Phần thưởng: Giá trị số nhận được sau khi thực hiện một hành động từ một trạng thái.
+
+Bảng Q: Bảng lưu trữ giá trị Q cho mỗi cặp trạng thái - hành động, đại diện cho kỳ vọng phần thưởng khi thực hiện hành động đó từ trạng thái tương ứng.
+
+Tập huấn luyện: Một chuỗi các bước từ trạng thái ban đầu đến khi đạt trạng thái mục tiêu hoặc vượt quá số bước tối đa.
 ##### Thuật toán tìm kiếm Q Learning
 
 ![reinforcement_learning](https://github.com/user-attachments/assets/da47f041-8950-4d94-8325-796199a79753)
@@ -290,10 +310,15 @@ Ràng buộc:
 ![steps](https://github.com/user-attachments/assets/47ae3b69-8ff2-4ec1-8823-9581a4c8255c)
 
 ##### Nhận xét về hiệu suất của thuật toán
+Reward tăng mạnh trong giai đoạn đầu (khoảng 1000 episode đầu tiên), sau đó duy trì ổn định gần mức tối đa (xấp xỉ 100). Reward tăng đồng nghĩa với việc tác nhân (agent) dần học được cách giải bài toán.
 
+Tỷ lệ thành công tăng từ dưới 20% lên gần 100% trong khoảng 1000-2000 episode. Thuật toán học cách giải đúng puzzle gần như mọi lần sau một số lượng episode huấn luyện nhất định.
+
+Số bước trung bình ban đầu rất cao (trên 17000 bước), sau đó giảm nhanh xuống dưới 1000 bước và dao động quanh mức thấp. Cho thấy tác nhân ban đầu hành động ngẫu nhiên, sau đó dần tối ưu hóa để giải puzzle với ít bước hơn.
 ## 4. Kết luận
+Đa phần các thuật toán AI đã giải quyết tốt bài toán 8 puzzle. Mỗi thuật toán sẽ có ưu, nhược điểm khác nhau về thời gian thực thi, số bước lời giải, số trạng thái thăm và hoàn toàn có thể được kết hợp lẫn nhau để tăng hiệu quả giải quyết bài toán.
 
-
+Từ bài tập đồ án cá nhân này, ta hoàn toàn có thể áp dụng để giải quyết các thuật toán thực tế khác trong đời sống nhằm cải thiện hiệu quả và chất lượng lời giải.
 ## 5. Tài liệu tham khảo
 [1]. Elastic Platform Team, "Understanding AI search algorithms", elastic, https://www.elastic.co/blog/understanding-ai-search-algorithms, ngày 21 tháng 3 năm 2024 (truy cập ngày 9 tháng 5 năm 2025)
 
