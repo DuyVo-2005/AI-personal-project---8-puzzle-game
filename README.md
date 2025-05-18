@@ -310,9 +310,9 @@ Tập huấn luyện: Một chuỗi các bước từ trạng thái ban đầu �
 ![steps](https://github.com/user-attachments/assets/47ae3b69-8ff2-4ec1-8823-9581a4c8255c)
 
 ##### Nhận xét về hiệu suất của thuật toán
-Reward tăng mạnh trong giai đoạn đầu (khoảng 1000 episode đầu tiên), sau đó duy trì ổn định gần mức tối đa (xấp xỉ 100). Reward tăng đồng nghĩa với việc tác nhân (agent) dần học được cách giải bài toán.
+Phần thưởng tăng mạnh trong giai đoạn đầu (khoảng 1000 episode đầu tiên), sau đó duy trì ổn định gần mức tối đa (xấp xỉ 100). Phần thưởng tăng đồng nghĩa với việc tác nhân (agent) dần học được cách giải bài toán.
 
-Tỷ lệ thành công tăng từ dưới 20% lên gần 100% trong khoảng 1000-2000 episode. Thuật toán học cách giải đúng puzzle gần như mọi lần sau một số lượng episode huấn luyện nhất định.
+Tỷ lệ thành công tăng từ dưới 20% lên gần 100% trong khoảng 1000-2000 episode. Điều này cho thấy thuật toán học cách giải đúng puzzle gần như mọi lần sau một số lượng episode huấn luyện nhất định.
 
 Số bước trung bình ban đầu rất cao (trên 17000 bước), sau đó giảm nhanh xuống dưới 1000 bước và dao động quanh mức thấp. Cho thấy tác nhân ban đầu hành động ngẫu nhiên, sau đó dần tối ưu hóa để giải puzzle với ít bước hơn.
 ## 4. Kết luận
