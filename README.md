@@ -14,15 +14,15 @@ Học kỳ II năm học 2024-2025
 - [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
 - [2. Mục tiêu](#2-mục-tiêu)
 - [3.1. Nội dung](#31-nội-dung)
-  - [3. Một số thuật toán sử dụng](#2-một-số-thuật-toán-sử-dụng)
-    - [3.1. Tìm kiếm không có thông tin](#21-tìm-kiếm-không-có-thông-tin)
+  - [3. Một số thuật toán sử dụng](#3-một-số-thuật-toán-sử-dụng)
+    - [3.1. Tìm kiếm không có thông tin](#31-tìm-kiếm-không-có-thông-tin)
       - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán BFS](#thuật-toán-bfs)
       - [Thuật toán DFS](#thuật-toán-dfs)
       - [Thuật toán IDS](#thuật-toán-ids)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
-    - [3.2. Tìm kiếm có thông tin](#22-tìm-kiếm-có-thông-tin)
+    - [3.2. Tìm kiếm có thông tin](#32-tìm-kiếm-có-thông-tin)
       - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán USC - Uniform Cost Search](#thuật-toán-USC---Uniform-Cost-Search)
       - [Thuật toán Greedy](#thuật-toán-greedy)
@@ -30,7 +30,7 @@ Học kỳ II năm học 2024-2025
       - [Thuật toán Iterative deepening a](#thuật-toán-iterative-deepening-a)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
-    - [3.3. Thuật toán leo đồi](#23-thuật-toán-leo-đồi)
+    - [3.3. Thuật toán tìm kiếm cục bộ](#33-thuật-toán-tìm-kiếm-cục-bộ)
       - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán Simple hill climbing](#thuật-toán-simple-hill-climbing)
       - [Thuật toán Steppest ascent hill climbing](#thuật-toán-steppest-ascent-hill-climbing)
@@ -38,7 +38,20 @@ Học kỳ II năm học 2024-2025
       - [Thuật toán Beam Search](#thuật-toán-beam-search)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
-- [4. Tài liệu tham khảo](#4-Tài-liệu-tham-khảo)
+    - [3.4. Thuật toán tìm kiếm có ràng buộc](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
+      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Thuật toán kiểm thử](#thuật-toán-kiểm-thử)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
+    - [3.5. Thuật toán tìm kiếm trong môi trường phức tạp](#35-thuật-toán-tìm-kiếm-trong-môi-trường-phức-tạp)
+      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Thuật toán tìm kiếm AND - OR graph search](#thuật-toán-tìm-kiếm-AND---OR-graph-search)
+      - [Thuật toán tìm kiếm không có sự quan sát (search with no observation)](#thuật-toán-tìm-kiếm-không-có-sự-quan-sát-(search-with-no-observation))
+      - [Thuật toán tìm kiếm có sự quan sát một phần (search with partial observation)](#thuật-toán-tìm-kiếm-có-sự-quan-sát-một-phần-(search-with-partial-observation))
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
+- [4. Kết luận](#4-kết-luận)
+- [5. Tài liệu tham khảo](#4-Tài-liệu-tham-khảo)
 
 ## NỘI DUNG CHÍNH
 
@@ -121,7 +134,7 @@ A-Star Search (Tìm kiếm A*): Tìm kiếm bằng cách tính chi phí từ tr�
 
 IDA-Star ...
 
-### 3.3. Thuật toán leo đồi
+### 3.3. Thuật toán tìm kiếm cục bộ
 ##### Các thành phần chính của bài toán tìm kiếm
 Bài toán 8 puzzle có trạng thái ban đầu là ma trận 3×3 chứa 9 chữ số từ 0 đến 8 không trùng lặp (với số 0 đại diện cho ô trống) là đầu vào bài toán cần giải quyết.
 
@@ -150,13 +163,42 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
-Nhìn chung ơ nhóm thuật toán này, từ một trạng thái hiện tại đanh xét, quá trình tìm kiếm sẽ mở rộng ra các trạng thái lân cận tốt hơn mà không xét hết cây tìm kiếm. Nhược điểm lớn nhất ở nhóm này là quá trình tìm kiếm dễ mắc kẹt tại cực trị địa phương dẫn đến không tìm ra lời giải.
+Nhìn chung ở nhóm thuật toán này, từ một trạng thái hiện tại đanh xét, quá trình tìm kiếm sẽ mở rộng ra các trạng thái lân cận tốt hơn mà không xét hết cây tìm kiếm. Nhược điểm lớn nhất ở nhóm này là quá trình tìm kiếm dễ mắc kẹt tại cực trị địa phương dẫn đến không tìm ra lời giải.
 
 Thuật toán leo đồi đơn giản đánh giá từng trạng thái lân cận một cách tuần tự và chọn trạng thái đầu tiên tối ưu hơn so với trạng thái hiện tại.
 
 Thuật toán leo đồi dốc nhất đánh giá tất cả các trạng thái lân cận và chọn trạng thái mang lại cải thiện lớn nhất so với trạng thái hiện tại.
 
 Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái lân cận và quyết định chuyển sang trạng thái đó nếu nó tốt hơn trạng thái hiện tại.
+
+### 3.3. Thuật toán tìm kiếm có ràng buộc
+##### Các thành phần chính của bài toán tìm kiếm
+
+##### Thuật toán kiểm thử
+
+![test_search](https://github.com/user-attachments/assets/188498b9-112f-47b0-9536-01fe995c3c8c)
+
+##### Thuật toán backtracking
+![bactracking](https://github.com/user-attachments/assets/8a2b0c61-31fc-4af0-abe4-6f2daef7297b)
+
+##### Thuật toán AC3
+
+##### Hình ảnh so sánh hiệu suất của các thuật toán
+
+![image](https://github.com/user-attachments/assets/f929685f-63eb-40d2-9294-011c804e7b46)
+
+##### Nhận xét về hiệu suất của các thuật toán trong nhóm
+
+### 3.3. Thuật toán tìm kiếm trong môi trường phức tạp
+##### Các thành phần chính của bài toán tìm kiếm
+
+##### Thuật toán tìm kiếm AND - OR graph search
+
+![and_or_graph_search](https://github.com/user-attachments/assets/d2ebb9b1-7af8-4325-8b23-e6deeb68c92a)
+
+##### Thuật toán tìm kiếm không có sự quan sát (search with no observation)
+
+##### Thuật toán tìm kiếm có sự quan sát một phần (search with partial observation)
 
 ## 4. Kết luận
 
