@@ -46,8 +46,8 @@ Học kỳ II năm học 2024-2025
     - [3.5. Thuật toán tìm kiếm trong môi trường phức tạp](#35-thuật-toán-tìm-kiếm-trong-môi-trường-phức-tạp)
       [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán tìm kiếm AND - OR graph search](#thuật-toán-tìm-kiếm-AND---OR-graph-search)
-      - [Thuật toán tìm kiếm không có sự quan sát (search with no observation)](#thuật-toán-tìm-kiếm-không-có-sự-quan-sát-(search-with-no-observation))
-      - [Thuật toán tìm kiếm có sự quan sát một phần (search with partial observation)](#thuật-toán-tìm-kiếm-có-sự-quan-sát-một-phần-(search-with-partial-observation))
+      - [Thuật toán tìm kiếm không có sự quan sát](#thuật-toán-tìm-kiếm-không-có-sự-quan-sát)
+      - [Thuật toán tìm kiếm có sự quan sát một phần](#thuật-toán-tìm-kiếm-có-sự-quan-sát-một-phần)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
 - [4. Kết luận](#4-kết-luận)
@@ -176,18 +176,22 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ##### Thuật toán kiểm thử
 
-![test_search](https://github.com/user-attachments/assets/188498b9-112f-47b0-9536-01fe995c3c8c)
+![test_search (1)](https://github.com/user-attachments/assets/4040ec8d-68c8-426e-9b27-95dffc7693b9)
 
 ##### Thuật toán backtracking
 ![bactracking](https://github.com/user-attachments/assets/8a2b0c61-31fc-4af0-abe4-6f2daef7297b)
 
 ##### Thuật toán AC3
 
+![AC3](https://github.com/user-attachments/assets/4910ce05-5dd1-437d-a23d-0db1429f1409)
+
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
-![image](https://github.com/user-attachments/assets/f929685f-63eb-40d2-9294-011c804e7b46)
+![image](https://github.com/user-attachments/assets/b84e12f4-57f0-4131-8042-a31177e4847c)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
+
+
 
 ### 3.3. Thuật toán tìm kiếm trong môi trường phức tạp
 ##### Các thành phần chính của bài toán tìm kiếm
@@ -196,9 +200,11 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ![and_or_graph_search](https://github.com/user-attachments/assets/d2ebb9b1-7af8-4325-8b23-e6deeb68c92a)
 
-##### Thuật toán tìm kiếm không có sự quan sát (search with no observation)
+##### Thuật toán tìm kiếm không có sự quan sát
+(search with no observation)
 
-##### Thuật toán tìm kiếm có sự quan sát một phần (search with partial observation)
+##### Thuật toán tìm kiếm có sự quan sát một phần
+(search with partial observation)
 
 ## 4. Kết luận
 
