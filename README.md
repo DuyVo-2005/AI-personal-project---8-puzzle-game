@@ -51,7 +51,7 @@ Học kỳ II năm học 2024-2025
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
     - [3.6. Thuật toán tìm kiếm học tăng cường](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
-      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán tìm kiếm Q Learning](#thuật-toán-tìm-kiếm-Q-Learning)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
@@ -102,6 +102,8 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ![image](https://github.com/user-attachments/assets/f73d9bc2-7170-43c7-83f4-158b3bafe83d)
 
+![Screenshot 2025-05-18 163602](https://github.com/user-attachments/assets/a7dcb2e4-370a-49a7-b424-28fb7049bf53)
+
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 BFS - Breadth-First Search (Tìm kiếm theo chiều rộng): Khám phá các trạng thái theo mức độ, có thể được dùng khi các hành động có cùng chi phí, đảm bảo tìm được giải pháp ngắn nhất nếu tồn tại giải pháp. Thuật toán này dùng hàng đợi để lưu trữ các trạng thái đang được xét theo nguyên tắc FIFO (vào trước ra trước). Thuật toán kết thúc khi tìm ra lời giải hoặc khi hàng đợi rỗng. [2, tr.175]
 
@@ -131,6 +133,8 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
 ![image](https://github.com/user-attachments/assets/4ea4639d-b248-4cb1-962c-7691d220ed0f)
+
+![Screenshot 2025-05-18 164052](https://github.com/user-attachments/assets/b4d0d229-8896-42d6-81b7-6e17e19c3a5c)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Greedy Search (Tìm kiếm tham lam - tìm kiếm Greedy): Mở rộng trạng thái tới trạng thái có giá trị hàm heuristic tốt nhất (trong đó, hàm heuristic là hàm đánh giá chi phí từ trạng thái đang xét đến trạng đích).
@@ -167,6 +171,10 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
+![Screenshot 2025-05-18 084839](https://github.com/user-attachments/assets/07e0309b-a829-46a4-992b-b96b8598cd53)
+
+![image](https://github.com/user-attachments/assets/000486ee-0465-4e1f-9659-af448019ca19)
+
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Nhìn chung ở nhóm thuật toán này, từ một trạng thái hiện tại đanh xét, quá trình tìm kiếm sẽ mở rộng ra các trạng thái lân cận tốt hơn mà không xét hết cây tìm kiếm. Nhược điểm lớn nhất ở nhóm này là quá trình tìm kiếm dễ mắc kẹt tại cực trị địa phương dẫn đến không tìm ra lời giải.
 
@@ -197,6 +205,8 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ![image](https://github.com/user-attachments/assets/5df09cae-fed8-483c-9006-74b6166028ed)
 
+![image](https://github.com/user-attachments/assets/aaa8852a-35ee-49fb-9ad5-34b4653c976b)
+
 ### 3.4. Thuật toán tìm kiếm có ràng buộc
 ##### Các thành phần chính của bài toán tìm kiếm
 
@@ -214,6 +224,8 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
 ![image](https://github.com/user-attachments/assets/b84e12f4-57f0-4131-8042-a31177e4847c)
+
+![image](https://github.com/user-attachments/assets/6dcdc3cc-a2f0-4338-8ac9-e131f422d077)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 
