@@ -283,11 +283,11 @@ Ràng buộc:
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
-![image](https://github.com/user-attachments/assets/c91f0463-096b-491f-a1ba-eb7574f786d5)
+![reward_q](https://github.com/user-attachments/assets/2649de36-0012-4701-add2-1b8ba1531ec7)
 
-![image](https://github.com/user-attachments/assets/e5dae788-1caf-4b94-9a81-1376925fdcfd)
+![success_q](https://github.com/user-attachments/assets/a427afa0-2237-4863-90e0-0fe3e5ba6422)
 
-![image](https://github.com/user-attachments/assets/53258fc5-af9c-417b-a470-a8f4e15218f5)
+![steps](https://github.com/user-attachments/assets/47ae3b69-8ff2-4ec1-8823-9581a4c8255c)
 
 ##### Nhận xét về hiệu suất của thuật toán
 
