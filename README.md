@@ -13,8 +13,7 @@ Học kỳ II năm học 2024-2025
 
 - [1. Giới thiệu bài toán](#1-giới-thiệu-bài-toán)
 - [2. Mục tiêu](#2-mục-tiêu)
-- [3.1. Nội dung](#31-nội-dung)
-  - [3. Một số thuật toán sử dụng](#3-một-số-thuật-toán-sử-dụng)
+- [3. Một số thuật toán sử dụng](#3-một-số-thuật-toán-sử-dụng)
     - [3.1. Tìm kiếm không có thông tin](#31-tìm-kiếm-không-có-thông-tin)
       - [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán BFS](#thuật-toán-bfs)
