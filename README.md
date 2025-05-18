@@ -177,7 +177,7 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ![Screenshot 2025-05-18 084839](https://github.com/user-attachments/assets/07e0309b-a829-46a4-992b-b96b8598cd53)
 
-![image](https://github.com/user-attachments/assets/000486ee-0465-4e1f-9659-af448019ca19)
+![image](https://github.com/user-attachments/assets/6dcdc3cc-a2f0-4338-8ac9-e131f422d077)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Nhìn chung ở nhóm thuật toán này, từ một trạng thái hiện tại đanh xét, quá trình tìm kiếm sẽ mở rộng ra các trạng thái lân cận tốt hơn mà không xét hết cây tìm kiếm. Nhược điểm lớn nhất ở nhóm này là quá trình tìm kiếm dễ mắc kẹt tại cực trị địa phương dẫn đến không tìm ra lời giải.
@@ -231,7 +231,7 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ![image](https://github.com/user-attachments/assets/b84e12f4-57f0-4131-8042-a31177e4847c)
 
-![image](https://github.com/user-attachments/assets/6dcdc3cc-a2f0-4338-8ac9-e131f422d077)
+![image](https://github.com/user-attachments/assets/000486ee-0465-4e1f-9659-af448019ca19)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 
