@@ -163,9 +163,9 @@ A-Star Search (Tìm kiếm A*): Tìm kiếm bằng cách tính chi phí từ tr�
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Các thuật toán thuộc nhóm tìm kiếm có thông tin thực thi rất nhanh hẳn so với nhóm tìm kiếm không thông tin nhờ sử dụng hàm heuristic để định hướng, tính toán chi phí quá trình tìm kiếm.
 
-Về số bước thực hiện, Greedy có số bước nhiều nhất so với A* và IDA*. Điều này cho thấy A* và IDA* cho lời giải ngắn hơn và tối ưu hơn.
-
 Về thời gian tìm lời giải, Greedy có thời gian thực thi nhanh nhất, nhưng đổi lại là lời giải dài hơn. A* tốn nhiều thời gian tìm lời giải nhất, chứng tỏ chi phí tính toán cao hơn. IDA* là phương án trung gian giữa các thuật toán nhóm này: lời giải tốt như A* nhưng thời gian thực thi thấp hơn đáng kể.
+
+Về số bước thực hiện, Greedy có số bước nhiều nhất so với A* và IDA*. Điều này cho thấy A* và IDA* cho lời giải ngắn hơn và tối ưu hơn.
 
 Về số trạng thái đã thăm, Greedy duyệt ít trạng thái hơn nên thăm ít trạng thái nhất, nhưng dễ bị rơi vào cực trị cục bộ do chỉ ưu tiên tìm theo hàm heristic. A* và IDA* xét các trạng thái toàn diện hơn nhưng đánh đổi lại bằng việc mở rộng nhiều trạng thái.
 
