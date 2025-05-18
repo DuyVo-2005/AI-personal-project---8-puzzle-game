@@ -3,7 +3,7 @@ Giảng viên hướng dẫn: TS.Phan Thị Huyền Trang
 
 Sinh viên thực hiện: Võ Lê Khánh Duy
 
-Mã số sinh viên: 2311096
+Mã số sinh viên: 23110196
 
 Mã lớp học: ARIN330585_04
 
