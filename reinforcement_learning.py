@@ -44,19 +44,20 @@ def heuristic(state: tuple, end_state_tuple: tuple) -> int:
         h += abs(x1 - x2) + abs(y1 - y2)
     return h
 
-def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tuple, Q_list: list)->list:
+def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tuple, Q_list: list) -> list:
     alpha = 0.1#Tốc độ học
-    gamma = 0.8#Hệ số chiết khấu:  agent đến phần thưởng là bao xa.
-    epsilon = 0.4# Xác suất chọn hành động ngẫu nhiên (khai thác hoặc khám phá)
+    gamma = 0.95#Hệ số chiết khấu: agent đến phần thưởng là bao xa.
+    epsilon = 0.9#Xác suất chọn hành động ngẫu nhiên (khai thác hoặc khám phá)
+    min_epsilon = 0.01
+    decay_rate = 0.995#Tốc độ giảm
     episodes = 10000# Số lượng tập huấn luyện
-    # episodes = 1000000# Số lượng tập huấn luyện
 
     #Biến thống kê
     rewards_per_episode = []
     steps_per_episode = []
     successes = []
     success_count = 0
-    
+
     #B1. Khởi tạo Q-table và điền giá trị ban đầu là 0 cho các vị trí
     Q = defaultdict(lambda: {a: 0.0 for a in actions})# Bảng Q: {state: {action: value}}
     for episode in range(episodes):
@@ -65,31 +66,39 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
         steps = 0
         total_reward = 0
         MAX_STEPS = 20000
-        while not is_goal(state, end_state_tuple) and steps < 20000:
+        visited_states = set()#tránh lặp vô hạn hoặc quay lại trạng thái đã thăm trong cùng một tập huấn luyện
+        while not is_goal(state, end_state_tuple) and steps < MAX_STEPS:
+            valid_actions = [a for a in actions if is_valid_move(state.index(0), a)]
+            if not valid_actions:
+                break
             #B3. Tác nhân thực hiện hành động (Chọn hành động)
             if random.uniform(0, 1) < epsilon:#Khám phá
-                action = random.choice(actions)
+                action = random.choice(valid_actions)
             else:#Khai thác - Chọn theo kinh nghiệm đã được học
-                action = max(Q[state], key=Q[state].get)
+                #Chỉ chọn hành động tốt nhất trong danh sách hợp lệ
+                action = max(valid_actions, key=lambda a: Q[state][a])
             next_state = move(state, action)
             #B4. Xác định phần thưởng
             #R (reward)max -> phần thưởng càng lớn càng gần đích
             if next_state is None:
-                reward = -50  # Hành động không hợp lệ -> phạt nặng
+                reward = -50#Hành động không hợp lệ -> phạt nặng
                 max_new_q = 0
                 p = 0.0001
             else:
-                reward = 100 if is_goal(next_state, end_state_tuple) else -1
                 if next_state not in Q:
-                    Q[next_state] = {a: 0 for a in actions}
+                    Q[next_state] = {a: 0.0 for a in actions}
                 #B5. Tính lại Q-value cho trạng thái mới
+                h_now = heuristic(state, end_state_tuple)
+                h_next = heuristic(next_state, end_state_tuple)
+                reward = 100 if is_goal(next_state, end_state_tuple) else (h_now - h_next)
                 max_new_q = max(Q[next_state].values())
                 p = 1 - heuristic(next_state, end_state_tuple) / 41#P(s,a,s’)): xác suất đi từ trạng thái s đến s' qua hành động a (0 -> 1 – dựa vào thực tế -> setup), với 41 là chi phí ước lượng hàm heristic lớn nhất
-            total_reward += reward
             #Cập nhật Q-value
             Q[state][action] += alpha * (reward + gamma * p * max_new_q - Q[state][action])
-            if next_state is None:
+            total_reward += reward
+            if next_state is None or next_state in visited_states:
                 break
+            visited_states.add(state)
             state = next_state
             steps += 1
         if is_goal(state, end_state_tuple):
@@ -99,31 +108,35 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
             steps_per_episode.append(MAX_STEPS)
         rewards_per_episode.append(total_reward)
         if (episode + 1) % 100 == 0:
-            successes.append(success_count / 100) # Tỷ lệ episode thành công sau mỗi 100 episode
+            success_rate = success_count / 100
+            successes.append(success_rate)
             success_count = 0
+        #Giảm epsilon theo thời gian -> buộc agent bớt hành động khám phá
+        epsilon = max(min_epsilon, epsilon * decay_rate)
         #B6. Kết thúc huấn luyện nếu thực hiện đủ episode lần học
-    #print(Q)
-    for state in Q.keys():
+    for state in Q:
+        Q_list.append(f"{state}: {Q[state]}")
         print(f"{state}: {Q[state]}")
         Q_list.append(f"{state}: {Q[state]}")
     state = deepcopy(start_state_tuple)
     steps = 1
     solution = []
-    while not is_goal(state, end_state_tuple) and steps < 20000:
+    while not is_goal(state, end_state_tuple) and steps < MAX_STEPS:
         print(f"Step {steps}: {state}")
         solution.append(state)
         if state not in Q:
             print("Trạng thái chưa được học.")
             break
-        action = max(Q[state], key=Q[state].get)
-        state = move(state, action)
-        # if state is None:
-        #     print("Hành động không hợp lệ.")
-        #     break
+        valid_actions = [a for a in actions if is_valid_move(state.index(0), a)]
+        action = max(valid_actions, key=lambda a: Q[state][a])
+        next_state = move(state, action)
+        if next_state is None:
+            break
+        state = next_state
         steps += 1
-        
+
     """ MỞ SOURCE ĐỂ VẼ BIỂU ĐỒ
-    # avg_rewards = reward trung bình mỗi 100 episode
+    #avg_rewards = reward trung bình mỗi 100 episode
     avg_rewards = [np.mean(rewards_per_episode[i:i+100]) for i in range(0, len(rewards_per_episode), 100)]
 
     plt.figure(figsize=(14, 6))
@@ -145,8 +158,8 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
     plt.legend()
     plt.show()
     
-    plt.figure(figsize=(10, 4))
-    plt.plot(range(100, len(successes)*100 + 1, 100), successes)
+    plt.figure(figsize=(14, 6))
+    plt.plot(range(100, len(successes)*100 + 1, 100), successes, linewidth=3)
     plt.title('Tỷ lệ thành công mỗi 100 episode')
     plt.xlabel('Episode')
     plt.ylabel('Success Rate')
@@ -154,7 +167,7 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
     plt.grid(True)
     plt.tight_layout()
     plt.show()
-    """
+    #"""
     
     if is_goal(state, end_state_tuple):
         print(f"Đã đạt trạng thái đích sau {steps} bước.")
@@ -164,16 +177,20 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
         print("Không đạt được trạng thái đích.")
         return None
 
-# end_state_tuple = (
-#     1, 2, 3,
-#     4, 5, 6,
-#     7, 8, 0
-#     )
+end_state_tuple = (
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 0
+    )
 # start_state_tuple = (
-#     0,1,2,
-#     4,5,3,
-#     7,8,6
+#     2,6,5,
+#     0,8,7,
+#     4,3,1
 #     )
-# Q_list = []
-# print(reinforcement_learning_solve(start_state_tuple, end_state_tuple, Q_list))
-
+start_state_tuple = (
+    0,1,2,
+    4,5,3,
+    7,8,6
+    )
+Q_list = []
+print(reinforcement_learning_solve(start_state_tuple, end_state_tuple, Q_list))

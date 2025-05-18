@@ -87,31 +87,26 @@ Tổng chi phí của đường đi từ trạng thái ban đầu đến trạng
 Giải pháp là một đường đi chứa các trạng thái với trạng thái đầu tiên là trạng thái ban đầu, các trạng thái biến đổi sau khi thực hiện hành động lên trạng thái ban đầu và trạng thái cuối cùng là trạng thái mục tiêu (trạng thái cần tìm).
 
 ##### Thuật toán BFS
-
 BFS - Breadth-First Search (Tìm kiếm theo chiều rộng): Khám phá các trạng thái theo mức độ, có thể được dùng khi các hành động có cùng chi phí, đảm bảo tìm được giải pháp ngắn nhất nếu tồn tại giải pháp. Thuật toán này dùng hàng đợi để lưu trữ các trạng thái đang được xét theo nguyên tắc FIFO (vào trước ra trước). Thuật toán kết thúc khi tìm ra lời giải hoặc khi hàng đợi rỗng. [2, tr.175]
 
 ![Error](gif/BFS.gif)
 
 ##### Thuật toán DFS
-
 DFS - Depth-First Search (Tìm kiếm theo chiều sâu): Khi các hành động có cùng chi phí có thể áp dụng thuật toán này để Khám phá sâu vào các nhánh trước khi quay lại xét nhánh kế tiếp. Thuật toán có thể tìm ra được lời giải nhưng không đảm bảo tìm được giải pháp tối ưu do có thể phải xét hết tất cả các trạng thái trên nhánh không có lời giải, sau đó mới chuyển sang các nhánh khác.
 
 ![Error](gif/DFS.gif)
 
 ##### Thuật toán UCS - Uniform Cost Search
-
 UCS - Uniform Cost Search (Tìm kiếm theo chi phí đồng nhất): Mở rộng từ một trạng thái tới trạng thái có chi phí tốt nhất từ trạng thái gốc đến trạng thái đó, đảm bảo tìm được giải pháp tối ưu với chi phí hành trình tìm kiếm là thấp nhất do tính chi phí các nút lân cận và sau đó mới di chuyển đến nút có chi phí tốt nhất.
 
 ![Error](gif/UCS.gif)
 
 ##### Thuật toán IDS
-
 IDS - Iterative Deepening Search (Tìm kiếm sâu dần): Thuật toán này ‘kết hợp ưu điểm của tìm kiếm theo chiều rộng và chiều sâu, thuật toán tìm kiếm theo chiều sâu từ mức thấp đến mức cao hơn, đến khi tìm ra giải pháp’. Đây là lựa chọn tối ưu với “các bài toán tìm kiếm khi không biết trước độ sâu của lời giải”. [3]
 
 ![Error](gif/IDS.gif)
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
-
 ![image](https://github.com/user-attachments/assets/f73d9bc2-7170-43c7-83f4-158b3bafe83d)
 
 ![Screenshot 2025-05-18 163602](https://github.com/user-attachments/assets/a7dcb2e4-370a-49a7-b424-28fb7049bf53)
@@ -119,7 +114,6 @@ IDS - Iterative Deepening Search (Tìm kiếm sâu dần): Thuật toán này �
 ![Figure_1](https://github.com/user-attachments/assets/78145d03-9794-4acb-a08c-14210f7950f8)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
-
 Các thuật toán thuộc nhóm tìm kiếm không thông tin tốn nhiều thời gian thực thi do khám phá toàn bộ không gian trạng thái. DFS đặc biệt tốn thời gian trong việc tìm kiếm trạng thái mục tiêu ở xa các nhánh mà thuật toán đang xét dẫn đến DFS duyệt sâu các trạng thái của một nhánh trước khi chuyển sang nhánh khác. IDS có thời gian thấp nhất, là thuật toán nhanh nhất trong 4 thuật toán. UCS có thời gian thực thi cao nhất, là chậm nhất trong nhóm. 
 
 Về số bước thực hiện, các thuật toán thuộc nhóm tìm kiếm không thông tin đều có số bước trong lời giải là ít nhất so với các thuật toán khác. DFS có số bước rất lớn, cho thấy giải pháp của nó không hiệu quả do đi sâu vào các nhánh không chứa lời giải trước. BFS và UCS cho lời giải với số bước ít nhất.
