@@ -237,7 +237,7 @@ class MyApp(QMainWindow):
             self.txtTotalStep.setPlainText(str(len(path)))
         end_time = time.time()
         execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.5f}(s)")
+        self.txtSolveTime.setPlainText(f"{execution_time:.9f}(s)")
         self.txt_plan_tree.setPlainText(self.format_plan_tree(plan))
 
     def play_solution(self, solution):

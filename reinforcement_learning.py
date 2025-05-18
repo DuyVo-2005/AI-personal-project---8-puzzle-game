@@ -1,6 +1,8 @@
 import random
 from collections import defaultdict
 from copy import deepcopy
+import matplotlib.pyplot as plt
+import numpy as np
 
 actions = ['Up', 'Down', 'Left', 'Right']
 
@@ -49,12 +51,20 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
     episodes = 10000# Số lượng tập huấn luyện
     # episodes = 1000000# Số lượng tập huấn luyện
 
+    #Biến thống kê
+    rewards_per_episode = []
+    steps_per_episode = []
+    successes = []
+    success_count = 0
+    
     #B1. Khởi tạo Q-table và điền giá trị ban đầu là 0 cho các vị trí
     Q = defaultdict(lambda: {a: 0.0 for a in actions})# Bảng Q: {state: {action: value}}
     for episode in range(episodes):
         #B2. Bắt đầu 1 episode
         state = deepcopy(start_state_tuple)
         steps = 0
+        total_reward = 0
+        MAX_STEPS = 20000
         while not is_goal(state, end_state_tuple) and steps < 20000:
             #B3. Tác nhân thực hiện hành động (Chọn hành động)
             if random.uniform(0, 1) < epsilon:#Khám phá
@@ -75,12 +85,22 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
                 #B5. Tính lại Q-value cho trạng thái mới
                 max_new_q = max(Q[next_state].values())
                 p = 1 - heuristic(next_state, end_state_tuple) / 41#P(s,a,s’)): xác suất đi từ trạng thái s đến s' qua hành động a (0 -> 1 – dựa vào thực tế -> setup), với 41 là chi phí ước lượng hàm heristic lớn nhất
+            total_reward += reward
             #Cập nhật Q-value
             Q[state][action] += alpha * (reward + gamma * p * max_new_q - Q[state][action])
             if next_state is None:
                 break
             state = next_state
             steps += 1
+        if is_goal(state, end_state_tuple):
+            steps_per_episode.append(steps)
+            success_count += 1
+        else:
+            steps_per_episode.append(MAX_STEPS)
+        rewards_per_episode.append(total_reward)
+        if (episode + 1) % 100 == 0:
+            successes.append(success_count / 100) # Tỷ lệ episode thành công sau mỗi 100 episode
+            success_count = 0
         #B6. Kết thúc huấn luyện nếu thực hiện đủ episode lần học
     #print(Q)
     for state in Q.keys():
@@ -101,6 +121,41 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
         #     print("Hành động không hợp lệ.")
         #     break
         steps += 1
+        
+    """ MỞ SOURCE ĐỂ VẼ BIỂU ĐỒ
+    # avg_rewards = reward trung bình mỗi 100 episode
+    avg_rewards = [np.mean(rewards_per_episode[i:i+100]) for i in range(0, len(rewards_per_episode), 100)]
+
+    plt.figure(figsize=(14, 6))
+    plt.plot(range(100, len(rewards_per_episode)+1, 100), avg_rewards, color='green', label='Reward trung bình mỗi 100 episode')
+    plt.xlabel("Episode")
+    plt.ylabel("Reward")
+    plt.title("Reward trung bình mỗi 100 episode")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+
+    avg_steps = [np.mean(steps_per_episode[i:i+100]) for i in range(0, len(steps_per_episode), 100)]
+    plt.figure(figsize=(14, 6))
+    plt.plot(range(100, len(steps_per_episode)+1, 100), avg_steps, color='orange', label='Số bước trung bình mỗi 100 episode')
+    plt.xlabel("Episode")
+    plt.ylabel("Steps to goal")
+    plt.title("Số bước trung bình mỗi 100 episode")
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+    
+    plt.figure(figsize=(10, 4))
+    plt.plot(range(100, len(successes)*100 + 1, 100), successes)
+    plt.title('Tỷ lệ thành công mỗi 100 episode')
+    plt.xlabel('Episode')
+    plt.ylabel('Success Rate')
+    plt.ylim(0, 1)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+    """
+    
     if is_goal(state, end_state_tuple):
         print(f"Đã đạt trạng thái đích sau {steps} bước.")
         solution.append(end_state_tuple)
@@ -121,3 +176,4 @@ def reinforcement_learning_solve(start_state_tuple: tuple, end_state_tuple: tupl
 #     )
 # Q_list = []
 # print(reinforcement_learning_solve(start_state_tuple, end_state_tuple, Q_list))
+

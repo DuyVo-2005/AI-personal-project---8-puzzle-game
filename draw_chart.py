@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 # nhom = "Nhóm tìm kiếm không có thông tin"
 # nhom = "Nhóm tìm kiếm có thông tin"
 # nhom = "Nhóm tìm kiếm cục bộ"
-nhom = "Nhóm tìm kiếm có ràng buộc"
+# nhom = "Nhóm tìm kiếm có ràng buộc"
+nhom = "Nhóm thuật toán tìm kiếm trong môi trường phức tạp"
 
 # algorithms = ['BFS', 'DFS', 'UCS', 'IDS', ]
 # execution_times = [803.653, 930.288, 1049.0497, 720.4138]#ms
@@ -15,8 +16,11 @@ nhom = "Nhóm tìm kiếm có ràng buộc"
 # algorithms = ['SHC', 'SAHC', 'StochasticHC', 'Simulated annealing', 'Genetic algorithm', 'Beam search']
 # execution_times = [5210e-05, 9780e-05, 7180e-05, 1.164, 0.128, 2.583]#ms
 
-algorithms = ['Backtracking', 'Test', 'AC3']
-execution_times = [15.277, 578.893, 10.081]#ms
+# algorithms = ['Backtracking', 'Test', 'AC3']
+# execution_times = [15.277, 578.893, 10.081]#ms
+
+algorithms = ['Search with no observation', 'Search with partial observation', 'AC3']
+execution_times = [67.204, 44.221, 131.102]#ms
 
 plt.figure(figsize=(10, 6))
 bars = plt.bar(algorithms, execution_times, color='lightgreen')

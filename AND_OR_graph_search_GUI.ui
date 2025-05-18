@@ -605,7 +605,7 @@ QPushButton:hover {
    <widget class="QLabel" name="lblTotalStep">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>440</x>
       <y>200</y>
       <width>101</width>
       <height>31</height>
@@ -629,7 +629,7 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtTotalStep">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>540</x>
       <y>200</y>
       <width>101</width>
       <height>31</height>
@@ -657,7 +657,7 @@ QPushButton:hover {
    <widget class="QLabel" name="lblSolveTime">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>440</x>
       <y>240</y>
       <width>111</width>
       <height>31</height>
@@ -681,9 +681,9 @@ QPushButton:hover {
    <widget class="QPlainTextEdit" name="txtSolveTime">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>540</x>
       <y>240</y>
-      <width>101</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -709,7 +709,7 @@ QPushButton:hover {
    <widget class="QPushButton" name="btnWriteToFile">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>710</x>
       <y>220</y>
       <width>111</width>
       <height>41</height>
