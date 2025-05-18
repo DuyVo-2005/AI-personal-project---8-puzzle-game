@@ -104,7 +104,7 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ![Screenshot 2025-05-18 163602](https://github.com/user-attachments/assets/a7dcb2e4-370a-49a7-b424-28fb7049bf53)
 
-![Screenshot 2025-05-18 165929](https://github.com/user-attachments/assets/3b22aa28-2347-4912-a5f3-6b27693d4ffa)
+![Figure_1](https://github.com/user-attachments/assets/78145d03-9794-4acb-a08c-14210f7950f8)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 BFS - Breadth-First Search (Tìm kiếm theo chiều rộng): Khám phá các trạng thái theo mức độ, có thể được dùng khi các hành động có cùng chi phí, đảm bảo tìm được giải pháp ngắn nhất nếu tồn tại giải pháp. Thuật toán này dùng hàng đợi để lưu trữ các trạng thái đang được xét theo nguyên tắc FIFO (vào trước ra trước). Thuật toán kết thúc khi tìm ra lời giải hoặc khi hàng đợi rỗng. [2, tr.175]
@@ -138,7 +138,7 @@ Giải pháp là một đường đi chứa các trạng thái với trạng th�
 
 ![Screenshot 2025-05-18 164052](https://github.com/user-attachments/assets/b4d0d229-8896-42d6-81b7-6e17e19c3a5c)
 
-![Screenshot 2025-05-18 170211](https://github.com/user-attachments/assets/8db1b7b9-9d2e-4204-8e91-416c78fc3625)
+![Figure_1](https://github.com/user-attachments/assets/6883102d-f0a1-4405-9a04-b1e8c0f2a5d0)
 
 ##### Nhận xét về hiệu suất của các thuật toán trong nhóm
 Greedy Search (Tìm kiếm tham lam - tìm kiếm Greedy): Mở rộng trạng thái tới trạng thái có giá trị hàm heuristic tốt nhất (trong đó, hàm heuristic là hàm đánh giá chi phí từ trạng thái đang xét đến trạng đích).
@@ -211,8 +211,7 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ![image](https://github.com/user-attachments/assets/aaa8852a-35ee-49fb-9ad5-34b4653c976b)
 
-![Screenshot 2025-05-18 170521](https://github.com/user-attachments/assets/07419c96-b8d9-4c80-a4fa-cd510f6a0017)
-
+![Figure_1](https://github.com/user-attachments/assets/87e00070-824b-4bb9-b672-98694b24680a)
 
 ### 3.4. Thuật toán tìm kiếm có ràng buộc
 ##### Các thành phần chính của bài toán tìm kiếm
