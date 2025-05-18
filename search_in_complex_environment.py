@@ -64,7 +64,7 @@ def move(state: tuple, direction: str):
     new_state = list(state)
     new_state[zero_index], new_state[new_index] = new_state[new_index], new_state[zero_index]
     return tuple(new_state)
-def apply_action_to_belief(belief: list, action: str, is_partial_observation: bool = False):
+def apply_action_to_belief(belief: list, action: str, goal_set: list, is_partial_observation: bool = False):
     result = []
     visited = set()
     for state in belief:
@@ -74,7 +74,7 @@ def apply_action_to_belief(belief: list, action: str, is_partial_observation: bo
         if new_state not in visited:
             visited.add(new_state)
             if is_partial_observation:
-                if is_near_goal(new_state):                  
+                if is_near_goal(new_state, goal_set):                  
                     result.append(new_state)
             else:                
                 result.append(new_state)
@@ -88,7 +88,7 @@ def is_near_goal(state:tuple, goal_set:list) -> bool:
 def print_state(state):
     for i in range(0, 9, 3):
         print(state[i], state[i+1], state[i+2])
-def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, is_partial_observation: bool = False) -> list:
+def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, number_of_opened_state: list, is_partial_observation: bool = False) -> list:
     """Return actions set from start state to goal state"""
     queue = deque()
     visited = set()
@@ -108,17 +108,20 @@ def search_in_complex_enviroment(initial_belief_set: list, goal_set: list, is_pa
             print("----")
         if is_goal_belief_set(belief_set, goal_set):
             print("Reached goal set!")
+            number_of_opened_state[0] = len(visited)
             return actions
         for action in MOVES:
-            new_belief = apply_action_to_belief(belief_set, action, is_partial_observation)
+            new_belief = apply_action_to_belief(belief_set, action, goal_set, is_partial_observation)
             if new_belief:
                 queue.append((new_belief, actions + [action]))
         depth += 1
+    number_of_opened_state[0] = len(visited)
     return None
 
-def search_in_complex_environment_solve(initial_belief_set: list, goal_set: list, is_partial_observation: bool = False):
-    plan = search_in_complex_enviroment(initial_belief_set, goal_set, is_partial_observation)
+def search_in_complex_environment_solve(initial_belief_set: list, goal_set: list, number_of_opened_state: list, is_partial_observation: bool = False) -> list:
+    plan = search_in_complex_enviroment(initial_belief_set, goal_set, number_of_opened_state, is_partial_observation)
     print("Plan to reach goal:", plan)
     return plan
 
-#search_in_complex_environment_solve(initial_belief_set, goal_set, is_partial_observation = False)   
+# number_of_opened_state = 0
+# search_in_complex_environment_solve(initial_belief_set, goal_set, is_partial_observation = False, number_of_opened_state=number_of_opened_state)

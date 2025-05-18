@@ -200,7 +200,7 @@ class MyApp(QMainWindow):
         global start_state_tuple, start_state_tuple2, start_state_tuple3, start_state_tuple4
         global end_state_tuple, end_state_tuple2, end_state_tuple3, end_state_tuple4
         try:
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_start1, self.cell4_start1, self.cell7_start1,
                 self.cell2_start1, self.cell5_start1, self.cell8_start1,
                 self.cell3_start1, self.cell6_start1, self.cell9_start1]):
@@ -211,7 +211,7 @@ class MyApp(QMainWindow):
                 ])
                 self.belief_set.append(start_state_tuple)
             
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_start2, self.cell4_start2, self.cell7_start2,
                 self.cell2_start2, self.cell5_start2, self.cell8_start2,
                 self.cell3_start2, self.cell6_start2, self.cell9_start2]):
@@ -222,7 +222,7 @@ class MyApp(QMainWindow):
                 ])
                 self.belief_set.append(start_state_tuple2)
             
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_start3, self.cell4_start3, self.cell7_start3,
                 self.cell2_start3, self.cell5_start3, self.cell8_start3,
                 self.cell3_start3, self.cell6_start3, self.cell9_start3]):
@@ -233,7 +233,7 @@ class MyApp(QMainWindow):
                 ])
                 self.belief_set.append(start_state_tuple3)
             
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_start4, self.cell4_start4, self.cell7_start4,
                 self.cell2_start4, self.cell5_start4, self.cell8_start4,
                 self.cell3_start4, self.cell6_start4, self.cell9_start4]):
@@ -244,7 +244,7 @@ class MyApp(QMainWindow):
                 ])
                 self.belief_set.append(start_state_tuple4)
                 
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_end1, self.cell2_end1, self.cell3_end1,
                 self.cell4_end1, self.cell5_end1, self.cell6_end1,
                 self.cell7_end1, self.cell8_end1, self.cell9_end1]):
@@ -255,7 +255,7 @@ class MyApp(QMainWindow):
                 ])
                 self.goal_set.append(end_state_tuple)
 
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_end2, self.cell2_end2, self.cell3_end2,
                 self.cell4_end2, self.cell5_end2, self.cell6_end2,
                 self.cell7_end2, self.cell8_end2, self.cell9_end2]):
@@ -266,22 +266,22 @@ class MyApp(QMainWindow):
                 ])
                 self.goal_set.append(end_state_tuple2)
                 
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_end3, self.cell2_end3, self.cell3_end3,
                 self.cell4_end3, self.cell5_end3, self.cell6_end3,
                 self.cell7_end3, self.cell8_end3, self.cell9_end3]):
-                end_state_tuple2 = tuple([
+                end_state_tuple3 = tuple([
                     int(self.cell1_end3.toPlainText()), int(self.cell2_end3.toPlainText()), int(self.cell3_end3.toPlainText()),
                     int(self.cell4_end3.toPlainText()), int(self.cell5_end3.toPlainText()), int(self.cell6_end3.toPlainText()),
                     int(self.cell7_end3.toPlainText()), int(self.cell8_end3.toPlainText()), int(self.cell9_end3.toPlainText())
                 ])
                 self.goal_set.append(end_state_tuple3)
                 
-            if not all(is_empty_plain_text(plain_text) for plain_text in [
+            if all(not is_empty_plain_text(plain_text) for plain_text in [
                 self.cell1_end4, self.cell2_end4, self.cell3_end4,
                 self.cell4_end4, self.cell5_end4, self.cell6_end4,
                 self.cell7_end4, self.cell8_end4, self.cell9_end4]):
-                end_state_tuple2 = tuple([
+                end_state_tuple4 = tuple([
                     int(self.cell1_end4.toPlainText()), int(self.cell2_end4.toPlainText()), int(self.cell3_end4.toPlainText()),
                     int(self.cell4_end4.toPlainText()), int(self.cell5_end4.toPlainText()), int(self.cell6_end4.toPlainText()),
                     int(self.cell7_end4.toPlainText()), int(self.cell8_end4.toPlainText()), int(self.cell9_end4.toPlainText())
@@ -291,14 +291,12 @@ class MyApp(QMainWindow):
             messagebox.showerror("Error", "Invalid input values!")
             return
               
-        start_time = time.time()
+        start_time = time.perf_counter()
         if len(self.belief_set) == 0:
             messagebox.showerror("Error", "Initial belief set is empty!")
-            print(self.belief_set)
             return
         if len(self.goal_set) == 0:
             messagebox.showerror("Error", "Initial goal set is empty!")
-            print(self.goal_set)
             return
         try:
             if int(float(self.txtSolveSpeedPerStep.toPlainText()) * 1000) >= 1:#ms
@@ -311,21 +309,25 @@ class MyApp(QMainWindow):
             return
 
         solution = None
+        number_of_opened_state = [0]
         if algorithm_type == "Search with no observation":
-            solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=False)
+            solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=False, number_of_opened_state = number_of_opened_state)
         else:
-            solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=True)
-        end_time = time.time()
+            solution = search_in_complex_environment_solve(self.belief_set, self.goal_set, is_partial_observation=True, number_of_opened_state = number_of_opened_state)
+        end_time = time.perf_counter()
         execution_time = end_time - start_time
         self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
         print(f"Execution time: {execution_time}")
         print(f"Algorithm type: {algorithm_type}")
+        print(f"Number of opened state: {number_of_opened_state}")
         if solution is None:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
             self.txtStep.setPlainText("0")
             path = None
+            print("Size of path: 0")
         else:
+            print(f"Size of path: {len(solution)}")
             path1, path2, path3, path4 = [], [], [], []
             current_state1, current_state2, current_state3, current_state4 = None, None, None, None
             if start_state_tuple != tuple([0,0,0,0,0,0,0,0,0]):

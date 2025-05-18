@@ -223,7 +223,7 @@ class MyApp(QMainWindow):
         path = []
         if algorithm_type == "Test":
             path = test_search()
-            print(f"Số lần thử gán: {len(path)}")
+            times[0] = len(path)
         elif algorithm_type == "AC3":
             if ac3(domains, neighbors) == False:
                 messagebox.showerror("Error", "An consistency is found")
@@ -237,6 +237,12 @@ class MyApp(QMainWindow):
             path = backtracking_search({}, times)
             print(path)
             print(f"Số lần thử gán: {times}")
+        end_time = time.perf_counter()
+        execution_time = end_time - start_time
+        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
+        print(f"Algorithm name: {algorithm_type}")
+        print(f"Execution time: {execution_time:.10f}(s)")
+        print(f"Number of assignment attempts: {times[0]}")
         if path == []:
             messagebox.showinfo("Information", "No solutions found!")
             self.txtTotalStep.setPlainText("0")
@@ -244,9 +250,6 @@ class MyApp(QMainWindow):
         else:         
             self.play_solution(visited_nodes)        
             self.txtTotalStep.setPlainText(str(len(visited_nodes)))
-        end_time = time.perf_counter()
-        execution_time = end_time - start_time
-        self.txtSolveTime.setPlainText(f"{execution_time:.10f}(s)")
         self.output_domain.setPlainText(convert_domains_to_string(domains))
                 
     def play_solution(self, solution):
