@@ -207,7 +207,7 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ##### Hình ảnh so sánh hiệu suất của các thuật toán
 
-![image](https://github.com/user-attachments/assets/5df09cae-fed8-483c-9006-74b6166028ed)
+![mtpt_tg](https://github.com/user-attachments/assets/9fb2c5dd-a64d-4b89-a957-5f2b409c6dc8)
 
 ![image](https://github.com/user-attachments/assets/aaa8852a-35ee-49fb-9ad5-34b4653c976b)
 
