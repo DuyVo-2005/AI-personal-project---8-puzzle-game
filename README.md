@@ -38,16 +38,21 @@ Học kỳ II năm học 2024-2025
       - [Thuật toán Beam Search](#thuật-toán-beam-search)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
-    - [3.4. Thuật toán tìm kiếm có ràng buộc](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
-      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
-      - [Thuật toán kiểm thử](#thuật-toán-kiểm-thử)
-      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
-      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
-    - [3.5. Thuật toán tìm kiếm trong môi trường phức tạp](#35-thuật-toán-tìm-kiếm-trong-môi-trường-phức-tạp)
+    - [3.4. Thuật toán tìm kiếm trong môi trường phức tạp](#35-thuật-toán-tìm-kiếm-trong-môi-trường-phức-tạp)
       [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
       - [Thuật toán tìm kiếm AND - OR graph search](#thuật-toán-tìm-kiếm-AND---OR-graph-search)
       - [Thuật toán tìm kiếm không có sự quan sát](#thuật-toán-tìm-kiếm-không-có-sự-quan-sát)
       - [Thuật toán tìm kiếm có sự quan sát một phần](#thuật-toán-tìm-kiếm-có-sự-quan-sát-một-phần)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
+    - [3.5. Thuật toán tìm kiếm có ràng buộc](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
+      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Thuật toán kiểm thử](#thuật-toán-kiểm-thử)
+      - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
+      - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
+    - [3.6. Thuật toán tìm kiếm học tăng cường](#34-thuật-toán-tìm-kiếm-có-ràng-buộc)
+      [Các thành phần chính của bài toán tìm kiếm](#Các-thành-phần-chính-của-bài-toán-tìm-kiếm)
+      - [Thuật toán tìm kiếm Q Learning](#thuật-toán-tìm-kiếm-Q-Learning)
       - [Hình ảnh so sánh hiệu suất của các thuật toán](#Hình-ảnh-so-sánh-hiệu-suất-của-các-thuật-toán)
       - [Nhận xét về hiệu suất của các thuật toán trong nhóm](#Nhận-xét-về-hiệu-suất-của-các-thuật-toán-tronG-nhóm)
 - [4. Kết luận](#4-kết-luận)
@@ -171,28 +176,6 @@ Thuật toán leo đồi dốc nhất đánh giá tất cả các trạng thái 
 
 Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái lân cận và quyết định chuyển sang trạng thái đó nếu nó tốt hơn trạng thái hiện tại.
 
-### 3.3. Thuật toán tìm kiếm có ràng buộc
-##### Các thành phần chính của bài toán tìm kiếm
-
-##### Thuật toán kiểm thử
-
-![test_search (1)](https://github.com/user-attachments/assets/4040ec8d-68c8-426e-9b27-95dffc7693b9)
-
-##### Thuật toán backtracking
-![bactracking](https://github.com/user-attachments/assets/8a2b0c61-31fc-4af0-abe4-6f2daef7297b)
-
-##### Thuật toán AC3
-
-![AC3](https://github.com/user-attachments/assets/4910ce05-5dd1-437d-a23d-0db1429f1409)
-
-##### Hình ảnh so sánh hiệu suất của các thuật toán
-
-![image](https://github.com/user-attachments/assets/b84e12f4-57f0-4131-8042-a31177e4847c)
-
-##### Nhận xét về hiệu suất của các thuật toán trong nhóm
-
-
-
 ### 3.3. Thuật toán tìm kiếm trong môi trường phức tạp
 ##### Các thành phần chính của bài toán tìm kiếm
 
@@ -214,6 +197,42 @@ Thuật toán leo đồi ngẫu nhiên chọn ngẫu nhiên một trạng thái 
 
 ![image](https://github.com/user-attachments/assets/5df09cae-fed8-483c-9006-74b6166028ed)
 
+### 3.4. Thuật toán tìm kiếm có ràng buộc
+##### Các thành phần chính của bài toán tìm kiếm
+
+##### Thuật toán kiểm thử
+
+![test_search (1)](https://github.com/user-attachments/assets/4040ec8d-68c8-426e-9b27-95dffc7693b9)
+
+##### Thuật toán backtracking
+![bactracking](https://github.com/user-attachments/assets/8a2b0c61-31fc-4af0-abe4-6f2daef7297b)
+
+##### Thuật toán AC3
+
+![AC3](https://github.com/user-attachments/assets/4910ce05-5dd1-437d-a23d-0db1429f1409)
+
+##### Hình ảnh so sánh hiệu suất của các thuật toán
+
+![image](https://github.com/user-attachments/assets/b84e12f4-57f0-4131-8042-a31177e4847c)
+
+##### Nhận xét về hiệu suất của các thuật toán trong nhóm
+
+### 3.5. Thuật toán tìm kiếm học tăng cường
+##### Các thành phần chính của bài toán tìm kiếm
+
+##### Thuật toán tìm kiếm Q Learning
+
+![reinforcement_learning](https://github.com/user-attachments/assets/da47f041-8950-4d94-8325-796199a79753)
+
+##### Hình ảnh so sánh hiệu suất của các thuật toán
+
+![image](https://github.com/user-attachments/assets/c91f0463-096b-491f-a1ba-eb7574f786d5)
+
+![image](https://github.com/user-attachments/assets/e5dae788-1caf-4b94-9a81-1376925fdcfd)
+
+![image](https://github.com/user-attachments/assets/53258fc5-af9c-417b-a470-a8f4e15218f5)
+
+##### Nhận xét về hiệu suất của thuật toán
 
 ## 4. Kết luận
 
